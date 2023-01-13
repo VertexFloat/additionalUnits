@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8' standalone='no'?>
+<modDesc descVersion='72'>
+    <author>VertexFloat</author>
+    <version>1.0.0.0</version>
+    <title>
+        <en>Additional Weight Units</en>
+    </title>
+    <iconFilename>icon.png</iconFilename>
+    <multiplayer supported='true'/>
+
+    <description>
+<en>
+<![CDATA[MOD DESCRIPTION EN]]>
+</en>
+    </description>
+
+    <l10n>
+        <text name='setting_weightUnit'>
+            <en>Weight Unit</en>
+        </text>
+        <text name='toolTip_weightUnit'>
+            <en>Set the weight used in game.</en>
+        </text>
+        <text name='unit_kgLong'>
+            <en>Kilograms</en>
+        </text>
+        <text name='unit_tons'>
+            <en>Tons</en>
+        </text>
+    </l10n>
+
+    <extraSourceFiles>
+        <sourceFile filename='src/AdditionalWeightUnits.lua'/>
+    </extraSourceFiles>
+</modDesc>

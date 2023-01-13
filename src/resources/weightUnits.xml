@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8' standalone='no'?>
+<weightUnits>
+    <weightUnit name='$l10n_unit_liter' shortName='$l10n_unit_literShort'/>
+    <weightUnit name='$l10n_unit_kgLong' shortName='$l10n_unit_kg'>
+        <factors>
+            <factor fillTypeName='WHEAT' value='0.775'/>
+            <factor fillTypeName='BARLEY' value='0.62'/>
+            <factor fillTypeName='OAT' value='0.425'/>
+            <factor fillTypeName='CANOLA' value='0.71'/>
+            <factor fillTypeName='SORGHUM' value='0.7'/>
+            <factor fillTypeName='GRAPE' value='0.5'/>
+            <factor fillTypeName='OLIVE' value='0.5'/>
+            <factor fillTypeName='SUNFLOWER' value='0.55'/>
+            <factor fillTypeName='SOYBEAN' value='0.8'/>
+            <factor fillTypeName='MAIZE' value='0.8'/>
+            <factor fillTypeName='POTATO' value='0.65'/>
+            <factor fillTypeName='SUGARBEET' value='0.625'/>
+            <factor fillTypeName='SUGARBEET_CUT' value='0.6'/>
+            <factor fillTypeName='COTTON' value='1.3'/>
+            <factor fillTypeName='SUGARCANE' value='0.135'/>
+            <factor fillTypeName='SEEDS' value='0.775'/>
+            <factor fillTypeName='WOOL' value='0.45'/>
+            <factor fillTypeName='FORAGE' value='0.45'/>
+            <factor fillTypeName='FORAGE_MIXING' value='0.6'/>
+            <factor fillTypeName='CHAFF' value='0.195'/>
+            <factor fillTypeName='WOODCHIPS' value='0.25'/>
+            <factor fillTypeName='SILAGE' value='0.65'/>
+            <factor fillTypeName='OILSEEDRADISH' value='0.71'/>
+            <factor fillTypeName='WOOD' value='0.45'/>
+            <factor fillTypeName='GRASS' value='0.35'/>
+            <factor fillTypeName='MEADOW' value='0.35'/>
+            <factor fillTypeName='GRASS_WINDROW' value='0.35'/>
+            <factor fillTypeName='DRYGRASS' value='0.07'/>
+            <factor fillTypeName='DRYGRASS_WINDROW' value='0.07'/>
+            <factor fillTypeName='STRAW' value='0.08'/>
+            <factor fillTypeName='SNOW' value='0.145'/>
+            <factor fillTypeName='ROADSALT' value='1.6'/>
+            <factor fillTypeName='FERTILIZER' value='1.05'/>
+            <factor fillTypeName='MANURE' value='0.8'/>
+            <factor fillTypeName='PIGFOOD' value='0.5'/>
+            <factor fillTypeName='LIME' value='0.8'/>
+            <factor fillTypeName='MINERAL_FEED' value='1.2'/>
+            <factor fillTypeName='STONE' value='1.5'/>
+        </factors>
+    </weightUnit>
+</weightUnits>
