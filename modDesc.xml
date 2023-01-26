@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='utf-8' standalone='no'?>
 <modDesc descVersion='72'>
-    <author>VertexFloat</author>
-    <version>1.0.0.0</version>
-    <title>
-        <en>Additional Volume Units</en>
-        <de>Zusätzliche Volumeneinheiten</de>
-        <pl>Dodatkowe Jednostki Objętości</pl>
-    </title>
-    <iconFilename>icon.png</iconFilename>
-    <multiplayer supported='true'/>
+	<author>VertexFloat</author>
+	<version>1.0.0.0</version>
+	<title>
+		<en>Additional Volume Units</en>
+		<de>Zusätzliche Volumeneinheiten</de>
+		<pl>Dodatkowe Jednostki Objętości</pl>
+	</title>
+	<iconFilename>icon.png</iconFilename>
+	<multiplayer supported='true'/>
 
-    <description>
+	<description>
 <en>
 <![CDATA[Thanks to this modification, you can set the unit of volume displayed in the game.
 It is possible to set other volume units or convert to a mass unit.
@@ -53,57 +53,57 @@ Możliwe opcje:
 Po więcej informacji, pomoc lub zgłoszenie błędu, odwiedź stronę <a href="https://github.com/4c65736975/FS22_AdditionalVolumeUnits">GitHub</a>.
 ]]>
 </pl>
-    </description>
+	</description>
 
-    <l10n>
-        <text name='setting_volumeUnit'>
-            <en>Volume Unit</en>
-            <de>Volumeneinheit</de>
-            <pl>Jednostka Objętości</pl>
-        </text>
-        <text name='toolTip_volumeUnit'>
-            <en>Set the volume used in game.</en>
-            <de>Stellen Sie die im Spiel verwendete Lautstärke ein.</de>
-            <pl>Ustaw używaną w grze objętość.</pl>
-        </text>
-        <text name='setting_liquidUnit'>
-            <en>Liquid Unit</en>
-            <de>Flüssige Einheit</de>
-            <pl>Jednostka Płynów</pl>
-        </text>
-        <text name='toolTip_liquidUnit'>
-            <en>Set whether to convert the liquid volume unit.</en>
-            <de>Stellen Sie ein, ob die Flüssigkeitsvolumeneinheit konvertiert wird.</de>
-            <pl>Ustaw, czy konwertować jednostkę objętości cieczy.</pl>
-        </text>
-        <text name='unit_gallons'>
-            <en>Gallons</en>
-            <de>Gallonen</de>
-            <pl>Galony</pl>
-        </text>
-        <text name='unit_gallonsShort'>
-            <en>gal</en>
-            <de>gal</de>
-            <pl>gal</pl>
-        </text>
-        <text name='unit_kgLong'>
-            <en>Kilograms</en>
-            <de>Kilogramm</de>
-            <pl>Kilogramy</pl>
-        </text>
-        <text name='unit_pounds'>
-            <en>Pounds</en>
-            <de>Pfund</de>
-            <pl>Funty</pl>
-        </text>
-        <text name='unit_poundsShort'>
-            <en>lb</en>
-            <de>lb</de>
-            <pl>lb</pl>
-        </text>
-    </l10n>
+	<l10n>
+		<text name='setting_volumeUnit'>
+			<en>Volume Unit</en>
+			<de>Volumeneinheit</de>
+			<pl>Jednostka Objętości</pl>
+		</text>
+		<text name='toolTip_volumeUnit'>
+			<en>Set the volume used in game.</en>
+			<de>Stellen Sie die im Spiel verwendete Lautstärke ein.</de>
+			<pl>Ustaw używaną w grze objętość.</pl>
+		</text>
+		<text name='setting_liquidUnit'>
+			<en>Liquid Unit</en>
+			<de>Flüssige Einheit</de>
+			<pl>Jednostka Płynów</pl>
+		</text>
+		<text name='toolTip_liquidUnit'>
+			<en>Set whether to convert the liquid volume unit.</en>
+			<de>Stellen Sie ein, ob die Flüssigkeitsvolumeneinheit konvertiert wird.</de>
+			<pl>Ustaw, czy konwertować jednostkę objętości cieczy.</pl>
+		</text>
+		<text name='unit_gallons'>
+			<en>Gallons</en>
+			<de>Gallonen</de>
+			<pl>Galony</pl>
+		</text>
+		<text name='unit_gallonsShort'>
+			<en>gal</en>
+			<de>gal</de>
+			<pl>gal</pl>
+		</text>
+		<text name='unit_kgLong'>
+			<en>Kilograms</en>
+			<de>Kilogramm</de>
+			<pl>Kilogramy</pl>
+		</text>
+		<text name='unit_pounds'>
+			<en>Pounds</en>
+			<de>Pfund</de>
+			<pl>Funty</pl>
+		</text>
+		<text name='unit_poundsShort'>
+			<en>lb</en>
+			<de>lb</de>
+			<pl>lb</pl>
+		</text>
+	</l10n>
 
-    <extraSourceFiles>
-        <sourceFile filename='src/AdditionalVolumeUnits.lua'/>
-    </extraSourceFiles>
+	<extraSourceFiles>
+		<sourceFile filename='src/AdditionalVolumeUnits.lua'/>
+	</extraSourceFiles>
 </modDesc>
