@@ -1,13 +1,13 @@
 -- @author: 4c65736975, All Rights Reserved
 -- @version: 1.0.0.0, 13/01/2023
--- @filename: AdditionalVolumeUnits.lua
+-- @filename: AdditionalFillUnits.lua
 
-AdditionalVolumeUnits = {
+AdditionalFillUnits = {
 	MOD_SETTINGS_DIRECTORY = g_modSettingsDirectory,
 	CONFIG_PATH = g_currentModDirectory .. 'src/resources/volumeUnits.xml'
 }
 
-function AdditionalVolumeUnits:loadMap(filename)
+function AdditionalFillUnits:loadMap(filename)
 	local configFilename = self:loadConfigFile()
 	local volumeUnits, texts = self:loadVolumeUnitsFromXMLFile(configFilename)
 
@@ -24,19 +24,19 @@ function AdditionalVolumeUnits:loadMap(filename)
 	self:overwriteGameFunctions()
 end
 
-function AdditionalVolumeUnits:loadConfigFile()
-	local configPath = AdditionalVolumeUnits.MOD_SETTINGS_DIRECTORY .. 'volumeUnits.xml'
+function AdditionalFillUnits:loadConfigFile()
+	local configPath = AdditionalFillUnits.MOD_SETTINGS_DIRECTORY .. 'volumeUnits.xml'
 
-	copyFile(AdditionalVolumeUnits.CONFIG_PATH, configPath, false)
+	copyFile(AdditionalFillUnits.CONFIG_PATH, configPath, false)
 
 	if not fileExists(configPath) then
-		configPath = AdditionalVolumeUnits.CONFIG_PATH
+		configPath = AdditionalFillUnits.CONFIG_PATH
 	end
 
 	return configPath
 end
 
-function AdditionalVolumeUnits:loadVolumeUnitsFromXMLFile(xmlFilename)
+function AdditionalFillUnits:loadVolumeUnitsFromXMLFile(xmlFilename)
 	local xmlFile = XMLFile.loadIfExists('volumeUnitsXML', xmlFilename, 'volumeUnits')
 	local units, texts = {}, {}
 
@@ -84,7 +84,7 @@ function AdditionalVolumeUnits:loadVolumeUnitsFromXMLFile(xmlFilename)
 	return units, texts
 end
 
-function AdditionalVolumeUnits:loadVolumeUnitStateFromXMLFile()
+function AdditionalFillUnits:loadVolumeUnitStateFromXMLFile()
 	local currentUnit, liquidConvert = 1, false
 
 	if g_savegameXML ~= nil then
@@ -100,7 +100,7 @@ function AdditionalVolumeUnits:loadVolumeUnitStateFromXMLFile()
 	return currentUnit, liquidConvert
 end
 
-function AdditionalVolumeUnits:saveVolumeUnitStateToXMLFile()
+function AdditionalFillUnits:saveVolumeUnitStateToXMLFile()
 	if g_savegameXML ~= nil then
 		setXMLInt(g_savegameXML, 'gameSettings.units.volume', self.currentUnit)
 		setXMLBool(g_savegameXML, 'gameSettings.units.liquid', self.liquidConvert)
@@ -109,7 +109,7 @@ function AdditionalVolumeUnits:saveVolumeUnitStateToXMLFile()
 	g_gameSettings:saveToXMLFile(g_savegameXML)
 end
 
-function AdditionalVolumeUnits:createGeneralSettingElement(title, name, description, callback, optionTexts, prependElement)
+function AdditionalFillUnits:createGeneralSettingElement(title, name, description, callback, optionTexts, prependElement)
 	local parentElement = g_currentMission.inGameMenu.pageSettingsGeneral
 
 	if name == nil or name == '' then
@@ -161,25 +161,25 @@ function AdditionalVolumeUnits:createGeneralSettingElement(title, name, descript
 	return element
 end
 
-function AdditionalVolumeUnits.onClickVolumeUnit(state, optionElement)
-	AdditionalVolumeUnits:setVolumeUnit(state)
+function AdditionalFillUnits.onClickVolumeUnit(state, optionElement)
+	AdditionalFillUnits:setVolumeUnit(state)
 end
 
-function AdditionalVolumeUnits:setVolumeUnit(state)
+function AdditionalFillUnits:setVolumeUnit(state)
 	self.currentUnit = state
 
 	self.liquidVolumeUnitCheckboxElement:setDisabled(state == 1)
 end
 
-function AdditionalVolumeUnits.onClickLiquidUnit(state, checkboxElement)
-	AdditionalVolumeUnits:setLiquidUnit(state == CheckedOptionElement.STATE_CHECKED)
+function AdditionalFillUnits.onClickLiquidUnit(state, checkboxElement)
+	AdditionalFillUnits:setLiquidUnit(state == CheckedOptionElement.STATE_CHECKED)
 end
 
-function AdditionalVolumeUnits:setLiquidUnit(state)
+function AdditionalFillUnits:setLiquidUnit(state)
 	self.liquidConvert = state
 end
 
-function AdditionalVolumeUnits:formatVolume(liters, fillTypeName, precision, useLongName, isSeperate, isFormatted, customUnit)
+function AdditionalFillUnits:formatVolume(liters, fillTypeName, precision, useLongName, isSeperate, isFormatted, customUnit)
 	local unit, liquidState = self:getCurrentVolumeUnit(), self:getCurrentLiquidUnitState()
 	local unitName = customUnit ~= g_i18n:convertText('$l10n_unit_literShort') and customUnit or (useLongName == true and unit.name or unit.shortName)
 	local format = isSeperate == true and '%s %s' or '%s%s'
@@ -227,11 +227,11 @@ function AdditionalVolumeUnits:formatVolume(liters, fillTypeName, precision, use
 	return formattedVolume
 end
 
-function AdditionalVolumeUnits:getCurrentVolumeUnit()
+function AdditionalFillUnits:getCurrentVolumeUnit()
 	return self.volumeUnits[self.currentUnit]
 end
 
-function AdditionalVolumeUnits:getCurrentLiquidUnitState()
+function AdditionalFillUnits:getCurrentLiquidUnitState()
 	if self.liquidVolumeUnitCheckboxElement:getIsDisabled() == false then
 		return self.liquidConvert
 	end
@@ -239,7 +239,7 @@ function AdditionalVolumeUnits:getCurrentLiquidUnitState()
 	return false
 end
 
-function AdditionalVolumeUnits:getFillTypeNameByTitle(name)
+function AdditionalFillUnits:getFillTypeNameByTitle(name)
 	local fillTypes = g_fillTypeManager:getFillTypes()
 
 	for _, fillType in pairs(fillTypes) do
@@ -251,8 +251,8 @@ function AdditionalVolumeUnits:getFillTypeNameByTitle(name)
 	return ''
 end
 -- Unfortunately I haven't found a better way to change the default unit than overriding the default functions.
-function AdditionalVolumeUnits:overwriteGameFunctions()
-	AdditionalVolumeUnits:overwriteGameFunction(FillLevelsDisplay, 'updateFillLevelFrames', function (superFunc, self)
+function AdditionalFillUnits:overwriteGameFunctions()
+	AdditionalFillUnits:overwriteGameFunction(FillLevelsDisplay, 'updateFillLevelFrames', function (superFunc, self)
 		local _, yOffset = self:getPosition()
 		local isFirst = true
 
@@ -294,7 +294,7 @@ function AdditionalVolumeUnits:overwriteGameFunctions()
 					fillTypeName = fillTypeDesc.name
 				end
 
-				local fillText = string.format('%s (%d%%)', AdditionalVolumeUnits:formatVolume(fillLevelInformation.fillLevel, fillTypeName, precision, false, false, false), math.floor(100 * value))
+				local fillText = string.format('%s (%d%%)', AdditionalFillUnits:formatVolume(fillLevelInformation.fillLevel, fillTypeName, precision, false, false, false), math.floor(100 * value))
 
 				self.fillLevelTextBuffer[#self.fillLevelTextBuffer + 1] = fillText
 
@@ -308,23 +308,23 @@ function AdditionalVolumeUnits:overwriteGameFunctions()
 		end
 	end)
 
-	AdditionalVolumeUnits:overwriteGameFunction(Bale, 'showInfo', function (superFunc, self, box)
+	AdditionalFillUnits:overwriteGameFunction(Bale, 'showInfo', function (superFunc, self, box)
 		local fillType = self:getFillType()
 		local fillLevel = self:getFillLevel()
 		local fillTypeDesc = g_fillTypeManager:getFillTypeByIndex(fillType)
 
-		box:addLine(fillTypeDesc.title, AdditionalVolumeUnits:formatVolume(fillLevel, fillTypeDesc.name, 0, false, true, true))
+		box:addLine(fillTypeDesc.title, AdditionalFillUnits:formatVolume(fillLevel, fillTypeDesc.name, 0, false, true, true))
 
 		if self:getIsFermenting() then
 			box:addLine(g_i18n:getText('info_fermenting'), string.format('%d%%', self:getFermentingPercentage() * 100))
 		end
 
-		if AdditionalVolumeUnits.currentUnit == 1 then
+		if AdditionalFillUnits.currentUnit == 1 then
 			box:addLine(g_i18n:getText('infohud_mass'), g_i18n:formatMass(self:getMass()))
 		end
 	end)
 
-	AdditionalVolumeUnits:overwriteGameFunction(SiloDialog, 'setFillLevels', function (superFunc, self, fillLevels, hasInfiniteVolume)
+	AdditionalFillUnits:overwriteGameFunction(SiloDialog, 'setFillLevels', function (superFunc, self, fillLevels, hasInfiniteVolume)
 		self.fillLevels = fillLevels
 		self.fillTypeMapping = {}
 
@@ -340,7 +340,7 @@ function AdditionalVolumeUnits:overwriteGameFunctions()
 			if hasInfiniteVolume then
 				name = string.format('%s', fillType.title)
 			else
-				name = string.format('%s %s', fillType.title, AdditionalVolumeUnits:formatVolume(level, fillType.name, 0, false, true, true))
+				name = string.format('%s %s', fillType.title, AdditionalFillUnits:formatVolume(level, fillType.name, 0, false, true, true))
 			end
 
 			table.insert(fillTypesTable, name)
@@ -357,7 +357,7 @@ function AdditionalVolumeUnits:overwriteGameFunctions()
 		self.fillTypesElement:setState(selectedId, true)
 	end)
 
-	AdditionalVolumeUnits:overwriteGameFunction(InGameMenuPricesFrame, 'populateCellForItemInSection', function (superFunc, self, list, section, index, cell)
+	AdditionalFillUnits:overwriteGameFunction(InGameMenuPricesFrame, 'populateCellForItemInSection', function (superFunc, self, list, section, index, cell)
 		if list == self.productList then
 			local fillTypeDesc = self.fillTypes[index]
 
@@ -371,7 +371,7 @@ function AdditionalVolumeUnits:overwriteGameFunctions()
 			if localLiters < 0 and foreignLiters < 0 then
 				cell:getAttribute('storage'):setText('-')
 			else
-				cell:getAttribute('storage'):setText(AdditionalVolumeUnits:formatVolume(math.max(localLiters, 0) + math.max(foreignLiters, 0), fillTypeDesc.name, 0, false, true, true))
+				cell:getAttribute('storage'):setText(AdditionalFillUnits:formatVolume(math.max(localLiters, 0) + math.max(foreignLiters, 0), fillTypeDesc.name, 0, false, true, true))
 			end
 		else
 			local station = self.currentStations[index]
@@ -417,7 +417,7 @@ function AdditionalVolumeUnits:overwriteGameFunctions()
 		end
 	end)
 
-	AdditionalVolumeUnits:overwriteGameFunction(InGameMenuAnimalsFrame, 'updateConditionDisplay', function (superFunc, self, husbandry)
+	AdditionalFillUnits:overwriteGameFunction(InGameMenuAnimalsFrame, 'updateConditionDisplay', function (superFunc, self, husbandry)
 		local infos = husbandry:getConditionInfos()
 
 		for index, row in ipairs(self.conditionRow) do
@@ -426,7 +426,7 @@ function AdditionalVolumeUnits:overwriteGameFunctions()
 			row:setVisible(info ~= nil)
 
 			if info ~= nil then
-				local valueText = info.valueText or AdditionalVolumeUnits:formatVolume(info.value, AdditionalVolumeUnits:getFillTypeNameByTitle(info.title), 0, false, true, true, info.customUnitText)
+				local valueText = info.valueText or AdditionalFillUnits:formatVolume(info.value, AdditionalFillUnits:getFillTypeNameByTitle(info.title), 0, false, true, true, info.customUnitText)
 
 				self.conditionLabel[index]:setText(info.title)
 				self.conditionValue[index]:setText(valueText)
@@ -435,7 +435,7 @@ function AdditionalVolumeUnits:overwriteGameFunctions()
 		end
 	end)
 
-	AdditionalVolumeUnits:overwriteGameFunction(InGameMenuAnimalsFrame, 'updateFoodDisplay', function (superFunc, self, husbandry)
+	AdditionalFillUnits:overwriteGameFunction(InGameMenuAnimalsFrame, 'updateFoodDisplay', function (superFunc, self, husbandry)
 		local infos = husbandry:getFoodInfos()
 		local totalCapacity = 0
 		local totalValue = 0
@@ -446,7 +446,7 @@ function AdditionalVolumeUnits:overwriteGameFunctions()
 			row:setVisible(info ~= nil)
 
 			if info ~= nil then
-				local valueText = AdditionalVolumeUnits:formatVolume(info.value, AdditionalVolumeUnits:getFillTypeNameByTitle((string.match(info.title, '[%a%s]+'):match('^.*%S'))), 0, false, true, true)
+				local valueText = AdditionalFillUnits:formatVolume(info.value, AdditionalFillUnits:getFillTypeNameByTitle((string.match(info.title, '[%a%s]+'):match('^.*%S'))), 0, false, true, true)
 
 				totalCapacity = info.capacity
 				totalValue = totalValue + info.value
@@ -469,7 +469,7 @@ function AdditionalVolumeUnits:overwriteGameFunctions()
 		self.foodHeader:setText(string.format('%s (%s)', g_i18n:getText('ui_silos_totalCapacity'), g_i18n:getText('animals_foodMixEffectiveness')))
 	end)
 
-	AdditionalVolumeUnits:overwriteGameFunction(InGameMenuProductionFrame, 'populateCellForItemInSection', function (superFunc, self, list, section, index, cell)
+	AdditionalFillUnits:overwriteGameFunction(InGameMenuProductionFrame, 'populateCellForItemInSection', function (superFunc, self, list, section, index, cell)
 		if list == self.productionList then
 			local productionPoint = self:getProductionPoints()[section]
 			local production = productionPoint.productions[index]
@@ -511,7 +511,7 @@ function AdditionalVolumeUnits:overwriteGameFunctions()
 
 				cell:getAttribute('icon'):setImageFilename(fillTypeDesc.hudOverlayFilename)
 				cell:getAttribute('fillType'):setText(fillTypeDesc.title)
-				cell:getAttribute('fillLevel'):setText(AdditionalVolumeUnits:formatVolume(fillLevel, fillTypeDesc.name, 0, false, true, true))
+				cell:getAttribute('fillLevel'):setText(AdditionalFillUnits:formatVolume(fillLevel, fillTypeDesc.name, 0, false, true, true))
 
 				if not isInput then
 					local outputMode = productionPoint:getOutputDistributionMode(fillType)
@@ -531,7 +531,7 @@ function AdditionalVolumeUnits:overwriteGameFunctions()
 		end
 	end)
 
-	AdditionalVolumeUnits:overwriteGameFunction(ProductionPoint, 'updateInfo', function (_, self, superFunc, infoTable)
+	AdditionalFillUnits:overwriteGameFunction(ProductionPoint, 'updateInfo', function (_, self, superFunc, infoTable)
 		superFunc(self, infoTable)
 
 		local owningFarm = g_farmManager:getFarmById(self:getOwnerFarmId())
@@ -573,7 +573,7 @@ function AdditionalVolumeUnits:overwriteGameFunctions()
 
 				table.insert(infoTable, {
 					title = g_fillTypeManager:getFillTypeTitleByIndex(fillType),
-					text = AdditionalVolumeUnits:formatVolume(fillLevel, g_fillTypeManager:getFillTypeNameByIndex(fillType), 0, false, true, true)
+					text = AdditionalFillUnits:formatVolume(fillLevel, g_fillTypeManager:getFillTypeNameByIndex(fillType), 0, false, true, true)
 				})
 			end
 		end
@@ -587,7 +587,7 @@ function AdditionalVolumeUnits:overwriteGameFunctions()
 
 				table.insert(infoTable, {
 					title = g_fillTypeManager:getFillTypeTitleByIndex(fillType),
-					text = AdditionalVolumeUnits:formatVolume(fillLevel, g_fillTypeManager:getFillTypeNameByIndex(fillType), 0, false, true, true)
+					text = AdditionalFillUnits:formatVolume(fillLevel, g_fillTypeManager:getFillTypeNameByIndex(fillType), 0, false, true, true)
 				})
 			end
 		end
@@ -602,7 +602,7 @@ function AdditionalVolumeUnits:overwriteGameFunctions()
 	end)
 end
 
-function AdditionalVolumeUnits:overwriteGameFunction(object, funcName, newFunc)
+function AdditionalFillUnits:overwriteGameFunction(object, funcName, newFunc)
 	if object == nil then
 		return
 	end
@@ -616,7 +616,7 @@ function AdditionalVolumeUnits:overwriteGameFunction(object, funcName, newFunc)
 	end
 end
 
-AdditionalVolumeUnits:overwriteGameFunction(FillUnit, 'showInfo', function (_, self, superFunc, box)
+AdditionalFillUnits:overwriteGameFunction(FillUnit, 'showInfo', function (_, self, superFunc, box)
 	local spec = self.spec_fillUnit
 
 	if spec.isInfoDirty then
@@ -652,7 +652,7 @@ AdditionalVolumeUnits:overwriteGameFunction(FillUnit, 'showInfo', function (_, s
 	for _, info in ipairs(spec.fillUnitInfos) do
 		local formattedNumber = nil
 
-		formattedNumber = string.format('%s', AdditionalVolumeUnits:formatVolume(info.fillLevel, info.name, info.precision, false, true, true, info.unit))
+		formattedNumber = string.format('%s', AdditionalFillUnits:formatVolume(info.fillLevel, info.name, info.precision, false, true, true, info.unit))
 
 		box:addLine(info.title, formattedNumber)
 	end
@@ -660,7 +660,7 @@ AdditionalVolumeUnits:overwriteGameFunction(FillUnit, 'showInfo', function (_, s
 	superFunc(self, box)
 end)
 
-AdditionalVolumeUnits:overwriteGameFunction(PlaceableSilo, 'updateInfo', function (_, self, superFunc, infoTable)
+AdditionalFillUnits:overwriteGameFunction(PlaceableSilo, 'updateInfo', function (_, self, superFunc, infoTable)
 	superFunc(self, infoTable)
 
 	local spec = self.spec_silo
@@ -697,7 +697,7 @@ AdditionalVolumeUnits:overwriteGameFunction(PlaceableSilo, 'updateInfo', functio
 
 			table.insert(infoTable, {
 				title = g_fillTypeManager:getFillTypeTitleByIndex(fillTypeAndLevel.fillType),
-				text = AdditionalVolumeUnits:formatVolume(fillTypeAndLevel.fillLevel, g_fillTypeManager:getFillTypeNameByIndex(fillTypeAndLevel.fillType), 0, false, true, true)
+				text = AdditionalFillUnits:formatVolume(fillTypeAndLevel.fillLevel, g_fillTypeManager:getFillTypeNameByIndex(fillTypeAndLevel.fillType), 0, false, true, true)
 			})
 		end
 	else
@@ -708,7 +708,7 @@ AdditionalVolumeUnits:overwriteGameFunction(PlaceableSilo, 'updateInfo', functio
 	end
 end)
 
-AdditionalVolumeUnits:overwriteGameFunction(PlaceableSilo, 'canBeSold', function (superFunc, self)
+AdditionalFillUnits:overwriteGameFunction(PlaceableSilo, 'canBeSold', function (superFunc, self)
 	local spec = self.spec_silo
 
 	if spec.storagePerFarm then
@@ -743,7 +743,7 @@ AdditionalVolumeUnits:overwriteGameFunction(PlaceableSilo, 'canBeSold', function
 			local price = fillLevel * lowestSellPrice * PlaceableSilo.PRICE_SELL_FACTOR
 			local fillType = g_fillTypeManager:getFillTypeByIndex(fillTypeIndex)
 
-			warning = string.format('%s%s (%s) - %s: %s\n', warning, fillType.title, AdditionalVolumeUnits:formatVolume(fillLevel, g_fillTypeManager:getFillTypeNameByIndex(fillTypeIndex), 0, false, true, true), g_i18n:getText('ui_sellValue'), g_i18n:formatMoney(price, 0, true, true))
+			warning = string.format('%s%s (%s) - %s: %s\n', warning, fillType.title, AdditionalFillUnits:formatVolume(fillLevel, g_fillTypeManager:getFillTypeNameByIndex(fillTypeIndex), 0, false, true, true), g_i18n:getText('ui_sellValue'), g_i18n:formatMoney(price, 0, true, true))
 
 			spec.totalFillTypeSellPrice = spec.totalFillTypeSellPrice + price
 		end
@@ -756,7 +756,7 @@ AdditionalVolumeUnits:overwriteGameFunction(PlaceableSilo, 'canBeSold', function
 	return true, nil
 end)
 
-AdditionalVolumeUnits:overwriteGameFunction(PlaceableHusbandryWater, 'updateInfo', function (_, self, superFunc, infoTable)
+AdditionalFillUnits:overwriteGameFunction(PlaceableHusbandryWater, 'updateInfo', function (_, self, superFunc, infoTable)
 	superFunc(self, infoTable)
 
 	local spec = self.spec_husbandryWater
@@ -764,47 +764,47 @@ AdditionalVolumeUnits:overwriteGameFunction(PlaceableHusbandryWater, 'updateInfo
 	if not spec.automaticWaterSupply then
 		local fillLevel = self:getHusbandryFillLevel(spec.fillType)
 
-		spec.info.text = AdditionalVolumeUnits:formatVolume(fillLevel, g_fillTypeManager:getFillTypeNameByIndex(spec.fillType), 0, false, true, true)
+		spec.info.text = AdditionalFillUnits:formatVolume(fillLevel, g_fillTypeManager:getFillTypeNameByIndex(spec.fillType), 0, false, true, true)
 
 		table.insert(infoTable, spec.info)
 	end
 end)
 
-AdditionalVolumeUnits:overwriteGameFunction(PlaceableHusbandryMilk, 'updateInfo', function (_, self, superFunc, infoTable)
+AdditionalFillUnits:overwriteGameFunction(PlaceableHusbandryMilk, 'updateInfo', function (_, self, superFunc, infoTable)
 	local spec = self.spec_husbandryMilk
 
 	superFunc(self, infoTable)
 
 	local fillLevel = self:getHusbandryFillLevel(spec.fillType)
 
-	spec.info.text = AdditionalVolumeUnits:formatVolume(fillLevel, g_fillTypeManager:getFillTypeNameByIndex(spec.fillType), 0, false, true, true)
+	spec.info.text = AdditionalFillUnits:formatVolume(fillLevel, g_fillTypeManager:getFillTypeNameByIndex(spec.fillType), 0, false, true, true)
 
 	table.insert(infoTable, spec.info)
 end)
 
-AdditionalVolumeUnits:overwriteGameFunction(PlaceableHusbandryStraw, 'updateInfo', function (_, self, superFunc, infoTable)
+AdditionalFillUnits:overwriteGameFunction(PlaceableHusbandryStraw, 'updateInfo', function (_, self, superFunc, infoTable)
 	superFunc(self, infoTable)
 
 	local spec = self.spec_husbandryStraw
 	local fillLevel = self:getHusbandryFillLevel(spec.inputFillType)
 
-	spec.info.text = AdditionalVolumeUnits:formatVolume(fillLevel, g_fillTypeManager:getFillTypeNameByIndex(spec.inputFillType), 0, false, true, true)
+	spec.info.text = AdditionalFillUnits:formatVolume(fillLevel, g_fillTypeManager:getFillTypeNameByIndex(spec.inputFillType), 0, false, true, true)
 
 	table.insert(infoTable, spec.info)
 end)
 
-AdditionalVolumeUnits:overwriteGameFunction(PlaceableHusbandryLiquidManure, 'updateInfo', function (_, self, superFunc, infoTable)
+AdditionalFillUnits:overwriteGameFunction(PlaceableHusbandryLiquidManure, 'updateInfo', function (_, self, superFunc, infoTable)
 	superFunc(self, infoTable)
 
 	local spec = self.spec_husbandryLiquidManure
 	local fillLevel = self:getHusbandryFillLevel(spec.fillType)
 
-	spec.info.text = AdditionalVolumeUnits:formatVolume(fillLevel, g_fillTypeManager:getFillTypeNameByIndex(spec.fillType), 0, false, true, true)
+	spec.info.text = AdditionalFillUnits:formatVolume(fillLevel, g_fillTypeManager:getFillTypeNameByIndex(spec.fillType), 0, false, true, true)
 
 	table.insert(infoTable, spec.info)
 end)
 
-AdditionalVolumeUnits:overwriteGameFunction(FeedingRobot, 'updateInfo', function (superFunc, self, infoTable)
+AdditionalFillUnits:overwriteGameFunction(FeedingRobot, 'updateInfo', function (superFunc, self, infoTable)
 	if self.infos ~= nil then
 		for _, info in ipairs(self.infos) do
 			local fillLevel = 0
@@ -816,14 +816,14 @@ AdditionalVolumeUnits:overwriteGameFunction(FeedingRobot, 'updateInfo', function
 				fillTypeName = g_fillTypeManager:getFillTypeNameByIndex(fillType)
 			end
 
-			info.text = AdditionalVolumeUnits:formatVolume(fillLevel, fillTypeName, 0, false, true, true)
+			info.text = AdditionalFillUnits:formatVolume(fillLevel, fillTypeName, 0, false, true, true)
 
 			table.insert(infoTable, info)
 		end
 	end
 end)
 
-AdditionalVolumeUnits:overwriteGameFunction(PlaceableManureHeap, 'updateInfo', function (_, self, superFunc, infoTable)
+AdditionalFillUnits:overwriteGameFunction(PlaceableManureHeap, 'updateInfo', function (_, self, superFunc, infoTable)
 	superFunc(self, infoTable)
 
 	local spec = self.spec_manureHeap
@@ -834,12 +834,12 @@ AdditionalVolumeUnits:overwriteGameFunction(PlaceableManureHeap, 'updateInfo', f
 
 	local fillLevel = spec.manureHeap:getFillLevel(spec.manureHeap.fillTypeIndex)
 
-	spec.infoFillLevel.text = AdditionalVolumeUnits:formatVolume(fillLevel, AdditionalVolumeUnits:getFillTypeNameByTitle(spec.infoFillLevel.title), 0, false, true, true)
+	spec.infoFillLevel.text = AdditionalFillUnits:formatVolume(fillLevel, AdditionalFillUnits:getFillTypeNameByTitle(spec.infoFillLevel.title), 0, false, true, true)
 
 	table.insert(infoTable, spec.infoFillLevel)
 end)
 
-AdditionalVolumeUnits:overwriteGameFunction(PlayerHUDUpdater, 'showPalletInfo', function (superFunc, self, pallet)
+AdditionalFillUnits:overwriteGameFunction(PlayerHUDUpdater, 'showPalletInfo', function (superFunc, self, pallet)
 	local mass = pallet:getTotalMass()
 	local farm = g_farmManager:getFarmById(pallet:getOwnerFarmId())
 	local box = self.objectBox
@@ -856,7 +856,7 @@ AdditionalVolumeUnits:overwriteGameFunction(PlayerHUDUpdater, 'showPalletInfo', 
 		box:addLine(g_i18n:getText('fieldInfo_ownedBy'), self:convertFarmToName(farm))
 	end
 
-	if AdditionalVolumeUnits.currentUnit == 1 then
+	if AdditionalFillUnits.currentUnit == 1 then
 		box:addLine(g_i18n:getText('infohud_mass'), g_i18n:formatMass(mass))
 	end
 
@@ -865,15 +865,15 @@ AdditionalVolumeUnits:overwriteGameFunction(PlayerHUDUpdater, 'showPalletInfo', 
 end)
 
 local function onFrameClose()
-	AdditionalVolumeUnits:saveVolumeUnitStateToXMLFile()
+	AdditionalFillUnits:saveVolumeUnitStateToXMLFile()
 end
 
 InGameMenuGeneralSettingsFrame.onFrameClose = Utils.appendedFunction(InGameMenuGeneralSettingsFrame.onFrameClose, onFrameClose)
 
 local function saveToXMLFile()
-	AdditionalVolumeUnits:saveVolumeUnitStateToXMLFile()
+	AdditionalFillUnits:saveVolumeUnitStateToXMLFile()
 end
 
 FSCareerMissionInfo.saveToXMLFile = Utils.appendedFunction(FSCareerMissionInfo.saveToXMLFile, saveToXMLFile)
 
-addModEventListener(AdditionalVolumeUnits)
+addModEventListener(AdditionalFillUnits)

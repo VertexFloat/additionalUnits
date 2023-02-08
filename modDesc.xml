@@ -3,16 +3,16 @@
 	<author>VertexFloat</author>
 	<version>1.0.0.0</version>
 	<title>
-		<en>Additional Volume Units</en>
-		<de>Zusätzliche Volumeneinheiten</de>
-		<pl>Dodatkowe Jednostki Objętości</pl>
+		<en>Additional Fill Units</en>
+		<de>Zusätzliche Fülleinheiten</de>
+		<pl>Dodatkowe Jednostki Wypełnienia</pl>
 	</title>
 	<iconFilename>icon.png</iconFilename>
 	<multiplayer supported='true'/>
 
 	<description>
 <en>
-<![CDATA[Thanks to this modification, you can set the unit of volume displayed in the game.
+<![CDATA[Thanks to this modification, you can set the unit of fill level displayed in the game.
 It is possible to set other volume units or convert to a mass unit.
 
 Available options:
@@ -22,11 +22,11 @@ Available options:
 - kilograms
 - pounds
 
-For more information, help, and report issues please visit <a href="https://github.com/4c65736975/FS22_AdditionalVolumeUnits">GitHub</a>.
+For more information, help, and report issues please visit <a href="https://github.com/4c65736975/FS22_AdditionalFillUnits">GitHub</a>.
 ]]>
 </en>
 <de>
-<![CDATA[Dank dieser Modifikation können Sie die im Spiel angezeigte Volumeneinheit einstellen.
+<![CDATA[Dank dieser Modifikation können Sie die im Spiel angezeigt Einheit füllen des Füllstands einstellen.
 Es ist möglich, andere Volumeneinheiten einzustellen oder in eine Masseeinheit umzurechnen.
 
 Verfügbare Optionen:
@@ -36,11 +36,11 @@ Verfügbare Optionen:
 - Kilogramm
 - Pfund
 
-Weitere Informationen, Hilfe und Probleme melden finden Sie unter <a href="https://github.com/4c65736975/FS22_AdditionalVolumeUnits">GitHub</a>.
+Weitere Informationen, Hilfe und Probleme melden finden Sie unter <a href="https://github.com/4c65736975/FS22_AdditionalFillUnits">GitHub</a>.
 ]]>
 </de>
 <pl>
-<![CDATA[Dzięki tej modyfikacji, możesz ustawić wyświetlaną w grze jednostkę objętości.
+<![CDATA[Dzięki tej modyfikacji możesz ustawić jednostkę poziomu napełnienia wyświetlaną w grze.
 Możliwe jest ustawienie innych jednostek objętości lub konwersja na jednostkę masy.
 
 Możliwe opcje:
@@ -50,7 +50,7 @@ Możliwe opcje:
 - kilogramy
 - funty
 
-Po więcej informacji, pomoc lub zgłoszenie błędu, odwiedź stronę <a href="https://github.com/4c65736975/FS22_AdditionalVolumeUnits">GitHub</a>.
+Po więcej informacji, pomoc lub zgłoszenie błędu, odwiedź stronę <a href="https://github.com/4c65736975/FS22_AdditionalFillUnits">GitHub</a>.
 ]]>
 </pl>
 	</description>
@@ -104,6 +104,6 @@ Po więcej informacji, pomoc lub zgłoszenie błędu, odwiedź stronę <a href="
 	</l10n>
 
 	<extraSourceFiles>
-		<sourceFile filename='src/AdditionalVolumeUnits.lua'/>
+		<sourceFile filename='src/AdditionalFillUnits.lua'/>
 	</extraSourceFiles>
 </modDesc>
