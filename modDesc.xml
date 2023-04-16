@@ -63,7 +63,7 @@ Menu zarządzania jednostkami otworzyć możesz za pomocą przycisku znajdujące
 Standardowo dodanymi jednostkami są: metr sześcienny, galon, funt, kilogram
 
 UWAGA !
-Modyfikacja formatuje poziom wypełnienia do poprawnych jednostek na tyle ile to możliwe, niestety sformatowanie niektórych nie jest możliwe, dlatego będą 'miejsca' w grze, gdzie poziom wypełnienia sformatowany będzie do podstawowej jendostki gry.
+Modyfikacja formatuje poziom wypełnienia do poprawnych jednostek na tyle ile to możliwe, niestety sformatowanie niektórych nie jest możliwe, dlatego będą 'miejsca' w grze, gdzie poziom wypełnienia sformatowany będzie do podstawowej jednostki gry.
 
 Po więcej informacji, pomoc lub zgłoszenie błędu, odwiedź stronę <a href='https://github.com/4c65736975/additionalUnits'>GitHub</a>.
 ]]>
