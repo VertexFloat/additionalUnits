@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<l10n>
+	<locale>tr</locale>
+
+	<elements>
+		<e k='unit_gallons' v='Galon'/>
+		<e k='unit_gallonsShort' v='gal'/>
+		<e k='unit_kgLong' v='Kilogram'/>
+		<e k='unit_pounds' v='Pound'/>
+		<e k='unit_poundsShort' v='lbs'/>
+		<e k='ui_additionalUnits_title' v='Ek Birimler'/>
+		<e k='ui_additionalUnits_editFillTypeUnit_title' v='Dolgu türünü düzenle: %s' tag='format'/>
+		<e k='ui_additionalUnits_editUnit_title' v='Birimi düzenle: %s' tag='format'/>
+		<e k='ui_additionalUnits_editUnit_title_new' v='Yeni birim'/>
+		<e k='ui_additionalUnits_editUnit_add' v='Ekle'/>
+		<e k='ui_additionalUnits_name' v='İsim'/>
+		<e k='ui_additionalUnits_shortName' v='Kısa adı'/>
+		<e k='ui_additionalUnits_volumeUnit' v='Hacim birimi'/>
+		<e k='ui_additionalUnits_mass' v='Kütle faktörü'/>
+		<e k='ui_additionalUnits_unit' v='Birim'/>
+		<e k='ui_additionalUnits_precision' v='Kesinlik'/>
+		<e k='ui_additionalUnits_factor' v='Faktör'/>
+		<e k='ui_additionalUnits_massFactor' v='%s kg/m³' tag='format'/>
+		<e k='ui_additionalUnits_youWantToDeleteUnit' v='Gerçekten (%s) birimi silmek istiyor musunuz?' tag='format'/>
+		<e k='ui_additionalUnits_deletedUnit' v='Birim başarıyla silindi!'/>
+		<e k='ui_additionalUnits_createdNewUnit' v='(%s) birim başarıyla oluşturuldu!' tag='format'/>
+		<e k='toolTip_additionalUnits_name' v='Birim uzun adını girin.'/>
+		<e k='toolTip_additionalUnits_shortName' v='Birim kısa adını girin.'/>
+		<e k='toolTip_additionalUnits_precision' v='Birim hassasiyetini seçin.'/>
+		<e k='toolTip_additionalUnits_unit' v='Doldurma tipi birimi seçin.'/>
+		<e k='toolTip_additionalUnits_factor' v='Birim faktörünü girin.'/>
+		<e k='toolTip_additionalUnits_mass' v='Doldurma tipi kütle faktörünü (kg/m³) girin.'/>
+		<e k='toolTip_additionalUnits_volumeUnit' v='Bunun bir hacim birimi olup olmadığı.'/>
+		<e k='toolTip_additionalUnits_menu' v='Ek birimler menüsünü açın.'/>
+		<e k='info_additionalUnits_usage' v='Kullanım:'/>
+		<e k='info_additionalUnits_precision' v='Kesinlik - belirli bir birimdeki değerin kaç ondalık basamağa yuvarlandığını gösterir.'/>
+		<e k='info_additionalUnits_factor' v='Faktör - belirli bir birimde litre/kilogram değerini gösterir (verilen birimin hacim birimi olup olmadığına bağlıdır), örn. (1.000l * 0.001 = 1m³).'/>
+		<e k='info_additionalUnits_massFactor' v='Kütle Faktörü - belirli bir fillType"ın m3"ü başına kilogramın bir göstergesidir, hacim olmayan tüm birimler kilograma ve ancak o zaman belirtilen birime dönüştürülür, örn. (1.000l = 1m³, yani 1.000l buğday = 775 kg), sonra (775kg * 2.205 ~= 1.708 lb).'/>
+	</elements>
+</l10n>

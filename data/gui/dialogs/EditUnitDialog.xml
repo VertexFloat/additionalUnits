@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='utf-8' standalone='no'?>
+<GUI onOpen='onOpen' onClose='onClose' onCreate='onCreate'>
+	<GuiElement type='empty' profile='newLayer'/>
+	<GuiElement type='bitmap' profile='dialogFullscreenBg'/>
+	<GuiElement type='bitmap' profile='bgVignette'/>
+	<GuiElement type='bitmap' profile='bgGlowDialog'/>
+
+	<GuiElement type='bitmap' profile='editUnitDialogBg' id='dialogElement'>
+		<GuiElement type='bitmap' profile='additionalUnitsDialogHeaderDocked'>
+			<GuiElement type='text' profile='additionalUnitsDialogHeaderText' text='' id='dialogTitleElement'/>
+		</GuiElement>
+
+		<GuiElement type='boxLayout' profile='additionalUnitsDialogSettingsBox'>
+			<GuiElement type='empty' profile='additionalUnitsDialogTextInputWrapper'>
+				<GuiElement type='textInput' profile='additionalUnitsDialogTextInput' id='textUnitName' onTextChanged='onTextChangedName' maxCharacters='18'/>
+				<GuiElement type='boxLayout' profile='additionalUnitsDialogSettingTextBox'>
+					<GuiElement type='text' profile='additionalUnitsDialogSettingTitle' text='$l10n_ui_additionalUnits_name'/>
+					<GuiElement type='text' profile='additionalUnitsDialogSettingTooltip' text='$l10n_toolTip_additionalUnits_name'/>
+				</GuiElement>
+			</GuiElement>
+
+			<GuiElement type='empty' profile='additionalUnitsDialogTextInputWrapper'>
+				<GuiElement type='textInput' profile='additionalUnitsDialogTextInput' id='textUnitShortName' onTextChanged='onTextChangedShortName' maxCharacters='4'/>
+				<GuiElement type='boxLayout' profile='additionalUnitsDialogSettingTextBox'>
+					<GuiElement type='text' profile='additionalUnitsDialogSettingTitle' text='$l10n_ui_additionalUnits_shortName'/>
+					<GuiElement type='text' profile='additionalUnitsDialogSettingTooltip' text='$l10n_toolTip_additionalUnits_shortName'/>
+				</GuiElement>
+			</GuiElement>
+
+			<GuiElement type='checkedOption' profile='additionalUnitsDialogTextInputWrapper' id='checkedUnitVolume' onClick='onClickVolume'>
+				<GuiElement type='button' profile='additionalUnitsDialogMultiTextOptionSettingsLeft'/>
+				<GuiElement type='button' profile='additionalUnitsDialogMultiTextOptionSettingsRight'/>
+				<GuiElement type='text' profile='additionalUnitsDialogMultiTextOptionSettingsText'/>
+				<GuiElement type='bitmap' profile='additionalUnitsDialogMultiTextOptionSettingsBg'/>
+				<GuiElement type='boxLayout' profile='additionalUnitsDialogSettingTextBox'>
+					<GuiElement type='text' profile='additionalUnitsDialogSettingTitle' text='$l10n_ui_additionalUnits_volumeUnit'/>
+					<GuiElement type='text' profile='additionalUnitsDialogSettingTooltip' text='$l10n_toolTip_additionalUnits_volumeUnit'/>
+				</GuiElement>
+			</GuiElement>
+
+			<GuiElement type='multiTextOption' profile='additionalUnitsDialogTextInputWrapper' id='optionUnitPrecision' onClick='onClickPrecision'>
+				<GuiElement type='button' profile='additionalUnitsDialogMultiTextOptionSettingsLeft'/>
+				<GuiElement type='button' profile='additionalUnitsDialogMultiTextOptionSettingsRight'/>
+				<GuiElement type='text' profile='additionalUnitsDialogMultiTextOptionSettingsText'/>
+				<GuiElement type='bitmap' profile='additionalUnitsDialogMultiTextOptionSettingsBg'/>
+				<GuiElement type='boxLayout' profile='additionalUnitsDialogSettingTextBox'>
+					<GuiElement type='text' profile='additionalUnitsDialogSettingTitle' text='$l10n_ui_additionalUnits_precision'/>
+					<GuiElement type='text' profile='additionalUnitsDialogSettingTooltip' text='$l10n_toolTip_additionalUnits_precision'/>
+				</GuiElement>
+			</GuiElement>
+
+			<GuiElement type='empty' profile='additionalUnitsDialogTextInputWrapper'>
+				<GuiElement type='textInput' profile='additionalUnitsDialogTextInput' id='textUnitFactor' onTextChanged='onTextChangedFactor' maxCharacters='7'/>
+				<GuiElement type='boxLayout' profile='additionalUnitsDialogSettingTextBox'>
+					<GuiElement type='text' profile='additionalUnitsDialogSettingTitle' text='$l10n_ui_additionalUnits_factor'/>
+					<GuiElement type='text' profile='additionalUnitsDialogSettingTooltip' text='$l10n_toolTip_additionalUnits_factor'/>
+				</GuiElement>
+			</GuiElement>
+		</GuiElement>
+
+		<GuiElement type='flowLayout' profile='buttonBoxDialog'>
+			<GuiElement type='button' profile='buttonBuy' text='$l10n_button_save' onClick='onClickSave' id='yesButton'/>
+			<GuiElement type='button' profile='buttonBack' text='$l10n_button_cancel' onClick='onClickBack' id='noButton'/>
+		</GuiElement>
+	</GuiElement>
+</GUI>

@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<l10n>
+	<locale>hu</locale>
+
+	<elements>
+		<e k='unit_gallons' v='Gallonok'/>
+		<e k='unit_gallonsShort' v='gal'/>
+		<e k='unit_kgLong' v='Kilogramm'/>
+		<e k='unit_pounds' v='Font'/>
+		<e k='unit_poundsShort' v='lbs'/>
+		<e k='ui_additionalUnits_title' v='Kiegészítő Egységek'/>
+		<e k='ui_additionalUnits_editFillTypeUnit_title' v='Kitöltéstípus szerkesztése: %s' tag='format'/>
+		<e k='ui_additionalUnits_editUnit_title' v='Egység szerkesztése: %s' tag='format'/>
+		<e k='ui_additionalUnits_editUnit_title_new' v='Új egység'/>
+		<e k='ui_additionalUnits_editUnit_add' v='Add'/>
+		<e k='ui_additionalUnits_name' v='Név'/>
+		<e k='ui_additionalUnits_shortName' v='Rövid név'/>
+		<e k='ui_additionalUnits_volumeUnit' v='Hangerő mértékegysége'/>
+		<e k='ui_additionalUnits_mass' v='Tömegtényező'/>
+		<e k='ui_additionalUnits_unit' v='Egység'/>
+		<e k='ui_additionalUnits_precision' v='Pontosság'/>
+		<e k='ui_additionalUnits_factor' v='Tényező'/>
+		<e k='ui_additionalUnits_massFactor' v='%s kg/m³' tag='format'/>
+		<e k='ui_additionalUnits_youWantToDeleteUnit' v='Biztosan törölni szeretné (%s) egységet?' tag='format'/>
+		<e k='ui_additionalUnits_deletedUnit' v='Az egység sikeresen törölve!'/>
+		<e k='ui_additionalUnits_createdNewUnit' v='(%s) egység sikeresen létrehozva!' tag='format'/>
+		<e k='toolTip_additionalUnits_name' v='Adja meg az egység hosszú nevét.'/>
+		<e k='toolTip_additionalUnits_shortName' v='Adja meg az egység rövid nevét.'/>
+		<e k='toolTip_additionalUnits_precision' v='Válassza ki az egység pontosságát.'/>
+		<e k='toolTip_additionalUnits_unit' v='Válassza ki a kitöltés típusát.'/>
+		<e k='toolTip_additionalUnits_factor' v='Adja meg az egységtényezőt.'/>
+		<e k='toolTip_additionalUnits_mass' v='Adja meg a töltéstípus tömegtényezőjét (kg/m³).'/>
+		<e k='toolTip_additionalUnits_volumeUnit' v='Függetlenül attól, hogy ez térfogategység-e vagy sem.'/>
+		<e k='toolTip_additionalUnits_menu' v='Nyissa meg a további egységek menüt.'/>
+		<e k='info_additionalUnits_usage' v='Használat:'/>
+		<e k='info_additionalUnits_precision' v='Pontosság – azt jelzi, hogy egy adott egységben hány tizedesjegyre kerekítik az értéket.'/>
+		<e k='info_additionalUnits_factor' v='Tényező - egy liter/kilogramm értékét jelzi (attól függően, hogy az adott egység térfogategység-e vagy sem) adott mértékegységben, pl. (1000 l * 0,001 = 1 m³).'/>
+		<e k='info_additionalUnits_massFactor' v='Tömegtényező - egy adott fillType kilogramm per m3 mutatója, minden nem térfogati mértékegységet átváltunk kilogrammra, és csak ezután a jelzett mértékegységre, pl. (1000 l = 1 m³, tehát 1000 liter búza = 775 kg), majd (775 kg * 2,205 ~ = 1,708 font).'/>
+	</elements>
+</l10n>

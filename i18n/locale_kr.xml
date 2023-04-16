@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<l10n>
+	<locale>kr</locale>
+
+	<elements>
+		<e k='unit_gallons' v='갤런'/>
+		<e k='unit_gallonsShort' v='gal'/>
+		<e k='unit_kgLong' v='킬로그램'/>
+		<e k='unit_pounds' v='파운드'/>
+		<e k='unit_poundsShort' v='lbs'/>
+		<e k='ui_additionalUnits_title' v='추가 유닛'/>
+		<e k='ui_additionalUnits_editFillTypeUnit_title' v='채우기 유형 편집: %s' tag='format'/>
+		<e k='ui_additionalUnits_editUnit_title' v='단위 편집: %s' tag='format'/>
+		<e k='ui_additionalUnits_editUnit_title_new' v='새 유닛'/>
+		<e k='ui_additionalUnits_editUnit_add' v='추가하다'/>
+		<e k='ui_additionalUnits_name' v='이름'/>
+		<e k='ui_additionalUnits_shortName' v='짧은 이름'/>
+		<e k='ui_additionalUnits_volumeUnit' v='볼륨 단위'/>
+		<e k='ui_additionalUnits_mass' v='질량 계수'/>
+		<e k='ui_additionalUnits_unit' v='단위'/>
+		<e k='ui_additionalUnits_precision' v='정도'/>
+		<e k='ui_additionalUnits_factor' v='요인'/>
+		<e k='ui_additionalUnits_massFactor' v='%s kg/m³' tag='format'/>
+		<e k='ui_additionalUnits_youWantToDeleteUnit' v='(%s) 유닛을 삭제하시겠습니까?' tag='format'/>
+		<e k='ui_additionalUnits_deletedUnit' v='장치가 성공적으로 삭제되었습니다!'/>
+		<e k='ui_additionalUnits_createdNewUnit' v='(%s) 유닛이 성공적으로 생성되었습니다!' tag='format'/>
+		<e k='toolTip_additionalUnits_name' v='단위의 긴 이름을 입력하세요.'/>
+		<e k='toolTip_additionalUnits_shortName' v='단위 짧은 이름을 입력하십시오.'/>
+		<e k='toolTip_additionalUnits_precision' v='단위 정밀도를 선택합니다.'/>
+		<e k='toolTip_additionalUnits_unit' v='채우기 유형 단위를 선택합니다.'/>
+		<e k='toolTip_additionalUnits_factor' v='단위계수를 입력합니다.'/>
+		<e k='toolTip_additionalUnits_mass' v='충전 유형 질량 계수(kg/m³)를 입력합니다.'/>
+		<e k='toolTip_additionalUnits_volumeUnit' v='부피 단위인지 여부입니다.'/>
+		<e k='toolTip_additionalUnits_menu' v='추가 단위 메뉴를 엽니다.'/>
+		<e k='info_additionalUnits_usage' v='용법:'/>
+		<e k='info_additionalUnits_precision' v='정밀도 - 주어진 단위의 값이 반올림되는 소수 자릿수를 나타냅니다.'/>
+		<e k='info_additionalUnits_factor' v='계수 - 주어진 단위의 리터/킬로그램 값을 나타냅니다(주어진 단위가 부피 단위인지 여부에 따라 다름). (1.000l * 0.001 = 1m³).'/>
+		<e k='info_additionalUnits_massFactor' v='질량 계수 - 주어진 fillType의 m3당 킬로그램의 지표이며, 모든 비부피 단위는 킬로그램으로 변환된 다음 표시된 단위로 변환됩니다. (1.000l = 1m³, 따라서 밀 1.000l = 775kg), 그러면 (775kg * 2.205 ~= 1.708lb).'/>
+	</elements>
+</l10n>

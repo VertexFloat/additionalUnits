@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<l10n>
+	<locale>cz</locale>
+
+	<elements>
+		<e k='unit_gallons' v='Galony'/>
+		<e k='unit_gallonsShort' v='gal'/>
+		<e k='unit_kgLong' v='Kilogramy'/>
+		<e k='unit_pounds' v='Libry'/>
+		<e k='unit_poundsShort' v='lbs'/>
+		<e k='ui_additionalUnits_title' v='Dodatečné Jednotky'/>
+		<e k='ui_additionalUnits_editFillTypeUnit_title' v='Upravit typ výplně: %s' tag='format'/>
+		<e k='ui_additionalUnits_editUnit_title' v='Upravit jednotku: %s' tag='format'/>
+		<e k='ui_additionalUnits_editUnit_title_new' v='Nová jednotka'/>
+		<e k='ui_additionalUnits_editUnit_add' v='Přidat'/>
+		<e k='ui_additionalUnits_name' v='Název'/>
+		<e k='ui_additionalUnits_shortName' v='Krátké jméno'/>
+		<e k='ui_additionalUnits_volumeUnit' v='Jednotka objemu'/>
+		<e k='ui_additionalUnits_mass' v='Hmotnostní faktor'/>
+		<e k='ui_additionalUnits_unit' v='Jednotka'/>
+		<e k='ui_additionalUnits_precision' v='Přesnost'/>
+		<e k='ui_additionalUnits_factor' v='Faktor'/>
+		<e k='ui_additionalUnits_massFactor' v='%s kg/m³' tag='format'/>
+		<e k='ui_additionalUnits_youWantToDeleteUnit' v='Opravdu chcete smazat (%s) jednotku?' tag='format'/>
+		<e k='ui_additionalUnits_deletedUnit' v='Jednotka byla úspěšně smazána!'/>
+		<e k='ui_additionalUnits_createdNewUnit' v='(%s) jednotka byla úspěšně vytvořena!' tag='format'/>
+		<e k='toolTip_additionalUnits_name' v='Zadejte dlouhý název jednotky.'/>
+		<e k='toolTip_additionalUnits_shortName' v='Zadejte krátký název jednotky.'/>
+		<e k='toolTip_additionalUnits_precision' v='Vyberte přesnost jednotky.'/>
+		<e k='toolTip_additionalUnits_unit' v='Vyberte jednotku typu výplně.'/>
+		<e k='toolTip_additionalUnits_factor' v='Zadejte jednotkový faktor.'/>
+		<e k='toolTip_additionalUnits_mass' v='Zadejte hmotnostní faktor typu výplně (kg/m³).'/>
+		<e k='toolTip_additionalUnits_volumeUnit' v='Zda se jedná nebo nejedná o jednotku objemu.'/>
+		<e k='toolTip_additionalUnits_menu' v='Otevřete nabídku dalších jednotek.'/>
+		<e k='info_additionalUnits_usage' v='Používání:'/>
+		<e k='info_additionalUnits_precision' v='Přesnost – udává, na kolik desetinných míst je hodnota v dané jednotce zaokrouhlena.'/>
+		<e k='info_additionalUnits_factor' v='Faktor - udává hodnotu litr/kilogram (záleží na tom, zda je daná jednotka jednotkou objemu či nikoliv) v dané jednotce, kupř. (1,000 l * 0,001 = 1 m³).'/>
+		<e k='info_additionalUnits_massFactor' v='Hmotnostní faktor - je ukazatel kilogramů na m3 daného fillType, všechny neobjemové jednotky jsou převedeny na kilogramy a teprve poté na indikovanou jednotku, např. (1 000 l = 1 m³, tedy 1 000 l pšenice = 775 kg), poté (775 kg * 2,205 ~= 1,708 lb).'/>
+	</elements>
+</l10n>

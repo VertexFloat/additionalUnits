@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<l10n>
+	<locale>it</locale>
+
+	<elements>
+		<e k='unit_gallons' v='Galloni'/>
+		<e k='unit_gallonsShort' v='gal'/>
+		<e k='unit_kgLong' v='Chilogrammi'/>
+		<e k='unit_pounds' v='Sterline'/>
+		<e k='unit_poundsShort' v='lbs'/>
+		<e k='ui_additionalUnits_title' v='Unità Addizionali'/>
+		<e k='ui_additionalUnits_editFillTypeUnit_title' v='Modifica tipo di riempimento: %s' tag='format'/>
+		<e k='ui_additionalUnits_editUnit_title' v='Modifica unità: %s' tag='format'/>
+		<e k='ui_additionalUnits_editUnit_title_new' v='Nuova unità'/>
+		<e k='ui_additionalUnits_editUnit_add' v='Aggiungere'/>
+		<e k='ui_additionalUnits_name' v='Nome'/>
+		<e k='ui_additionalUnits_shortName' v='Nome corto'/>
+		<e k='ui_additionalUnits_volumeUnit' v='Unità di volume'/>
+		<e k='ui_additionalUnits_mass' v='Fattore di massa'/>
+		<e k='ui_additionalUnits_unit' v='Unità'/>
+		<e k='ui_additionalUnits_precision' v='Precisione'/>
+		<e k='ui_additionalUnits_factor' v='Fattore'/>
+		<e k='ui_additionalUnits_massFactor' v='%s kg/m³' tag='format'/>
+		<e k='ui_additionalUnits_youWantToDeleteUnit' v='Vuoi veramente eliminare (%s) unità?' tag='format'/>
+		<e k='ui_additionalUnits_deletedUnit' v="L'unità è stata eliminata con successo!"/>
+		<e k='ui_additionalUnits_createdNewUnit' v="(%s) l'unità è stata creata con successo!" tag='format'/>
+		<e k='toolTip_additionalUnits_name' v="Inserisci il nome lungo dell'unità."/>
+		<e k='toolTip_additionalUnits_shortName' v="Immettere il nome breve dell'unità."/>
+		<e k='toolTip_additionalUnits_precision' v="Selezionare la precisione dell'unità."/>
+		<e k='toolTip_additionalUnits_unit' v="Selezionare l'unità del tipo di riempimento."/>
+		<e k='toolTip_additionalUnits_factor' v='Immettere il fattore unitario.'/>
+		<e k='toolTip_additionalUnits_mass' v='Immettere il fattore di massa del tipo di riempimento (kg/m³).'/>
+		<e k='toolTip_additionalUnits_volumeUnit' v="Se si tratta o meno di un'unità di volume."/>
+		<e k='toolTip_additionalUnits_menu' v='Apri il menu delle unità aggiuntive.'/>
+		<e k='info_additionalUnits_usage' v='Utilizzo:'/>
+		<e k='info_additionalUnits_precision' v='Precisione: indica a quante cifre decimali viene arrotondato il valore in una data unità.'/>
+		<e k='info_additionalUnits_factor' v="Fattore - indica il valore di un litro/chilogrammo (dipende dal fatto che l'unità data sia o meno un'unità di volume) in una data unità, ad es. (1.000l * 0.001 = 1m³)."/>
+		<e k='info_additionalUnits_massFactor' v="Mass Factor - è un indicatore di chilogrammi per m3 di un dato fillType, tutte le unità non di volume vengono convertite in chilogrammi e solo successivamente nell'unità indicata, ad es. (1.000l = 1m³, quindi 1.000l di grano = 775 kg), quindi (775kg * 2.205 ~= 1.708 lb)."/>
+	</elements>
+</l10n>
