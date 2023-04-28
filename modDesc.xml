@@ -18,6 +18,7 @@
 		<pt>Unidades Adicionais</pt>
 		<ro>Unități Adiționale</ro>
 		<tr>Ek Birimler</tr>
+		<ru>Дополнительные Единицы</ru>
 	</title>
 	<l10n filenamePrefix='i18n/locale'/>
 	<iconFilename>icon_additionalUnits.png</iconFilename>
