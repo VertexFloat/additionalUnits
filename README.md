@@ -61,7 +61,7 @@ The mod formats the fill level to the correct units as much as possible, unfortu
 
 ## Getting started
 
-If you want to install latest official version, you can [download](https://www.farming-simulator.com/mod.php?lang=en&country=us&mod_id=268900&title=fs2022) it like other mods.
+If you want to install latest official version, you can [download](https://www.farming-simulator.com/mod.php?mod_id=268900&title=fs2022) it like other mods.
 <br/>
 
 ### Prerequisites
