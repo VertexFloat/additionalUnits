@@ -1,7 +1,7 @@
 <div id='top'></div>
 <br/>
 <div align='center'>
-	<a href='https://github.com/4c65736975/additionalUnits'>
+	<a href='https://github.com/VertexFloat/additionalUnits'>
 		<img src='screenshots/icon.png' alt='Logo' width='128' height='128'>
 	</a>
 	<h3>Additional Units</h3>
@@ -9,9 +9,9 @@
 		Farming Simulator 22 Modification
 		<br/>
 		<br/>
-		<a href='https://github.com/4c65736975/additionalUnits/issues'>Report Bug</a>
+		<a href='https://github.com/VertexFloat/additionalUnits/issues'>Report Bug</a>
 		·
-		<a href='https://github.com/4c65736975/additionalUnits/issues'>Request Feature</a>
+		<a href='https://github.com/VertexFloat/additionalUnits/issues'>Request Feature</a>
 	</p>
 </div>
 <details>
@@ -73,7 +73,7 @@ If you want to install latest official version, you can [download](https://www.f
 
 1. Clone the repo
 ```sh
-git clone https://github.com/4c65736975/additionalUnits
+git clone https://github.com/VertexFloat/additionalUnits
 ```
 2. Open cloned folder.
 3. Run modInstaller.exe.
@@ -102,7 +102,7 @@ or
 
 ## License
 
-Distributed under the GPL-3.0 license. See [LICENSE](https://github.com/4c65736975/additionalUnits/blob/main/LICENSE) for more information.
+Distributed under the GPL-3.0 license. See [LICENSE](https://github.com/VertexFloat/additionalUnits/blob/main/LICENSE) for more information.
 
 <p align='right'>&#x2191 <a href='#top'>back to top</a></p>
 
