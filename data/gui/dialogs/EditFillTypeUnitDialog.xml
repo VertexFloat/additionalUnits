@@ -1,42 +1,42 @@
-<?xml version='1.0' encoding='utf-8' standalone='no'?>
-<GUI onOpen='onOpen' onClose='onClose' onCreate='onCreate'>
-	<GuiElement type='empty' profile='newLayer'/>
-	<GuiElement type='bitmap' profile='dialogFullscreenBg'/>
-	<GuiElement type='bitmap' profile='bgVignette'/>
-	<GuiElement type='bitmap' profile='bgGlowDialog'/>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+  <GuiElement type="empty" profile="newLayer"/>
+  <GuiElement type="bitmap" profile="dialogFullscreenBg"/>
+  <GuiElement type="bitmap" profile="bgVignette"/>
+  <GuiElement type="bitmap" profile="bgGlowDialog"/>
 
-	<GuiElement type='bitmap' profile='editFillTypeUnitDialogBg' id='dialogElement'>
-		<GuiElement type='bitmap' profile='additionalUnitsDialogHeaderDocked'>
-			<GuiElement type='flowLayout' autoValidateLayout='true'>
-				<GuiElement type='text' profile='additionalUnitsDialogHeaderText' textMaxWidth='700px' text='' id='dialogTitleElement'/>
-				<GuiElement type='bitmap' profile='editFillTypeUnitHeaderIcon' id='dialogIconElement'/>
-			</GuiElement>
-		</GuiElement>
+  <GuiElement type="bitmap" profile="editFillTypeUnitDialogBg" id="dialogElement">
+    <GuiElement type="bitmap" profile="additionalUnitsDialogHeaderDocked">
+      <GuiElement type="flowLayout" autoValidateLayout="true">
+        <GuiElement type="text" profile="additionalUnitsDialogHeaderText" textMaxWidth="700px" text="" id="dialogTitleElement"/>
+        <GuiElement type="bitmap" profile="editFillTypeUnitHeaderIcon" id="dialogIconElement"/>
+      </GuiElement>
+    </GuiElement>
 
-		<GuiElement type='boxLayout' profile='additionalUnitsDialogSettingsBox' size='700px 156px'>
-			<GuiElement type='empty' profile='additionalUnitsDialogTextInputWrapper'>
-				<GuiElement type='textInput' profile='additionalUnitsDialogTextInput' id='fillTypeMassFactor' onTextChanged='onTextChangedMassFactor' maxCharacters='5'/>
-				<GuiElement type='boxLayout' profile='additionalUnitsDialogSettingTextBox'>
-					<GuiElement type='text' profile='additionalUnitsDialogSettingTitle' text='$l10n_ui_additionalUnits_mass'/>
-					<GuiElement type='text' profile='additionalUnitsDialogSettingTooltip' text='$l10n_toolTip_additionalUnits_mass'/>
-				</GuiElement>
-			</GuiElement>
+    <GuiElement type="boxLayout" profile="additionalUnitsDialogSettingsBox" size="700px 156px">
+      <GuiElement type="empty" profile="additionalUnitsDialogTextInputWrapper">
+        <GuiElement type="textInput" profile="additionalUnitsDialogTextInput" id="fillTypeMassFactor" onTextChanged="onTextChangedMassFactor" maxCharacters="5"/>
+        <GuiElement type="boxLayout" profile="additionalUnitsDialogSettingTextBox">
+          <GuiElement type="text" profile="additionalUnitsDialogSettingTitle" text="$l10n_ui_additionalUnits_mass"/>
+          <GuiElement type="text" profile="additionalUnitsDialogSettingTooltip" text="$l10n_toolTip_additionalUnits_mass"/>
+        </GuiElement>
+      </GuiElement>
 
-			<GuiElement type='multiTextOption' profile='additionalUnitsDialogTextInputWrapper' id='optionFillTypeUnit' onClick='onClickUnit'>
-				<GuiElement type='button' profile='additionalUnitsDialogMultiTextOptionSettingsLeft'/>
-				<GuiElement type='button' profile='additionalUnitsDialogMultiTextOptionSettingsRight'/>
-				<GuiElement type='text' profile='additionalUnitsDialogMultiTextOptionSettingsText'/>
-				<GuiElement type='bitmap' profile='additionalUnitsDialogMultiTextOptionSettingsBg'/>
-				<GuiElement type='boxLayout' profile='additionalUnitsDialogSettingTextBox'>
-					<GuiElement type='text' profile='additionalUnitsDialogSettingTitle' text='$l10n_ui_additionalUnits_unit'/>
-					<GuiElement type='text' profile='additionalUnitsDialogSettingTooltip' text='$l10n_toolTip_additionalUnits_unit'/>
-				</GuiElement>
-			</GuiElement>
-		</GuiElement>
+      <GuiElement type="multiTextOption" profile="additionalUnitsDialogTextInputWrapper" id="optionFillTypeUnit" onClick="onClickUnit">
+        <GuiElement type="button" profile="additionalUnitsDialogMultiTextOptionSettingsLeft"/>
+        <GuiElement type="button" profile="additionalUnitsDialogMultiTextOptionSettingsRight"/>
+        <GuiElement type="text" profile="additionalUnitsDialogMultiTextOptionSettingsText"/>
+        <GuiElement type="bitmap" profile="additionalUnitsDialogMultiTextOptionSettingsBg"/>
+        <GuiElement type="boxLayout" profile="additionalUnitsDialogSettingTextBox">
+          <GuiElement type="text" profile="additionalUnitsDialogSettingTitle" text="$l10n_ui_additionalUnits_unit"/>
+          <GuiElement type="text" profile="additionalUnitsDialogSettingTooltip" text="$l10n_toolTip_additionalUnits_unit"/>
+        </GuiElement>
+      </GuiElement>
+    </GuiElement>
 
-		<GuiElement type='flowLayout' profile='buttonBoxDialog'>
-			<GuiElement type='button' profile='buttonBuy' text='$l10n_button_save' onClick='onClickSave' id='yesButton'/>
-			<GuiElement type='button' profile='buttonBack' text='$l10n_button_cancel' onClick='onClickBack' id='noButton'/>
-		</GuiElement>
-	</GuiElement>
+    <GuiElement type="flowLayout" profile="buttonBoxDialog">
+      <GuiElement type="button" profile="buttonBuy" text="$l10n_button_save" onClick="onClickSave" id="yesButton"/>
+      <GuiElement type="button" profile="buttonBack" text="$l10n_button_cancel" onClick="onClickBack" id="noButton"/>
+    </GuiElement>
+  </GuiElement>
 </GUI>

@@ -11,33 +11,33 @@ local FeedingRobotUnitExtension_mt = Class(FeedingRobotUnitExtension)
 ---@param fillTypeManager table fillTypeManager object
 ---@return table instance instance of object
 function FeedingRobotUnitExtension.new(customMt, additionalUnits, fillTypeManager)
-	local self = setmetatable({}, customMt or FeedingRobotUnitExtension_mt)
+  local self = setmetatable({}, customMt or FeedingRobotUnitExtension_mt)
 
-	self.additionalUnits = additionalUnits
-	self.fillTypeManager = fillTypeManager
+  self.additionalUnits = additionalUnits
+  self.fillTypeManager = fillTypeManager
 
-	return self
+  return self
 end
 
 ---Initializing FeedingRobotUnitExtension
 function FeedingRobotUnitExtension:initialize()
-	self.additionalUnits:overwriteGameFunction(FeedingRobot, 'updateInfo', function (superFunc, robot, infoTable)
-		if robot.infos ~= nil then
-			for _, info in ipairs(robot.infos) do
-				local fillLevel = 0
-				local fillTypeName = 'UNKNOWN'
+  self.additionalUnits:overwriteGameFunction(FeedingRobot, "updateInfo", function (superFunc, robot, infoTable)
+    if robot.infos ~= nil then
+      for _, info in ipairs(robot.infos) do
+        local fillLevel = 0
+        local fillTypeName = "UNKNOWN"
 
-				for _, fillType in ipairs(info.fillTypes) do
-					fillLevel = fillLevel + robot:getFillLevel(fillType)
-					fillTypeName = self.fillTypeManager:getFillTypeNameByIndex(fillType)
-				end
+        for _, fillType in ipairs(info.fillTypes) do
+          fillLevel = fillLevel + robot:getFillLevel(fillType)
+          fillTypeName = self.fillTypeManager:getFillTypeNameByIndex(fillType)
+        end
 
-				local fillText, unit = self.additionalUnits:formatFillLevel(fillLevel, fillTypeName, 0, false)
+        local fillText, unit = self.additionalUnits:formatFillLevel(fillLevel, fillTypeName, 0, false)
 
-				info.text = string.format('%d %s', fillText, unit)
+        info.text = string.format("%d %s", fillText, unit)
 
-				table.insert(infoTable, info)
-			end
-		end
-	end)
+        table.insert(infoTable, info)
+      end
+    end
+  end)
 end

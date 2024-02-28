@@ -11,50 +11,50 @@ local PlaceableHusbandryStrawUnitExtension_mt = Class(PlaceableHusbandryStrawUni
 ---@param fillTypeManager table fillTypeManager object
 ---@return table instance instance of object
 function PlaceableHusbandryStrawUnitExtension.new(customMt, additionalUnits, fillTypeManager)
-	local self = setmetatable({}, customMt or PlaceableHusbandryStrawUnitExtension_mt)
+  local self = setmetatable({}, customMt or PlaceableHusbandryStrawUnitExtension_mt)
 
-	self.additionalUnits = additionalUnits
-	self.fillTypeManager = fillTypeManager
+  self.additionalUnits = additionalUnits
+  self.fillTypeManager = fillTypeManager
 
-	return self
+  return self
 end
 
 ---Initializing PlaceableHusbandryStrawUnitExtension
 function PlaceableHusbandryStrawUnitExtension:initialize()
-	self.additionalUnits:overwriteGameFunction(PlaceableHusbandryStraw, 'getConditionInfos', function (_, husbandry, superFunc)
-		local infos = superFunc(husbandry)
-		local spec = husbandry.spec_husbandryStraw
+  self.additionalUnits:overwriteGameFunction(PlaceableHusbandryStraw, "getConditionInfos", function (_, husbandry, superFunc)
+    local infos = superFunc(husbandry)
+    local spec = husbandry.spec_husbandryStraw
 
-		local info = {}
-		local fillType = self.fillTypeManager:getFillTypeByIndex(spec.inputFillType)
-		local capacity = husbandry:getHusbandryCapacity(spec.inputFillType)
-		local ratio = 0
+    local info = {}
+    local fillType = self.fillTypeManager:getFillTypeByIndex(spec.inputFillType)
+    local capacity = husbandry:getHusbandryCapacity(spec.inputFillType)
+    local ratio = 0
 
-		info.title = fillType.title
-		info.fillType = fillType.name
-		info.value = husbandry:getHusbandryFillLevel(spec.inputFillType)
+    info.title = fillType.title
+    info.fillType = fillType.name
+    info.value = husbandry:getHusbandryFillLevel(spec.inputFillType)
 
-		if capacity > 0 then
-			ratio = info.value / capacity
-		end
+    if capacity > 0 then
+      ratio = info.value / capacity
+    end
 
-		info.ratio = MathUtil.clamp(ratio, 0, 1)
-		info.invertedBar = true
+    info.ratio = MathUtil.clamp(ratio, 0, 1)
+    info.invertedBar = true
 
-		table.insert(infos, info)
+    table.insert(infos, info)
 
-		return infos
-	end)
+    return infos
+  end)
 
-	self.additionalUnits:overwriteGameFunction(PlaceableHusbandryStraw, 'updateInfo', function (_, husbandry, superFunc, infoTable)
-		superFunc(husbandry, infoTable)
+  self.additionalUnits:overwriteGameFunction(PlaceableHusbandryStraw, "updateInfo", function (_, husbandry, superFunc, infoTable)
+    superFunc(husbandry, infoTable)
 
-		local spec = husbandry.spec_husbandryStraw
-		local fillLevel = husbandry:getHusbandryFillLevel(spec.inputFillType)
-		local formattedFillLevel, unit = self.additionalUnits:formatFillLevel(fillLevel, self.fillTypeManager:getFillTypeNameByIndex(spec.inputFillType), 0)
+    local spec = husbandry.spec_husbandryStraw
+    local fillLevel = husbandry:getHusbandryFillLevel(spec.inputFillType)
+    local formattedFillLevel, unit = self.additionalUnits:formatFillLevel(fillLevel, self.fillTypeManager:getFillTypeNameByIndex(spec.inputFillType), 0)
 
-		spec.info.text = formattedFillLevel .. ' ' .. unit
+    spec.info.text = formattedFillLevel .. " " .. unit
 
-		table.insert(infoTable, spec.info)
-	end)
+    table.insert(infoTable, spec.info)
+  end)
 end
