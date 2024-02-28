@@ -95,6 +95,10 @@ end
 function AdditionalUnits:loadMap(filename)
 	self:loadFillTypesUnitsFromXML()
 
+	if g_modIsLoaded["FS22_DefPack"] then
+		MISSING_FILLTYPE["DEF"] = true
+	end
+
 	self.gui:loadMap(AdditionalUnits.MOD_DIRECTORY)
 end
 
