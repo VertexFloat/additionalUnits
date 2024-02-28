@@ -1,198 +1,45 @@
-<?xml version='1.0' encoding='utf-8' standalone='no'?>
-<modDesc descVersion='73'>
-	<author>VertexFloat</author>
-	<version>1.0.0.0</version>
-	<title>
-		<en>Additional Units</en>
-		<de>Zusätzliche Einheiten</de>
-		<fr>Unités Additionnelles</fr>
-		<pl>Dodatkowe Jednostki</pl>
-		<br>Unidades Adicionais</br>
-		<cz>Dodatečné Jednotky</cz>
-		<es>Unidades Adicionales</es>
-		<hu>Kiegészítő Egységek</hu>
-		<it>Unità Addizionali</it>
-		<jp>追加ユニット</jp>
-		<kr>추가 유닛</kr>
-		<nl>Extra Eenheden</nl>
-		<pt>Unidades Adicionais</pt>
-		<ro>Unități Adiționale</ro>
-		<tr>Ek Birimler</tr>
-		<ru>Дополнительные Единицы</ru>
-	</title>
-	<l10n filenamePrefix='i18n/locale'/>
-	<iconFilename>icon_additionalUnits.png</iconFilename>
-	<multiplayer supported='true'/>
-
-	<description>
-<en><![CDATA[Thanks to this modification you can set the mass/volume unit. You can also add a new unit according to your needs.
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<modDesc descVersion="79">
+  <author>VertexFloat</author>
+  <version>1.0.0.0</version>
+  <title>
+    <en>Additional Units</en>
+    <de>Zusätzliche Einheiten</de>
+    <fr>Unités Additionnelles</fr>
+    <pl>Dodatkowe Jednostki</pl>
+  </title>
+  <description>
+    <en><![CDATA[Thanks to this modification you can set the mass/volume unit. You can also add a new unit according to your needs.
 You can open the unit management menu using the button in the general settings.
 
 By default, the added units are: cubic meter, gallon, pound, kilogram
 
-ATTENTION !
-The mod formats the fill level to the correct units as much as possible, unfortunately formatting some of them is not possible, so there will be 'places' in the game where the fill level will be formatted to the basic game unit.
-
-For more information, help, and report issues please visit <a href='https://github.com/VertexFloat/additionalUnits'>GitHub</a>.
-]]>
-</en>
-<de><![CDATA[Dank dieser Modifikation können Sie die Masse-/Volumeneinheit einstellen. Sie können auch je nach Bedarf eine neue Einheit hinzufügen.
+For more information, help, and report issues please visit <a href="https://github.com/VertexFloat/additionalUnits">GitHub</a>.]]></en>
+    <de><![CDATA[Dank dieser Modifikation können Sie die Masse-/Volumeneinheit einstellen. Sie können auch je nach Bedarf eine neue Einheit hinzufügen.
 Über die Schaltfläche in den allgemeinen Einstellungen können Sie das Geräteverwaltungsmenü öffnen.
 
 Standardmäßig sind die hinzugefügten Einheiten: Kubikmeter, Gallone, Pfund, Kilogramm
 
-AUFMERKSAMKEIT !
-Der Mod formatiert den Füllstand so weit wie möglich in die richtigen Einheiten, leider ist das Formatieren einiger von ihnen nicht möglich, daher wird es im Spiel 'Stellen' geben, an denen der Füllstand in die grundlegende Spieleinheit formatiert wird.
-
-Weitere Informationen, Hilfe und Probleme melden finden Sie unter <a href='https://github.com/VertexFloat/additionalUnits'>GitHub</a>.
-]]>
-</de>
-<fr><![CDATA[Grâce à cette modification, vous pouvez définir l'unité de masse/volume. Vous pouvez également ajouter une nouvelle unité selon vos besoins.
+Weitere Informationen, Hilfe und Probleme melden finden Sie unter <a href="https://github.com/VertexFloat/additionalUnits">GitHub</a>.]]></de>
+    <fr><![CDATA[Grâce à cette modification, vous pouvez définir l'unité de masse/volume. Vous pouvez également ajouter une nouvelle unité selon vos besoins.
 Vous pouvez ouvrir le menu de gestion de l'unité à l'aide du bouton dans les paramètres généraux.
 
 Par défaut, les unités ajoutées sont : mètre cube, gallon, livre, kilogramme
 
-ATTENTION !
-Le mod formate le niveau de remplissage dans les unités correctes autant que possible, malheureusement le formatage de certaines d'entre elles n'est pas possible, il y aura donc des 'endroits' dans le jeu où le niveau de remplissage sera formaté dans l'unité de jeu de base.
-
-Pour plus d'informations, de l'aide et signaler des problèmes, veuillez visiter <a href='https://github.com/VertexFloat/additionalUnits'>GitHub</a>.
-]]>
-</fr>
-<pl><![CDATA[Dzięki tej modyfikacji możesz ustawić jednostkę masy/objętości. Możesz również dodać nową jednostkę według własnych potrzeb.
+Pour plus d'informations, de l'aide et signaler des problèmes, veuillez visiter <a href="https://github.com/VertexFloat/additionalUnits">GitHub</a>.]]></fr>
+    <pl><![CDATA[Dzięki tej modyfikacji możesz ustawić jednostkę masy/objętości. Możesz również dodać nową jednostkę według własnych potrzeb.
 Menu zarządzania jednostkami otworzyć możesz za pomocą przycisku znajdującego się w ustawieniach generalnych.
 
 Standardowo dodanymi jednostkami są: metr sześcienny, galon, funt, kilogram
 
-UWAGA !
-Modyfikacja formatuje poziom wypełnienia do poprawnych jednostek na tyle ile to możliwe, niestety sformatowanie niektórych nie jest możliwe, dlatego będą 'miejsca' w grze, gdzie poziom wypełnienia sformatowany będzie do podstawowej jednostki gry.
+Po więcej informacji, pomoc lub zgłoszenie błędu, odwiedź stronę <a href="https://github.com/VertexFloat/additionalUnits">GitHub</a>.]]></pl>
+  </description>
+  <iconFilename>icon_additionalUnits.png</iconFilename>
+  <multiplayer supported="true"/>
 
-Po więcej informacji, pomoc lub zgłoszenie błędu, odwiedź stronę <a href='https://github.com/VertexFloat/additionalUnits'>GitHub</a>.
-]]>
-</pl>
-<br><![CDATA[Graças a esta modificação, você pode definir a unidade de massa/volume. Você também pode adicionar uma nova unidade de acordo com suas necessidades.
-Você pode abrir o menu de gerenciamento da unidade usando o botão nas configurações gerais.
+  <extraSourceFiles>
+    <sourceFile filename="src/AdditionalUnits.lua"/>
+  </extraSourceFiles>
 
-Por padrão, as unidades adicionadas são: metro cúbico, galão, libra, quilograma
-
-ATENÇÃO !
-O mod formata o nível de preenchimento para as unidades corretas tanto quanto possível, infelizmente não é possível formatar algumas delas, então haverá 'lugares' no jogo onde o nível de preenchimento será formatado para a unidade básica do jogo.
-
-Para obter mais informações, ajuda e relatar problemas, visite <a href='https://github.com/VertexFloat/additionalUnits'>GitHub</a>.
-]]>
-</br>
-<cz><![CDATA[Díky této úpravě můžete nastavit jednotku hmotnosti/objemu. Můžete také přidat novou jednotku podle svých potřeb.
-Nabídku správy jednotky můžete otevřít pomocí tlačítka v obecných nastaveních.
-
-Ve výchozím nastavení jsou přidané jednotky: krychlový metr, galon, libra, kilogram
-
-POZORNOST !
-Mod naformátuje úroveň naplnění do správných jednotek co nejvíce, bohužel formátování některých z nich není možné, takže ve hře budou 'místa', kde bude úroveň plnění naformátována na základní herní jednotku.
-
-Další informace, nápovědu a hlášení problémů naleznete na <a href='https://github.com/VertexFloat/additionalUnits'>GitHub</a>.
-]]>
-</cz>
-<es><![CDATA[Gracias a esta modificación se puede configurar la unidad de masa/volumen. También puede agregar una nueva unidad de acuerdo a sus necesidades.
-Puede abrir el menú de gestión de unidades usando el botón en la configuración general.
-
-Por defecto, las unidades añadidas son: metro cúbico, galón, libra, kilogramo
-
-ATENCIÓN !
-El mod formatea el nivel de llenado en las unidades correctas tanto como sea posible, lamentablemente no es posible formatear algunas de ellas, por lo que habrá 'lugares' en el juego donde el nivel de llenado se formateará en la unidad básica del juego.
-
-Para obtener más información, ayuda e informar problemas, visite <a href='https://github.com/VertexFloat/additionalUnits'>GitHub</a>.
-]]>
-</es>
-<hu><![CDATA[Ennek a módosításnak köszönhetően beállíthatja a tömeg/térfogat mértékegységét. Igényeinek megfelelően új egységet is hozzáadhat.
-Az egységkezelés menüt az általános beállításoknál található gombbal nyithatja meg.
-
-Alapértelmezés szerint a hozzáadott mértékegységek: köbméter, gallon, font, kilogramm
-
-FIGYELEM!
-A mod a kitöltési szintet a lehető legjobban a megfelelő egységekre formázza, sajnos ezek egy részének formázása nem lehetséges, így lesznek olyan 'helyek' a játékban, ahol a kitöltési szint az alap játékegységre lesz formázva.
-
-További információért, segítségért és a problémák bejelentéséért keresse fel a <a href='https://github.com/VertexFloat/additionalUnits'>GitHub</a> webhelyet.
-]]>
-</hu>
-<it><![CDATA[Grazie a questa modifica è possibile impostare l'unità di massa/volume. Puoi anche aggiungere una nuova unità in base alle tue esigenze.
-È possibile aprire il menu di gestione dell'unità utilizzando il pulsante nelle impostazioni generali.
-
-Per impostazione predefinita, le unità aggiunte sono: metro cubo, gallone, libbra, chilogrammo
-
-ATTENZIONE!
-La mod formatta il livello di riempimento nelle unità corrette il più possibile, purtroppo non è possibile formattarne alcune, quindi ci saranno 'posti' nel gioco in cui il livello di riempimento sarà formattato nell'unità di gioco di base.
-
-Per ulteriori informazioni, assistenza e segnalazioni di problemi, visita <a href='https://github.com/VertexFloat/additionalUnits'>GitHub</a>.
-]]>
-</it>
-<jp><![CDATA[この変更のおかげで、質量/体積単位を設定できます。必要に応じて新しいユニットを追加することもできます。
-一般設定の ボタンを使用して、ユニット管理メニューを開くことができます。
-
-デフォルトで追加される単位は、立方メートル、ガロン、ポンド、キログラムです。
-
-注意 ！
-mod は、塗りつぶしレベルを可能な限り正しい単位にフォーマットしますが、残念ながらそれらの一部をフォーマットすることはできないため、塗りつぶしレベルが基本的なゲーム単位にフォーマットされるゲーム内の「場所」があります。
-
-詳細、ヘルプ、問題の報告については、<a href='https://github.com/VertexFloat/additionalUnits'>GitHub</a> にアクセスしてください。
-]]>
-</jp>
-<kr><![CDATA[이 수정 덕분에 질량/부피 단위를 설정할 수 있습니다. 필요에 따라 새 장치를 추가할 수도 있습니다.
-일반 설정의 버튼을 사용하여 유닛 관리 메뉴를 열 수 있습니다.
-
-기본적으로 추가되는 단위는 입방 미터, 갤런, 파운드, 킬로그램입니다.
-
-주목 !
-모드는 채우기 수준을 가능한 한 올바른 단위로 형식화하지만 불행히도 일부 형식은 불가능하므로 게임에서 채우기 수준이 기본 게임 단위로 형식화되는 '위치'가 있습니다.
-
-자세한 정보, 도움말 및 문제 보고는 <a href='https://github.com/VertexFloat/additionalUnits'>GitHub</a>를 방문하세요.
-]]>
-</kr>
-<nl><![CDATA[Dankzij deze aanpassing kunt u de massa/volume-eenheid instellen. U kunt ook een nieuwe eenheid toevoegen op basis van uw behoeften.
-Via de knop in de algemene instellingen kunt u het unitbeheermenu openen.
-
-Standaard zijn de toegevoegde eenheden: kubieke meter, gallon, pond, kilogram
-
-AANDACHT !
-De mod formatteert het vulniveau zoveel mogelijk naar de juiste eenheden, helaas is het formatteren van sommige ervan niet mogelijk, dus er zullen 'plaatsen' in het spel zijn waar het vulniveau wordt geformatteerd naar de basisspeleenheid.
-
-Ga voor meer informatie, hulp en het melden van problemen naar <a href='https://github.com/VertexFloat/additionalUnits'>GitHub</a>.
-]]>
-</nl>
-<pt><![CDATA[Graças a esta modificação, você pode definir a unidade de massa/volume. Você também pode adicionar uma nova unidade de acordo com suas necessidades.
-Você pode abrir o menu de gerenciamento da unidade usando o botão nas configurações gerais.
-
-Por padrão, as unidades adicionadas são: metro cúbico, galão, libra, quilograma
-
-ATENÇÃO !
-O mod formata o nível de preenchimento para as unidades corretas tanto quanto possível, infelizmente não é possível formatar algumas delas, então haverá 'lugares' no jogo onde o nível de preenchimento será formatado para a unidade básica do jogo.
-
-Para obter mais informações, ajuda e relatar problemas, visite <a href='https://github.com/VertexFloat/additionalUnits'>GitHub</a>.
-]]>
-</pt>
-<ro><![CDATA[Datorită acestei modificări puteți seta unitatea de masă/volum. De asemenea, puteți adăuga o unitate nouă în funcție de nevoile dvs.
-Puteți deschide meniul de gestionare a unității folosind butonul din setările generale.
-
-Implicit, unitățile adăugate sunt: ​​metru cub, galon, liră, kilogram
-
-ATENTIE !
-Modulul formatează nivelul de umplere la unitățile corecte cât mai mult posibil, din păcate formatarea unora dintre ele nu este posibilă, așa că vor exista „locuri” în joc în care nivelul de umplere va fi formatat la unitatea de joc de bază.
-
-Pentru mai multe informații, ajutor și raportați probleme, accesați <a href='https://github.com/VertexFloat/additionalUnits'>GitHub</a>.
-]]>
-</ro>
-<tr><![CDATA[Bu değişiklik sayesinde kütle/hacim birimini ayarlayabilirsiniz. İhtiyaçlarınıza göre yeni bir birim de ekleyebilirsiniz.
-Genel ayarlarda butonunu kullanarak birim yönetimi menüsünü açabilirsiniz.
-
-Varsayılan olarak eklenen birimler şunlardır: metreküp, galon, pound, kilogram
-
-DİKKAT !
-Mod mümkün olduğunca doluluk seviyesini doğru birimlere formatlıyor, bazılarını formatlamak ne yazık ki mümkün değil, bu yüzden oyunda doluluk seviyesinin temel oyun birimine formatlanacağı 'yerler' olacak.
-
-Daha fazla bilgi, yardım ve sorunları bildirmek için lütfen <a href='https://github.com/VertexFloat/additionalUnits'>GitHub</a>'ı ziyaret edin.
-]]>
-</tr>
-	</description>
-
-	<extraSourceFiles>
-		<sourceFile filename='src/AdditionalUnits.lua'/>
-	</extraSourceFiles>
+  <l10n filenamePrefix="i18n/locale"/>
 </modDesc>
