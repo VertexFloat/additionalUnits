@@ -1,6 +1,9 @@
 -- @author: 4c65736975, All Rights Reserved
--- @version: 1.0.0.0, 13|01|2023
+-- @version: 1.0.0.1, 02|05|2023
 -- @filename: AdditionalUnits.lua
+
+-- Changelog (1.0.0.1):
+-- added DEF support
 
 AdditionalUnits = {
 	MOD_DIRECTORY = g_currentModDirectory,
