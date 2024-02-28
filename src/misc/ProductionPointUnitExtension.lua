@@ -1,6 +1,9 @@
 -- @author: 4c65736975, All Rights Reserved
--- @version: 1.0.0.0, 13|04|2023
+-- @version: 1.0.0.1, 27|02|2024
 -- @filename: ProductionPointUnitExtension.lua
+
+-- Changelog (1.0.0.1):
+-- fixed issue attempt to call local 'superFunc' (a table value)
 
 ProductionPointUnitExtension = {}
 
@@ -23,9 +26,7 @@ end
 
 ---Initializing ProductionPointUnitExtension
 function ProductionPointUnitExtension:initialize()
-	self.additionalUnits:overwriteGameFunction(ProductionPoint, 'updateInfo', function (_, production, superFunc, infoTable)
-		superFunc(production, infoTable)
-
+	self.additionalUnits:overwriteGameFunction(ProductionPoint, 'updateInfo', function (_, production, infoTable)
 		local owningFarm = g_farmManager:getFarmById(production:getOwnerFarmId())
 
 		table.insert(infoTable, {
