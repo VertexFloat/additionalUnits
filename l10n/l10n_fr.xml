@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <l10n>
-  <locale>fr</locale>
-
   <elements>
     <e k="unit_gallons" v="Gallons"/>
     <e k="unit_gallonsShort" v="gal"/>
