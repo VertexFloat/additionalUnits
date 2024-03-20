@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <modDesc descVersion="79">
   <author>VertexFloat</author>
-  <version>1.0.0.0</version>
+  <version>1.0.0.1</version>
   <title>
     <en>Additional Units</en>
     <de>Zusätzliche Einheiten</de>
@@ -14,25 +14,73 @@ You can open the unit management menu using the button in the general settings.
 
 By default, the added units are: cubic meter, gallon, pound, kilogram
 
-For more information, help, and report issues please visit <a href="https://github.com/VertexFloat/additionalUnits">GitHub</a>.]]></en>
+Changelog (1.0.0.1):
+- fixed water bar showing even when not needed in the Animals tab
+- fixed lua error 'attempt to call local 'superFunc'(a table value)'
+- added support for 'Info Display Extension' mod
+- added support for 'Target Fill Level' mod
+- added support for 'Def Pack' mod
+- updated descVersion
+- updated game screenshots
+- cleaned modDesc
+- cleaned translations
+- cleaned code
+
+For more information, full changelog, help or to report a bug, please visit <a href="https://github.com/VertexFloat/additionalUnits">GitHub</a>.]]></en>
     <de><![CDATA[Dank dieser Modifikation können Sie die Masse-/Volumeneinheit einstellen. Sie können auch je nach Bedarf eine neue Einheit hinzufügen.
 Über die Schaltfläche in den allgemeinen Einstellungen können Sie das Geräteverwaltungsmenü öffnen.
 
 Standardmäßig sind die hinzugefügten Einheiten: Kubikmeter, Gallone, Pfund, Kilogramm
 
-Weitere Informationen, Hilfe und Probleme melden finden Sie unter <a href="https://github.com/VertexFloat/additionalUnits">GitHub</a>.]]></de>
+Änderungsprotokoll (1.0.0.1):
+- Problem behoben, bei dem die Wasserleiste auf der Registerkarte „Tiere“ angezeigt wird, auch wenn sie nicht benötigt wird
+- Lua-Fehler 'attempt to call local 'superFunc'(a table value)' behoben
+- Unterstützung für den Mod 'Info Display Erweiterung' hinzugefügt
+- Unterstützung für den Mod 'Füllstand Des Zielobjekts' hinzugefügt
+- Unterstützung für den Mod 'Def Pack' hinzugefügt
+- descVersion aktualisiert
+- Aktualisierte Spiel-Screenshots
+- modDesc bereinigt
+- Bereinigte Übersetzungen
+- Bereinigter Code
+
+Weitere Informationen, ein vollständiges Änderungsprotokoll, Hilfe oder die Möglichkeit, einen Fehler zu melden, finden Sie unter <a href="https://github.com/VertexFloat/additionalUnits">GitHub</a>.]]></de>
     <fr><![CDATA[Grâce à cette modification, vous pouvez définir l'unité de masse/volume. Vous pouvez également ajouter une nouvelle unité selon vos besoins.
 Vous pouvez ouvrir le menu de gestion de l'unité à l'aide du bouton dans les paramètres généraux.
 
 Par défaut, les unités ajoutées sont : mètre cube, gallon, livre, kilogramme
 
-Pour plus d'informations, de l'aide et signaler des problèmes, veuillez visiter <a href="https://github.com/VertexFloat/additionalUnits">GitHub</a>.]]></fr>
+Journal des modifications (1.0.0.1):
+- Correction de la barre d'eau qui s'affiche même lorsqu'elle n'est pas utilisée dans l'onglet Animaux
+- Correction de l'erreur Lua 'attempt to call local 'superFunc'(a table value)'
+- ajout de la prise en charge du mod 'Info Display Extension'
+- ajout de la prise en charge du mod 'Target Fill Level'
+- ajout de la prise en charge du mod le mod 'Def Pack'
+- version de description mise à jour
+- captures d'écran du jeu mises à jour
+- modDesc nettoyé
+- traductions nettoyées
+- code nettoyé
+
+Pour plus d'informations, le journal des modifications complet, de l'aide ou pour signaler un bug, veuillez visiter <a href="https://github.com/VertexFloat/additionalUnits">GitHub</a>.]]></fr>
     <pl><![CDATA[Dzięki tej modyfikacji możesz ustawić jednostkę masy/objętości. Możesz również dodać nową jednostkę według własnych potrzeb.
 Menu zarządzania jednostkami otworzyć możesz za pomocą przycisku znajdującego się w ustawieniach generalnych.
 
 Standardowo dodanymi jednostkami są: metr sześcienny, galon, funt, kilogram
 
-Po więcej informacji, pomoc lub zgłoszenie błędu, odwiedź stronę <a href="https://github.com/VertexFloat/additionalUnits">GitHub</a>.]]></pl>
+Dziennik zmian (1.0.0.1):
+- naprawiono wyświetlanie paska wody nawet wtedy, gdy nie był potrzebny w zakładce Zwierzęta
+- naprawiono błąd Lua 'attempt to call local 'superFunc'(a table value)'
+- dodano obsługę modyfikacji 'Info Display Extension'
+- dodano obsługę modyfikacji 'Target Fill Level'
+- dodano obsługę modyfikacji 'Def Pack'
+- zaktualizowano descVersion
+- zaktualizowano zrzuty ekranu z gry
+- oczyszczono modDesc
+- oczyszczono tłumaczenia
+- oczyszczono kod
+
+Po więcej informacji, pełny dziennik zmian, pomoc lub zgłoszenie błędu, odwiedź stronę <a href="https://github.com/VertexFloat/additionalUnits">GitHub</a>.]]></pl>
   </description>
   <iconFilename>icon_additionalUnits.png</iconFilename>
   <multiplayer supported="true"/>
@@ -41,5 +89,5 @@ Po więcej informacji, pomoc lub zgłoszenie błędu, odwiedź stronę <a href="
     <sourceFile filename="src/AdditionalUnits.lua"/>
   </extraSourceFiles>
 
-  <l10n filenamePrefix="i18n/locale"/>
+  <l10n filenamePrefix="l10n/l10n"/>
 </modDesc>
