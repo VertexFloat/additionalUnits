@@ -9,11 +9,6 @@ ProductionPointUnitExtension = {}
 
 local ProductionPointUnitExtension_mt = Class(ProductionPointUnitExtension)
 
----Creating ProductionPointUnitExtension instance
----@param additionalUnits table additionalUnits object
----@param l10n table l10n object
----@param fillTypeManager table fillTypeManager object
----@return table instance instance of object
 function ProductionPointUnitExtension.new(customMt, additionalUnits, l10n, fillTypeManager)
   local self = setmetatable({}, customMt or ProductionPointUnitExtension_mt)
 
@@ -24,7 +19,6 @@ function ProductionPointUnitExtension.new(customMt, additionalUnits, l10n, fillT
   return self
 end
 
----Initializing ProductionPointUnitExtension
 function ProductionPointUnitExtension:initialize()
   self.additionalUnits:overwriteGameFunction(ProductionPoint, "updateInfo", function (_, production, infoTable)
     local owningFarm = g_farmManager:getFarmById(production:getOwnerFarmId())

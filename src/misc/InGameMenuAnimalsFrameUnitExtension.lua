@@ -6,10 +6,6 @@ InGameMenuAnimalsFrameUnitExtension = {}
 
 local InGameMenuAnimalsFrameUnitExtension_mt = Class(InGameMenuAnimalsFrameUnitExtension)
 
----Creating InGameMenuAnimalsFrameUnitExtension instance
----@param additionalUnits table additionalUnits object
----@param fillTypeManager table fillTypeManager object
----@return table instance instance of object
 function InGameMenuAnimalsFrameUnitExtension.new(customMt, additionalUnits, fillTypeManager)
   local self = setmetatable({}, customMt or InGameMenuAnimalsFrameUnitExtension_mt)
 
@@ -19,7 +15,6 @@ function InGameMenuAnimalsFrameUnitExtension.new(customMt, additionalUnits, fill
   return self
 end
 
----Initializing InGameMenuAnimalsFrameUnitExtension
 function InGameMenuAnimalsFrameUnitExtension:initialize()
   self.additionalUnits:overwriteGameFunction(InGameMenuAnimalsFrame, "updateConditionDisplay", function (superFunc, inGameMenu, husbandry)
     superFunc(inGameMenu, husbandry)

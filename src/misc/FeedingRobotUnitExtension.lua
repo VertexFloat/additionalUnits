@@ -6,10 +6,6 @@ FeedingRobotUnitExtension = {}
 
 local FeedingRobotUnitExtension_mt = Class(FeedingRobotUnitExtension)
 
----Creating FeedingRobotUnitExtension instance
----@param additionalUnits table additionalUnits object
----@param fillTypeManager table fillTypeManager object
----@return table instance instance of object
 function FeedingRobotUnitExtension.new(customMt, additionalUnits, fillTypeManager)
   local self = setmetatable({}, customMt or FeedingRobotUnitExtension_mt)
 
@@ -19,7 +15,6 @@ function FeedingRobotUnitExtension.new(customMt, additionalUnits, fillTypeManage
   return self
 end
 
----Initializing FeedingRobotUnitExtension
 function FeedingRobotUnitExtension:initialize()
   self.additionalUnits:overwriteGameFunction(FeedingRobot, "updateInfo", function (superFunc, robot, infoTable)
     if robot.infos ~= nil then

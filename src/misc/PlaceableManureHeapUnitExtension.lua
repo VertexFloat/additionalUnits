@@ -6,10 +6,6 @@ PlaceableManureHeapUnitExtension = {}
 
 local PlaceableManureHeapUnitExtension_mt = Class(PlaceableManureHeapUnitExtension)
 
----Creating PlaceableManureHeapUnitExtension instance
----@param additionalUnits table additionalUnits object
----@param fillTypeManager table fillTypeManager object
----@return table instance instance of object
 function PlaceableManureHeapUnitExtension.new(customMt, additionalUnits, fillTypeManager)
   local self = setmetatable({}, customMt or PlaceableManureHeapUnitExtension_mt)
 
@@ -19,7 +15,6 @@ function PlaceableManureHeapUnitExtension.new(customMt, additionalUnits, fillTyp
   return self
 end
 
----Initializing PlaceableManureHeapUnitExtension
 function PlaceableManureHeapUnitExtension:initialize()
   self.additionalUnits:overwriteGameFunction(PlaceableManureHeap, "updateInfo", function (_, heap, superFunc, infoTable)
     superFunc(heap, infoTable)

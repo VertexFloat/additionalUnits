@@ -6,10 +6,6 @@ InGameMenuProductionFrameUnitExtension = {}
 
 local InGameMenuProductionFrameUnitExtension_mt = Class(InGameMenuProductionFrameUnitExtension)
 
----Creating InGameMenuProductionFrameUnitExtension instance
----@param additionalUnits table additionalUnits object
----@param fillTypeManager table fillTypeManager object
----@return table instance instance of object
 function InGameMenuProductionFrameUnitExtension.new(customMt, additionalUnits, fillTypeManager)
   local self = setmetatable({}, customMt or InGameMenuProductionFrameUnitExtension_mt)
 
@@ -19,7 +15,6 @@ function InGameMenuProductionFrameUnitExtension.new(customMt, additionalUnits, f
   return self
 end
 
----Initializing InGameMenuProductionFrameUnitExtension
 function InGameMenuProductionFrameUnitExtension:initialize()
   self.additionalUnits:overwriteGameFunction(InGameMenuProductionFrame, "populateCellForItemInSection", function (superFunc, inGameMenu, list, section, index, cell)
     superFunc(inGameMenu, list, section, index, cell)

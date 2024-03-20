@@ -6,11 +6,6 @@ BaleUnitExtension = {}
 
 local BaleUnitExtension_mt = Class(BaleUnitExtension)
 
----Creating BaleUnitExtension instance
----@param additionalUnits table additionalUnits object
----@param l10n table l10n object
----@param fillTypeManager table fillTypeManager object
----@return table instance instance of object
 function BaleUnitExtension.new(customMt, additionalUnits, l10n, fillTypeManager)
   local self = setmetatable({}, customMt or BaleUnitExtension_mt)
 
@@ -21,7 +16,6 @@ function BaleUnitExtension.new(customMt, additionalUnits, l10n, fillTypeManager)
   return self
 end
 
----Initializing BaleUnitExtension
 function BaleUnitExtension:initialize()
   self.additionalUnits:overwriteGameFunction(Bale, "showInfo", function (superFunc, bale, box)
     local fillType = bale:getFillType()

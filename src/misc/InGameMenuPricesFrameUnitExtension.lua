@@ -6,9 +6,6 @@ InGameMenuPricesFrameUnitExtension = {}
 
 local InGameMenuPricesFrameUnitExtension_mt = Class(InGameMenuPricesFrameUnitExtension)
 
----Creating InGameMenuPricesFrameUnitExtension instance
----@param additionalUnits table additionalUnits object
----@return table instance instance of object
 function InGameMenuPricesFrameUnitExtension.new(customMt, additionalUnits)
   local self = setmetatable({}, customMt or InGameMenuPricesFrameUnitExtension_mt)
 
@@ -17,7 +14,6 @@ function InGameMenuPricesFrameUnitExtension.new(customMt, additionalUnits)
   return self
 end
 
----Initializing InGameMenuPricesFrameUnitExtension
 function InGameMenuPricesFrameUnitExtension:initialize()
   self.additionalUnits:overwriteGameFunction(InGameMenuPricesFrame, "populateCellForItemInSection", function (superFunc, inGameMenu, list, section, index, cell)
     superFunc(inGameMenu, list, section, index, cell)

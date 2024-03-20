@@ -6,10 +6,6 @@ SiloDialogUnitExtension = {}
 
 local SiloDialogUnitExtension_mt = Class(SiloDialogUnitExtension)
 
----Creating SiloDialogUnitExtension instance
----@param additionalUnits table additionalUnits object
----@param fillTypeManager table fillTypeManager object
----@return table instance instance of object
 function SiloDialogUnitExtension.new(customMt, additionalUnits, fillTypeManager)
   local self = setmetatable({}, customMt or SiloDialogUnitExtension_mt)
 
@@ -19,7 +15,6 @@ function SiloDialogUnitExtension.new(customMt, additionalUnits, fillTypeManager)
   return self
 end
 
----Initializing SiloDialogUnitExtension
 function SiloDialogUnitExtension:initialize()
   self.additionalUnits:overwriteGameFunction(SiloDialog, "setFillLevels", function (superFunc, dialog, fillLevels, hasInfiniteCapacity)
     superFunc(dialog, fillLevels, hasInfiniteCapacity)

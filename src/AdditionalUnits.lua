@@ -37,11 +37,6 @@ source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/SiloDialogUnitExtension.lua")
 
 local AdditionalUnits_mt = Class(AdditionalUnits)
 
----Creating AdditionalUnits instance
----@param gui table gui object
----@param l10n table l10n object
----@param fillTypeManager table fillTypeManager object
----@return table instance instance of object
 function AdditionalUnits.new(customMt, gui, l10n, fillTypeManager)
   local self = setmetatable({}, customMt or AdditionalUnits_mt)
 
@@ -72,7 +67,6 @@ function AdditionalUnits.new(customMt, gui, l10n, fillTypeManager)
   return self
 end
 
----Initializing AdditionalUnits
 function AdditionalUnits:initialize()
   self:loadUnitsFromXML()
   self:loadMassFactorsFromXML()
@@ -96,8 +90,6 @@ function AdditionalUnits:initialize()
   self.siloDialogUnitExtension:initialize()
 end
 
----Callback on map loading
----@param filename string map file path
 function AdditionalUnits:loadMap(filename)
   self:loadFillTypesUnitsFromXML()
 
@@ -108,10 +100,6 @@ function AdditionalUnits:loadMap(filename)
   self.gui:loadMap(AdditionalUnits.MOD_DIRECTORY)
 end
 
----Loading config file path
----@param file string filename
----@param defaultPath string default file path
----@return string configPath config path
 function AdditionalUnits:loadConfigFile(file, defaultPath)
   local configPath = AdditionalUnits.MOD_SETTINGS_DIRECTORY .. file .. ".xml"
 
@@ -125,8 +113,6 @@ function AdditionalUnits:loadConfigFile(file, defaultPath)
   return configPath
 end
 
----Loading units
----@return boolean isSuccess true if loaded, false if not
 function AdditionalUnits:loadUnitsFromXML()
   local xmlFilename = self:loadConfigFile("units", AdditionalUnits.DEFAULT_UNITS_XML_PATH)
   local xmlFile = XMLFile.loadIfExists("unitsXML", xmlFilename, "units")
@@ -183,7 +169,6 @@ function AdditionalUnits:loadUnitsFromXML()
   return true
 end
 
----Saving units
 function AdditionalUnits:saveUnitsToXMLFile()
   local xmlFile = XMLFile.create("unitsXML", AdditionalUnits.MOD_SETTINGS_DIRECTORY .. "units.xml", "units")
 
@@ -211,8 +196,6 @@ function AdditionalUnits:saveUnitsToXMLFile()
   xmlFile:delete()
 end
 
----Loading mass factors
----@return boolean isSuccess true if loaded, false if not
 function AdditionalUnits:loadMassFactorsFromXML()
   local xmlFilename = self:loadConfigFile("massFactors", AdditionalUnits.DEFAULT_MASS_FACTOR_XML_PATH)
   local xmlFile = XMLFile.loadIfExists("massFactorsXML", xmlFilename, "massFactors")
@@ -235,7 +218,6 @@ function AdditionalUnits:loadMassFactorsFromXML()
   return true
 end
 
----Saving mass factors
 function AdditionalUnits:saveMassFactorsToXMLFile()
   local xmlFile = XMLFile.create("massFactorsXML", AdditionalUnits.MOD_SETTINGS_DIRECTORY .. "massFactors.xml", "massFactors")
 
@@ -258,8 +240,6 @@ function AdditionalUnits:saveMassFactorsToXMLFile()
   xmlFile:delete()
 end
 
----Loading modified fillTypes units
----@return boolean isSuccess true if loaded from XML file, false if not
 function AdditionalUnits:loadFillTypesUnitsFromXML()
   local xmlFile = XMLFile.loadIfExists("fillTypesUnitsXML", AdditionalUnits.MOD_SETTINGS_DIRECTORY .. "fillTypes.xml", "fillTypes")
 
@@ -285,7 +265,6 @@ function AdditionalUnits:loadFillTypesUnitsFromXML()
   return true
 end
 
----Saving modified fillTypes units
 function AdditionalUnits:saveFillTypesUnitsToXMLFile()
   local xmlFile = XMLFile.create("fillTypesUnitsXML", AdditionalUnits.MOD_SETTINGS_DIRECTORY .. "fillTypes.xml", "fillTypes")
 
@@ -308,14 +287,6 @@ function AdditionalUnits:saveFillTypesUnitsToXMLFile()
   xmlFile:delete()
 end
 
----Formatting fillLevel and fillType unit
----@param fillLevel float fill level
----@param fillType string fillType name
----@param precision integer decimal places
----@param useLongName boolean use unit long name if true, short name otherwise
----@param customUnitText string use custom unit text if given, otherwise formatted
----@return string formattedNumber formatted fillLevel
----@return string unitText formatted fillType unit
 function AdditionalUnits:formatFillLevel(fillLevel, fillType, precision, useLongName, customUnitText)
   local unit = self:getUnitById(self:getFillTypeUnitByFillTypeName(fillType))
   local massFactor = self:getMassFactorByFillTypeName(fillType) or 1
@@ -345,9 +316,6 @@ function AdditionalUnits:formatFillLevel(fillLevel, fillType, precision, useLong
   return formattedNumber, unitText
 end
 
----Gets unit object by id
----@param id integer unit id
----@return table unit unit object if found, default unit object otherwise
 function AdditionalUnits:getUnitById(id)
   for i = 1, #self.units do
     if self.units[i].id == id then
@@ -358,8 +326,6 @@ function AdditionalUnits:getUnitById(id)
   return self:getUnitById(self:getDefaultUnitId())
 end
 
----Gets unit latest id
----@return integer id unit id
 function AdditionalUnits:getUnitLastId()
   local id = 0
 
@@ -372,9 +338,6 @@ function AdditionalUnits:getUnitLastId()
   return id
 end
 
----Gets unit index by unit id
----@param id integer unit id
----@return integer i unit index
 function AdditionalUnits:getUnitIndexById(id)
   for i = 1, #self.units do
     if self.units[i].id == id then
@@ -383,8 +346,6 @@ function AdditionalUnits:getUnitIndexById(id)
   end
 end
 
----Gets default unit id
----@return integer id unit id
 function AdditionalUnits:getDefaultUnitId()
   local id = 1
 
@@ -399,9 +360,6 @@ function AdditionalUnits:getDefaultUnitId()
   return id
 end
 
----Gets unit id by unit index
----@param index integer unit index
----@return integer id unit id
 function AdditionalUnits:getUnitIdByIndex(index)
   local id = 1
 
@@ -416,35 +374,22 @@ function AdditionalUnits:getUnitIdByIndex(index)
   return id
 end
 
----Gets unit by unit index
----@param index integer unit index
----@return table unit unit object
 function AdditionalUnits:getUnitByIndex(index)
   return self.units[index]
 end
 
----Gets whether the unit id is valid
----@param id integer unit id
----@return integer id given unit id if valid, default unit id if not
 function AdditionalUnits:getIsUnitIdValid(id)
   return self:getUnitById(id).id
 end
 
----Gets unit id by given fillType name
----@param name string fillType name
----@return integer id unit id
 function AdditionalUnits:getFillTypeUnitByFillTypeName(name)
   return self.fillTypesUnits[name]
 end
 
----Gets mass factor by given fillType name
----@param name string fillType name
----@return float massFactor mass factor value
 function AdditionalUnits:getMassFactorByFillTypeName(name)
   return self.massFactors[name]
 end
 
----Resets all additional units settings to default
 function AdditionalUnits:reset()
   self.units = {}
   self.massFactors = {}
@@ -459,10 +404,6 @@ function AdditionalUnits:reset()
   self:loadFillTypesUnitsFromXML()
 end
 
----Overwrites game function
----@param object table function object
----@param funcName string funtion name
----@param newFunc func new function
 function AdditionalUnits:overwriteGameFunction(object, funcName, newFunc)
   if object == nil then
     return

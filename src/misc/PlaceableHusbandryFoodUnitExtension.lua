@@ -6,9 +6,6 @@ PlaceableHusbandryFoodUnitExtension = {}
 
 local PlaceableHusbandryFoodUnitExtension_mt = Class(PlaceableHusbandryFoodUnitExtension)
 
----Creating PlaceableHusbandryFoodUnitExtension instance
----@param additionalUnits table additionalUnits object
----@return table instance instance of object
 function PlaceableHusbandryFoodUnitExtension.new(customMt, additionalUnits)
   local self = setmetatable({}, customMt or PlaceableHusbandryFoodUnitExtension_mt)
 
@@ -17,7 +14,6 @@ function PlaceableHusbandryFoodUnitExtension.new(customMt, additionalUnits)
   return self
 end
 
----Initializing PlaceableHusbandryFoodUnitExtension
 function PlaceableHusbandryFoodUnitExtension:initialize()
   self.additionalUnits:overwriteGameFunction(PlaceableHusbandryFood, "getFoodInfos", function (_, husbandry, superFunc)
     local foodInfos = superFunc(husbandry)

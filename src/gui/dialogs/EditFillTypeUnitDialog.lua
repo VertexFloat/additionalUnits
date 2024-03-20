@@ -12,10 +12,6 @@ EditFillTypeUnitDialog = {
 
 local EditFillTypeUnitDialog_mt = Class(EditFillTypeUnitDialog, YesNoDialog)
 
----Creating EditFillTypeUnitDialog instance
----@param additionalUnits table additionalUnits object
----@param l10n table l10n object
----@return table instance instance of object
 function EditFillTypeUnitDialog.new(target, customMt, additionalUnits, l10n)
   local self = YesNoDialog.new(target, customMt or EditFillTypeUnitDialog_mt)
 
@@ -27,10 +23,6 @@ function EditFillTypeUnitDialog.new(target, customMt, additionalUnits, l10n)
   return self
 end
 
----Sets dialog data
----@param fillType table fillType object
----@param unitId integer unit id
----@param massFactor float fillType massFactor
 function EditFillTypeUnitDialog:setData(fillType, unitId, massFactor)
   self.dialogTitleElement:setText(string.format(self.l10n:getText("ui_additionalUnits_editFillTypeUnit_title"), fillType.title))
   self.dialogIconElement:setImageFilename(fillType.hudOverlayFilename)
@@ -52,15 +44,10 @@ function EditFillTypeUnitDialog:setData(fillType, unitId, massFactor)
   self:udpateButtons(true)
 end
 
----Update buttons states
----@param disabled boolean disable buttons
 function EditFillTypeUnitDialog:udpateButtons(disabled)
   self.yesButton:setDisabled(disabled)
 end
 
----Callback on mass factor input text change
----@param element table text input element object
----@param text string text input element input
 function EditFillTypeUnitDialog:onTextChangedMassFactor(element, text)
   if text ~= "" then
     local factor = tonumber(text)
@@ -81,13 +68,10 @@ function EditFillTypeUnitDialog:onTextChangedMassFactor(element, text)
   self:udpateButtons(false)
 end
 
----Callback on click unit
 function EditFillTypeUnitDialog:onClickUnit()
   self:udpateButtons(false)
 end
 
----Send callback to caller
----@param fillType table fillType unit object
 function EditFillTypeUnitDialog:sendCallback(fillType)
   self:onClickBack()
 
@@ -100,7 +84,6 @@ function EditFillTypeUnitDialog:sendCallback(fillType)
   end
 end
 
----Callback on click save
 function EditFillTypeUnitDialog:onClickSave()
   local fillType = {
     name = self.fillTypeName,
@@ -115,7 +98,6 @@ function EditFillTypeUnitDialog:onClickSave()
   self:sendCallback(fillType)
 end
 
----Callback on click back
 function EditFillTypeUnitDialog:onClickBack()
   self:close()
 end

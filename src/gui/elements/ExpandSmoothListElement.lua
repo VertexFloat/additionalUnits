@@ -6,8 +6,6 @@ ExpandSmoothListElement = {}
 
 local ExpandSmoothListElement_mt = Class(ExpandSmoothListElement, SmoothListElement)
 
----Creating ExpandSmoothListElement instance
----@return table instance instance of object
 function ExpandSmoothListElement.new(target)
   local self = SmoothListElement.new(target, ExpandSmoothListElement_mt)
 
@@ -18,9 +16,6 @@ function ExpandSmoothListElement.new(target)
   return self
 end
 
----Loading element params from XML file
----@param xmlFile integer xmlFile id
----@param key string element params key
 function ExpandSmoothListElement:loadFromXML(xmlFile, key)
   ExpandSmoothListElement:superClass().loadFromXML(self, xmlFile, key)
 
@@ -33,8 +28,6 @@ function ExpandSmoothListElement:loadFromXML(xmlFile, key)
   self.layoutElementId = getXMLString(xmlFile, key .. "#layoutElementId")
 end
 
----Copying all attributes from a source GuiElement to this GuiElement
----@param src table
 function ExpandSmoothListElement:copyAttributes(src)
   ExpandSmoothListElement:superClass().copyAttributes(self, src)
 
@@ -43,7 +36,6 @@ function ExpandSmoothListElement:copyAttributes(src)
   self.layoutElementId = src.layoutElementId
 end
 
----Callback on gui setup finish
 function ExpandSmoothListElement:onGuiSetupFinished()
   ExpandSmoothListElement:superClass().onGuiSetupFinished(self)
 
@@ -58,7 +50,6 @@ function ExpandSmoothListElement:onGuiSetupFinished()
   end
 end
 
----Building section
 function ExpandSmoothListElement:buildSectionInfo()
   ExpandSmoothListElement:superClass().buildSectionInfo(self)
 

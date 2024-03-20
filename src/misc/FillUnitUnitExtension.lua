@@ -6,10 +6,6 @@ FillUnitUnitExtension = {}
 
 local FillUnitUnitExtension_mt = Class(FillUnitUnitExtension)
 
----Creating FillUnitUnitExtension instance
----@param additionalUnits table additionalUnits object
----@param fillTypeManager table fillTypeManager object
----@return table instance instance of object
 function FillUnitUnitExtension.new(customMt, additionalUnits, fillTypeManager)
   local self = setmetatable({}, customMt or FillUnitUnitExtension_mt)
 
@@ -19,7 +15,6 @@ function FillUnitUnitExtension.new(customMt, additionalUnits, fillTypeManager)
   return self
 end
 
----Initializing FillUnitUnitExtension
 function FillUnitUnitExtension:initialize()
   self.additionalUnits:overwriteGameFunction(FillUnit, "showInfo", function (_, fillUnit, superFunc, box)
     local spec = fillUnit.spec_fillUnit

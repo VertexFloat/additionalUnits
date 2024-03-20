@@ -13,12 +13,6 @@ AdditionalUnitsMenu.CONTROLS = {
   "deleteButton"
 }
 
----Creating AdditionalUnitsMenu instance
----@param additionalUnits table additionalUnits object
----@param gui table gui object
----@param l10n table l10n object
----@param fillTypeManager table fillTypeManager object
----@return table instance instance of object
 function AdditionalUnitsMenu.new(target, customMt, additionalUnits, gui, l10n, fillTypeManager)
   local self = AdditionalUnitsMenu:superClass().new(target, customMt or AdditionalUnitsMenu_mt)
 
@@ -33,7 +27,6 @@ function AdditionalUnitsMenu.new(target, customMt, additionalUnits, gui, l10n, f
   return self
 end
 
----Development only
 function AdditionalUnitsMenu.createFromExistingGui(gui, guiName)
   local newGui = AdditionalUnitsMenu.new(nil, nil, gui.additionalUnits, gui.gui, gui.l10n, gui.fillTypeManager)
 
@@ -45,8 +38,6 @@ function AdditionalUnitsMenu.createFromExistingGui(gui, guiName)
   return newGui
 end
 
----Copying all attributes from a source GuiElement to this GuiElement
----@param src table
 function AdditionalUnitsMenu:copyAttributes(src)
   AdditionalUnitsMenu:superClass().copyAttributes(self, src)
 
@@ -56,7 +47,6 @@ function AdditionalUnitsMenu:copyAttributes(src)
   self.fillTypeManager = src.fillTypeManager
 end
 
----Callback on gui setup finish
 function AdditionalUnitsMenu:onGuiSetupFinished()
   AdditionalUnitsMenu:superClass().onGuiSetupFinished(self)
 
@@ -64,7 +54,6 @@ function AdditionalUnitsMenu:onGuiSetupFinished()
   self.unitsList:setDataSource(self)
 end
 
----Callback on gui open
 function AdditionalUnitsMenu:onOpen()
   AdditionalUnitsMenu:superClass().onOpen(self)
 
@@ -73,7 +62,6 @@ function AdditionalUnitsMenu:onOpen()
   FocusManager:setFocus(self.fillTypesList)
 end
 
----Update buttons states
 function AdditionalUnitsMenu:updateMenuButtons()
   local disabled = false
 
@@ -86,7 +74,6 @@ function AdditionalUnitsMenu:updateMenuButtons()
   self.deleteButton:setDisabled(disabled)
 end
 
----Rebuilds all tables and load fillTypes
 function AdditionalUnitsMenu:rebuildTables()
   self.fillTypes = {}
 
@@ -100,10 +87,6 @@ function AdditionalUnitsMenu:rebuildTables()
   self.unitsList:reloadData()
 end
 
----Get items number in section
----@param list table list element
----@param section integer list section index
----@return integer items items in list section
 function AdditionalUnitsMenu:getNumberOfItemsInSection(list, section)
   if list == self.fillTypesList then
     return #self.fillTypes
@@ -112,11 +95,6 @@ function AdditionalUnitsMenu:getNumberOfItemsInSection(list, section)
   end
 end
 
----Populate cells for item in section
----@param list table list element
----@param section integer list section index
----@param index integer list item index
----@param cell element list item cell
 function AdditionalUnitsMenu:populateCellForItemInSection(list, section, index, cell)
   if list == self.fillTypesList then
     local fillTypeDesc = self.fillTypes[index]
@@ -136,19 +114,10 @@ function AdditionalUnitsMenu:populateCellForItemInSection(list, section, index, 
   end
 end
 
----Callback on list item selection changed
----@param list table list element
----@param section integer list section index
----@param index integer list item index
 function AdditionalUnitsMenu:onListSelectionChanged(list, section, index)
   self:updateMenuButtons()
 end
 
----Callback on click edit
----@param list table list element
----@param section integer list section index
----@param index integer list item index
----@param element table element under mouse
 function AdditionalUnitsMenu:onClickEdit(list, section, index, element)
   if list == self.fillTypesList then
     local selectedIndex = self.fillTypesList.selectedIndex
@@ -169,10 +138,6 @@ function AdditionalUnitsMenu:onClickEdit(list, section, index, element)
   end
 end
 
----EditFillTypeUnitDialog callback
----@param fillType string fillType name
----@param unit integer unitId
----@param massFactor float fillType mass factor
 function AdditionalUnitsMenu:onEditFillTypeUnit(fillType, unit, massFactor)
   if fillType ~= nil then
     self.additionalUnits.fillTypesUnits[fillType] = unit
@@ -185,8 +150,6 @@ function AdditionalUnitsMenu:onEditFillTypeUnit(fillType, unit, massFactor)
   self.additionalUnits:saveFillTypesUnitsToXMLFile()
 end
 
----EditUnitDialog callback
----@param unit table unit object
 function AdditionalUnitsMenu:onEditUnit(unit)
   local unitIndex = self.additionalUnits:getUnitIndexById(unit.id)
 
@@ -199,7 +162,6 @@ function AdditionalUnitsMenu:onEditUnit(unit)
   self:rebuildTables()
 end
 
----Callback on click new
 function AdditionalUnitsMenu:onClickNew()
   self.additionalUnits.gui:showEditUnitDialog({
     callback = self.onNewUnit,
@@ -207,8 +169,6 @@ function AdditionalUnitsMenu:onClickNew()
   })
 end
 
----New unit created callback
----@param unit table unit object
 function AdditionalUnitsMenu:onNewUnit(unit)
   table.insert(self.additionalUnits.units, unit)
 
@@ -222,7 +182,6 @@ function AdditionalUnitsMenu:onNewUnit(unit)
   self.additionalUnits:saveUnitsToXMLFile()
 end
 
----Callback on click delete
 function AdditionalUnitsMenu:onClickDelete()
   local unit = self.additionalUnits:getUnitByIndex(self.unitsList.selectedIndex)
 
@@ -235,8 +194,6 @@ function AdditionalUnitsMenu:onClickDelete()
   })
 end
 
----Unit delete dialog callback
----@param yes boolean whether to delete the unit
 function AdditionalUnitsMenu:onYesNoDeleteUnit(yes)
   if yes then
     for name, value in pairs(self.additionalUnits.fillTypesUnits) do
@@ -259,7 +216,6 @@ function AdditionalUnitsMenu:onYesNoDeleteUnit(yes)
   end
 end
 
----Callback on click reset
 function AdditionalUnitsMenu:onClickReset()
   self.gui:showYesNoDialog({
     text = self.l10n:getText("ui_loadDefaultSettings"),
@@ -270,8 +226,6 @@ function AdditionalUnitsMenu:onClickReset()
   })
 end
 
----Reset settings dialog callback
----@param yes boolean whether to reset settings to default
 function AdditionalUnitsMenu:onYesNoResetSettings(yes)
   if yes then
     self.additionalUnits:reset()
@@ -285,7 +239,6 @@ function AdditionalUnitsMenu:onYesNoResetSettings(yes)
   end
 end
 
----Callback on click back
 function AdditionalUnitsMenu:onClickBack()
   AdditionalUnitsMenu:superClass().onClickBack(self)
 

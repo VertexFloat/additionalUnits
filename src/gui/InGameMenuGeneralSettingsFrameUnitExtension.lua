@@ -8,11 +8,6 @@ InGameMenuGeneralSettingsFrameUnitExtension = {
 
 local InGameMenuGeneralSettingsFrameUnitExtension_mt = Class(InGameMenuGeneralSettingsFrameUnitExtension)
 
----Creating InGameMenuGeneralSettingsFrameUnitExtension instance
----@param additionalUnits table additionalUnits object
----@param gui table gui object
----@param l10n table l10n object
----@return table instance instance of object
 function InGameMenuGeneralSettingsFrameUnitExtension.new(customMt, additionalUnits, gui, l10n)
   local self = setmetatable({}, customMt or InGameMenuGeneralSettingsFrameUnitExtension_mt)
 
@@ -24,7 +19,6 @@ function InGameMenuGeneralSettingsFrameUnitExtension.new(customMt, additionalUni
   return self
 end
 
----Initializing InGameMenuGeneralSettingsFrameUnitExtension
 function InGameMenuGeneralSettingsFrameUnitExtension:initialize()
   self.additionalUnits:overwriteGameFunction(InGameMenuGeneralSettingsFrame, "onFrameOpen", function (superFunc, frame, element)
     superFunc(frame, element)

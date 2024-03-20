@@ -6,11 +6,6 @@ PlaceableSiloUnitExtension = {}
 
 local PlaceableSiloUnitExtension_mt = Class(PlaceableSiloUnitExtension)
 
----Creating PlaceableSiloUnitExtension instance
----@param additionalUnits table additionalUnits object
----@param l10n table l10n object
----@param fillTypeManager table fillTypeManager object
----@return table instance instance of object
 function PlaceableSiloUnitExtension.new(customMt, additionalUnits, l10n, fillTypeManager)
   local self = setmetatable({}, customMt or PlaceableSiloUnitExtension_mt)
 
@@ -21,7 +16,6 @@ function PlaceableSiloUnitExtension.new(customMt, additionalUnits, l10n, fillTyp
   return self
 end
 
----Initializing PlaceableSiloUnitExtension
 function PlaceableSiloUnitExtension:initialize()
   self.additionalUnits:overwriteGameFunction(PlaceableSilo, "updateInfo", function (_, silo, superFunc, infoTable)
     superFunc(silo, infoTable)

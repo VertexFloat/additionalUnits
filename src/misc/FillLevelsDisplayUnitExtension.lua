@@ -6,10 +6,6 @@ FillLevelsDisplayUnitExtension = {}
 
 local FillLevelsDisplayUnitExtension_mt = Class(FillLevelsDisplayUnitExtension)
 
----Creating FillLevelsDisplayUnitExtension instance
----@param additionalUnits table additionalUnits object
----@param fillTypeManager table fillTypeManager object
----@return table instance instance of object
 function FillLevelsDisplayUnitExtension.new(customMt, additionalUnits, fillTypeManager)
   local self = setmetatable({}, customMt or FillLevelsDisplayUnitExtension_mt)
 
@@ -19,7 +15,6 @@ function FillLevelsDisplayUnitExtension.new(customMt, additionalUnits, fillTypeM
   return self
 end
 
----Initializing FillLevelsDisplayUnitExtension
 function FillLevelsDisplayUnitExtension:initialize()
   self.additionalUnits:overwriteGameFunction(FillLevelsDisplay, "updateFillLevelFrames", function (superFunc, display)
     superFunc(display)

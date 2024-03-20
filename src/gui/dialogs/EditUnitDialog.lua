@@ -16,10 +16,6 @@ EditUnitDialog.MAX_PRECISION = 6
 
 local EditUnitDialog_mt = Class(EditUnitDialog, YesNoDialog)
 
----Creating EditUnitDialog instance
----@param additionalUnits table additionalUnits object
----@param l10n table l10n object
----@return table instance instance of object
 function EditUnitDialog.new(target, customMt, additionalUnits, l10n)
   local self = YesNoDialog.new(target, customMt or EditUnitDialog_mt)
 
@@ -32,8 +28,6 @@ function EditUnitDialog.new(target, customMt, additionalUnits, l10n)
   return self
 end
 
----Sets dialog data
----@param data table unit object
 function EditUnitDialog:setData(data)
   local text = data and string.format(self.l10n:getText("ui_additionalUnits_editUnit_title"), data.name) or self.l10n:getText("ui_additionalUnits_editUnit_title_new")
 
@@ -71,7 +65,6 @@ function EditUnitDialog:setData(data)
   self.yesButton:setDisabled(true)
 end
 
----Update buttons states
 function EditUnitDialog:udpateButtons()
   local disabled = false
 
@@ -86,29 +79,22 @@ function EditUnitDialog:udpateButtons()
   self.yesButton:setDisabled(disabled)
 end
 
----Callback on name input text change
 function EditUnitDialog:onTextChangedName()
   self:udpateButtons()
 end
 
----Callback on short name input text change
 function EditUnitDialog:onTextChangedShortName()
   self:udpateButtons()
 end
 
----Callback on click volume
 function EditUnitDialog:onClickVolume()
   self:udpateButtons()
 end
 
----Callback on click precision
 function EditUnitDialog:onClickPrecision()
   self:udpateButtons()
 end
 
----Callback on factor input text change
----@param element table text input element object
----@param text string text input element input
 function EditUnitDialog:onTextChangedFactor(element, text)
   if text ~= "" then
     if tonumber(text) ~= nil then
@@ -123,8 +109,6 @@ function EditUnitDialog:onTextChangedFactor(element, text)
   self:udpateButtons()
 end
 
----Send callback to caller
----@param unit table unit object
 function EditUnitDialog:sendCallback(unit)
   self:onClickBack()
 
@@ -137,7 +121,6 @@ function EditUnitDialog:sendCallback(unit)
   end
 end
 
----Callback on click save
 function EditUnitDialog:onClickSave()
   local unit = {
     id = self.id,
@@ -152,12 +135,10 @@ function EditUnitDialog:onClickSave()
   self:sendCallback(unit)
 end
 
----Callback on click back
 function EditUnitDialog:onClickBack()
   self:close()
 end
 
----Callback on dialog close
 function EditUnitDialog:onClose()
   EditUnitDialog:superClass().onClose(self)
 
