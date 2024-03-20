@@ -7,7 +7,7 @@ assignees:
 body:
 - type: markdown
   attributes:
-    value: Please make sure to [search for existing issues](https://github.com/4c65736975/additionalUnits/issues) before filing a new one!
+    value: Please make sure to [search for existing issues](https://github.com/VertexFloat/additionalUnits/issues) before filing a new one!
 
 - type: dropdown
   id: version
@@ -15,6 +15,7 @@ body:
     label: Version
     description: What version of the modification does the problem apply to?
     options:
+      - 1.0.0.1
       - 1.0.0.0
     default: 0
   validations:
