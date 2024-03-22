@@ -15,7 +15,7 @@ EditUnitDialog = {
 EditUnitDialog.MAX_PRECISION = 6
 EditUnitDialog.UNIT_TEMPLATE = {
   name = "",
-  unitShort = "",
+  shortName = "",
   precision = 1,
   factor = 1,
   isVolume = true
@@ -29,8 +29,8 @@ function EditUnitDialog.new(target, customMt, additionalUnits, l10n)
   self.l10n = l10n
   self.additionalUnits = additionalUnits
 
-  self.unit = EditUnitDialog.UNIT_TEMPLATE
   self.precisionMapping = {}
+  self.unit = table.copy(EditUnitDialog.UNIT_TEMPLATE)
 
   self:registerControls(EditUnitDialog.CONTROLS)
 
@@ -49,7 +49,7 @@ function EditUnitDialog:setData(data)
   self.dialogTitleElement:setText(title)
 
   self.textUnitName:setText(self.unit.name)
-  self.textUnitShortName:setText(self.unit.unitShort)
+  self.textUnitShortName:setText(self.unit.shortName)
   self.checkedUnitVolume:setState(self.unit.isVolume and 2 or 1)
 
   local unitFactor = tostring(MathUtil.round(self.unit.factor, 7))
@@ -66,7 +66,7 @@ function EditUnitDialog:setData(data)
   self.optionUnitPrecision:setTexts(precisions)
   self.optionUnitPrecision:setState(self.unit.precision + 1, true)
 
-  local isDefault = data and data.isDefault or false
+  local isDefault = self.unit.isDefault or false
   self.textUnitName:setDisabled(isDefault)
   self.textUnitShortName:setDisabled(isDefault)
   self.checkedUnitVolume:setDisabled(isDefault)
@@ -87,7 +87,7 @@ function EditUnitDialog:onTextChangedName(element, text)
 end
 
 function EditUnitDialog:onTextChangedShortName(element, text)
-  self.unit.unitShort = text
+  self.unit.shortName = text
 
   self:udpateButtons()
 end
@@ -105,19 +105,19 @@ function EditUnitDialog:onClickPrecision()
 end
 
 function EditUnitDialog:onTextChangedFactor(element, text)
-  local lastValidText = element.lastValidText
+  local factor = tonumber(text)
 
-  if text ~= "" then
-    local factor = tonumber(text)
+  if factor ~= nil then
+    element.lastValidText = text
 
-    if factor ~= nil then
-      lastValidText = text
-
-      self.unit.factor = factor
-    end
+    self.unit.factor = factor
   end
 
-  element:setText(lastValidText)
+  if text == "" then
+    element.lastValidText = ""
+  end
+
+  element:setText(element.lastValidText)
 
   self:udpateButtons()
 end
@@ -148,5 +148,5 @@ function EditUnitDialog:onClose()
   EditUnitDialog:superClass().onClose(self)
 
   self.precisionMapping = {}
-  self.unit = EditUnitDialog.UNIT_TEMPLATE
+  self.unit = table.copy(EditUnitDialog.UNIT_TEMPLATE)
 end

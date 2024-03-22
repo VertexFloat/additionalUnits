@@ -43,8 +43,8 @@ function EditFillTypeUnitDialog:setData(data)
 
   self.fillTypeUnit = {
     name = data.fillType.name or "",
-    unitId = 1,
-    massFactor = 1
+    unitId = data.unitId,
+    massFactor = data.massFactor
   }
 
   self:udpateButtons(true)
@@ -55,17 +55,17 @@ function EditFillTypeUnitDialog:udpateButtons(disabled)
 end
 
 function EditFillTypeUnitDialog:onTextChangedMassFactor(element, text)
-  local lastValidText = element.lastValidText
+  local factor = tonumber(text)
 
-  if text ~= "" then
-    local factor = tonumber(text)
-
-    if factor ~= nil and factor > 0 and factor >= 1 then
-      lastValidText = text
-    end
+  if factor ~= nil and factor > 0 and factor >= 1 then
+    element.lastValidText = text
   end
 
-  element:setText(lastValidText)
+  if text == "" then
+    element.lastValidText = ""
+  end
+
+  element:setText(element.lastValidText)
 
   self:udpateButtons(false)
 end
