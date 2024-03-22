@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <units>
-  <unit name="unit_liter"   shortName="unit_literShort"   precision="0" factor="1"            isVolume="true"  isDefault="true"/> <!-- DO NOT CHANGE THIS UNIT !-->
-  <unit name="unit_cubic"   shortName="unit_cubicShort"   precision="1" factor="0.001"        isVolume="true"/>
-  <unit name="unit_gallons" shortName="unit_gallonsShort" precision="0" factor="0.264172052"  isVolume="false"/>
-  <unit name="unit_kgLong"  shortName="unit_kg"           precision="0" factor="1"            isVolume="false"/>
-  <unit name="unit_pounds"  shortName="unit_poundsShort"  precision="0" factor="2.20462"      isVolume="false"/>
+  <unit name="$l10n_unit_liter"   shortName="$l10n_unit_literShort"   precision="0" factor="1"            isVolume="true"  isDefault="true"/> <!-- DO NOT CHANGE THIS UNIT !-->
+  <unit name="$l10n_unit_cubic"   shortName="$l10n_unit_cubicShort"   precision="1" factor="0.001"        isVolume="true"/>
+  <unit name="$l10n_unit_gallons" shortName="$l10n_unit_gallonsShort" precision="0" factor="0.264172052"  isVolume="false"/>
+  <unit name="$l10n_unit_kgLong"  shortName="$l10n_unit_kg"           precision="0" factor="1"            isVolume="false"/>
+  <unit name="$l10n_unit_pounds"  shortName="$l10n_unit_poundsShort"  precision="0" factor="2.20462"      isVolume="false"/>
 </units>
