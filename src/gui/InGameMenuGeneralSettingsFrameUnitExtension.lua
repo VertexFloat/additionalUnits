@@ -11,9 +11,10 @@ local InGameMenuGeneralSettingsFrameUnitExtension_mt = Class(InGameMenuGeneralSe
 function InGameMenuGeneralSettingsFrameUnitExtension.new(customMt, additionalUnits, gui, l10n)
   local self = setmetatable({}, customMt or InGameMenuGeneralSettingsFrameUnitExtension_mt)
 
-  self.additionalUnits = additionalUnits
   self.gui = gui
   self.l10n = l10n
+  self.additionalUnits = additionalUnits
+
   self.isCreated = false
 
   return self
@@ -45,7 +46,7 @@ function InGameMenuGeneralSettingsFrameUnitExtension:initialize()
       buttonFrame:addElement(button)
 
       buttonFrame.elements[1]:setText(self.l10n:getText("ui_additionalUnits_title"))
-      buttonFrame.elements[2]:setText(self.l10n:getText("toolTip_additionalUnits_menu"))
+      buttonFrame.elements[2]:setText(self.l10n:getText("ui_additionalUnits_toolTip"))
 
       buttonFrame.elements[3]:setText(self.l10n:getText("input_MENU"))
       buttonFrame.elements[3]:applyProfile(InGameMenuGeneralSettingsFrameUnitExtension.BUTTON_PROFILE)
@@ -59,7 +60,6 @@ function InGameMenuGeneralSettingsFrameUnitExtension:initialize()
       for i = 1, #frame.checkUseAcre.parent.elements do
         if frame.checkUseAcre.parent.elements[i] == frame.checkUseAcre then
           index = i + 1
-
           break
         end
       end

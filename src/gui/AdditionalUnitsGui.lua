@@ -22,13 +22,13 @@ function AdditionalUnitsGui.new(customMt, additionalUnits, gui, l10n, fillTypeMa
   self.editUnitDialog = EditUnitDialog.new(nil, customMt, additionalUnits, l10n)
   self.editFillTypeUnitDialog = EditFillTypeUnitDialog.new(nil, customMt, additionalUnits, l10n)
   self.additionalUnitsMenu = AdditionalUnitsMenu.new(nil, customMt, additionalUnits, gui, l10n, fillTypeManager)
-  self.inGameMenuGeneralSettingsFrameUnitExtension = InGameMenuGeneralSettingsFrameUnitExtension.new(_, additionalUnits, gui, l10n)
+  self.inGameMenuGeneralSettingsFrameUnitExtension = InGameMenuGeneralSettingsFrameUnitExtension.new(customMt, additionalUnits, gui, l10n)
 
   return self
 end
 
-function AdditionalUnitsGui:initialize(modDirectory)
-  self.gui:loadProfiles(modDirectory .. "data/gui/guiProfiles.xml")
+function AdditionalUnitsGui:initialize()
+  self.gui:loadProfiles(AdditionalUnitsGui.MOD_DIRECTORY .. "data/gui/guiProfiles.xml")
 
   local mapping = Gui.CONFIGURATION_CLASS_MAPPING
   mapping.expandSmoothList = ExpandSmoothListElement
@@ -36,10 +36,10 @@ function AdditionalUnitsGui:initialize(modDirectory)
   self.inGameMenuGeneralSettingsFrameUnitExtension:initialize()
 end
 
-function AdditionalUnitsGui:loadMap(modDirectory)
-  self.gui:loadGui(Utils.getFilename("data/gui/AdditionalUnitsMenu.xml", modDirectory), "AdditionalUnitsMenu", self.additionalUnitsMenu)
-  self.gui:loadGui(Utils.getFilename("data/gui/dialogs/EditUnitDialog.xml", modDirectory), "EditUnitDialog", self.editUnitDialog)
-  self.gui:loadGui(Utils.getFilename("data/gui/dialogs/EditFillTypeUnitDialog.xml", modDirectory), "EditFillTypeUnitDialog", self.editFillTypeUnitDialog)
+function AdditionalUnitsGui:loadMap()
+  self.gui:loadGui(Utils.getFilename("data/gui/AdditionalUnitsMenu.xml", AdditionalUnitsGui.MOD_DIRECTORY), "AdditionalUnitsMenu", self.additionalUnitsMenu)
+  self.gui:loadGui(Utils.getFilename("data/gui/dialogs/EditUnitDialog.xml", AdditionalUnitsGui.MOD_DIRECTORY), "EditUnitDialog", self.editUnitDialog)
+  self.gui:loadGui(Utils.getFilename("data/gui/dialogs/EditFillTypeUnitDialog.xml", AdditionalUnitsGui.MOD_DIRECTORY), "EditFillTypeUnitDialog", self.editFillTypeUnitDialog)
 end
 
 function AdditionalUnitsGui:showEditUnitDialog(args)

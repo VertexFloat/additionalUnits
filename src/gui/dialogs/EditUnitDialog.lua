@@ -13,14 +13,23 @@ EditUnitDialog = {
 }
 
 EditUnitDialog.MAX_PRECISION = 6
+EditUnitDialog.UNIT_TEMPLATE = {
+  name = "",
+  unitShort = "",
+  precision = 1,
+  factor = 1,
+  isVolume = true
+}
 
 local EditUnitDialog_mt = Class(EditUnitDialog, YesNoDialog)
 
 function EditUnitDialog.new(target, customMt, additionalUnits, l10n)
   local self = YesNoDialog.new(target, customMt or EditUnitDialog_mt)
 
-  self.additionalUnits = additionalUnits
   self.l10n = l10n
+  self.additionalUnits = additionalUnits
+
+  self.unit = EditUnitDialog.UNIT_TEMPLATE
   self.precisionMapping = {}
 
   self:registerControls(EditUnitDialog.CONTROLS)
@@ -29,22 +38,23 @@ function EditUnitDialog.new(target, customMt, additionalUnits, l10n)
 end
 
 function EditUnitDialog:setData(data)
-  local text = data and string.format(self.l10n:getText("ui_additionalUnits_editUnit_title"), data.name) or self.l10n:getText("ui_additionalUnits_editUnit_title_new")
+  local title = self.l10n:getText("ui_additionalUnits_editUnit_title_new")
 
-  self.dialogTitleElement:setText(text)
+  if data ~= nil then
+    title = string.format(self.l10n:getText("ui_additionalUnits_editUnit_title"), data.name)
 
-  if data == nil then
-    data = EditUnitDialog.NEW_UNIT_TEMPLATE
+    self.unit = data
   end
 
-  self.id = data.id or self.additionalUnits:getUnitLastId() + 1
+  self.dialogTitleElement:setText(title)
 
-  self.textUnitName:setText(data.name)
-  self.textUnitShortName:setText(data.unitShort)
-  self.checkedUnitVolume:setState(data.isVolume and 2 or 1)
+  self.textUnitName:setText(self.unit.name)
+  self.textUnitShortName:setText(self.unit.unitShort)
+  self.checkedUnitVolume:setState(self.unit.isVolume and 2 or 1)
 
+  local unitFactor = tostring(MathUtil.round(self.unit.factor, 7))
   self.textUnitFactor.lastValidText = ""
-  self.textUnitFactor:setText(tostring(MathUtil.round(data.factor, 7)))
+  self.textUnitFactor:setText(unitFactor)
 
   local precisions = {}
 
@@ -54,57 +64,60 @@ function EditUnitDialog:setData(data)
   end
 
   self.optionUnitPrecision:setTexts(precisions)
-  self.optionUnitPrecision:setState(data.precision + 1, true)
+  self.optionUnitPrecision:setState(self.unit.precision + 1, true)
 
-  self.isDefault = data.isDefault or false
-
-  self.textUnitName:setDisabled(self.isDefault)
-  self.textUnitShortName:setDisabled(self.isDefault)
-  self.checkedUnitVolume:setDisabled(self.isDefault)
-  self.textUnitFactor:setDisabled(self.isDefault)
+  local isDefault = data and data.isDefault or false
+  self.textUnitName:setDisabled(isDefault)
+  self.textUnitShortName:setDisabled(isDefault)
+  self.checkedUnitVolume:setDisabled(isDefault)
+  self.textUnitFactor:setDisabled(isDefault)
   self.yesButton:setDisabled(true)
 end
 
 function EditUnitDialog:udpateButtons()
-  local disabled = false
-
-  if self.textUnitName.text == "" or self.textUnitShortName.text == "" then
-    disabled = true
-  end
-
-  if self.textUnitFactor.text == "" then
-    disabled = true
-  end
+  local disabled = self.textUnitName.text == "" or self.textUnitShortName.text == "" or self.textUnitFactor.text == ""
 
   self.yesButton:setDisabled(disabled)
 end
 
-function EditUnitDialog:onTextChangedName()
+function EditUnitDialog:onTextChangedName(element, text)
+  self.unit.name = text
+
   self:udpateButtons()
 end
 
-function EditUnitDialog:onTextChangedShortName()
+function EditUnitDialog:onTextChangedShortName(element, text)
+  self.unit.unitShort = text
+
   self:udpateButtons()
 end
 
 function EditUnitDialog:onClickVolume()
+  self.unit.isVolume = self.checkedUnitVolume.state == 2 and true or false
+
   self:udpateButtons()
 end
 
 function EditUnitDialog:onClickPrecision()
+  self.unit.precision = self.precisionMapping[self.optionUnitPrecision.state]
+
   self:udpateButtons()
 end
 
 function EditUnitDialog:onTextChangedFactor(element, text)
+  local lastValidText = element.lastValidText
+
   if text ~= "" then
-    if tonumber(text) ~= nil then
-      element.lastValidText = text
-    else
-      element:setText(element.lastValidText)
+    local factor = tonumber(text)
+
+    if factor ~= nil then
+      lastValidText = text
+
+      self.unit.factor = factor
     end
-  else
-    element.lastValidText = ""
   end
+
+  element:setText(lastValidText)
 
   self:udpateButtons()
 end
@@ -122,17 +135,9 @@ function EditUnitDialog:sendCallback(unit)
 end
 
 function EditUnitDialog:onClickSave()
-  local unit = {
-    id = self.id,
-    name = self.textUnitName.text,
-    unitShort = self.textUnitShortName.text,
-    precision = self.precisionMapping[self.optionUnitPrecision.state],
-    factor = tonumber(self.textUnitFactor.text),
-    isVolume = self.checkedUnitVolume.state == 2 and true or false,
-    isDefault = self.isDefault and true or nil
-  }
+  self.unit.id = self.unit.id or self.additionalUnits:getUnitLastId() + 1
 
-  self:sendCallback(unit)
+  self:sendCallback(self.unit)
 end
 
 function EditUnitDialog:onClickBack()
@@ -143,12 +148,5 @@ function EditUnitDialog:onClose()
   EditUnitDialog:superClass().onClose(self)
 
   self.precisionMapping = {}
+  self.unit = EditUnitDialog.UNIT_TEMPLATE
 end
-
-EditUnitDialog.NEW_UNIT_TEMPLATE = {
-  name = "",
-  unitShort = "",
-  precision = 1,
-  factor = 1,
-  isVolume = true
-}
