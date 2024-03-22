@@ -17,3 +17,4 @@ Fix:
 
 - fixed water bar showing even when not needed in the Animals tab
 - fixed lua error 'attempt to call local 'superFunc'(a table value)'
+- fixed change button showing incorrect dialog
