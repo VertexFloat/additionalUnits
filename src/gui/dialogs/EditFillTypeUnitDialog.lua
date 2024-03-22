@@ -41,11 +41,7 @@ function EditFillTypeUnitDialog:setData(data)
   self.optionFillTypeUnit:setTexts(unitsTable)
   self.optionFillTypeUnit:setState(self.additionalUnits:getUnitIndexById(data.unitId), true)
 
-  self.fillTypeUnit = {
-    name = data.fillType.name or "",
-    unitId = data.unitId,
-    massFactor = data.massFactor
-  }
+  self.fillTypeName = data.fillType.name
 
   self:udpateButtons(true)
 end
@@ -74,28 +70,29 @@ function EditFillTypeUnitDialog:onClickUnit()
   self:udpateButtons(false)
 end
 
-function EditFillTypeUnitDialog:sendCallback(fillTypeUnit)
+function EditFillTypeUnitDialog:sendCallback(fillTypeName, fillTypeUnit)
   self:onClickBack()
 
   if self.callbackFunc ~= nil then
     if self.target ~= nil then
-      self.callbackFunc(self.target, fillTypeUnit)
+      self.callbackFunc(self.target, fillTypeName, fillTypeUnit)
     else
-      self.callbackFunc(fillTypeUnit)
+      self.callbackFunc(fillTypeName, fillTypeUnit)
     end
   end
 end
 
 function EditFillTypeUnitDialog:onClickSave()
+  local fillTypeUnit = {}
   local massFactor = tonumber(self.fillTypeMassFactor.text)
 
   if massFactor ~= nil then
-    self.fillTypeUnit.massFactor = massFactor / 1000
+    fillTypeUnit.massFactor = massFactor / 1000
   end
 
-  self.fillTypeUnit.unitId = self.additionalUnits:getUnitIdByIndex(self.optionFillTypeUnit.state)
+  fillTypeUnit.unitId = self.additionalUnits:getUnitIdByIndex(self.optionFillTypeUnit.state)
 
-  self:sendCallback(self.fillTypeUnit)
+  self:sendCallback(self.fillTypeName, fillTypeUnit)
 end
 
 function EditFillTypeUnitDialog:onClickBack()

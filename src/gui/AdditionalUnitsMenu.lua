@@ -139,10 +139,9 @@ function AdditionalUnitsMenu:onDoubleClickFillTypesListItem(list, section, index
   })
 end
 
-function AdditionalUnitsMenu:onEditFillTypeUnit(fillTypeUnit)
-  if fillTypeUnit ~= nil and fillTypeUnit.name ~= "" then
-    self.additionalUnits.fillTypesUnits[fillTypeUnit.name].unitId = fillTypeUnit.unitId
-    self.additionalUnits.fillTypesUnits[fillTypeUnit.name].massFactor = fillTypeUnit.massFactor
+function AdditionalUnitsMenu:onEditFillTypeUnit(fillTypeName, fillTypeUnit)
+  if fillTypeName ~= "" and fillTypeUnit ~= nil then
+    self.additionalUnits.fillTypesUnits[fillTypeName] = fillTypeUnit
     self.additionalUnits:saveFillTypesUnitsToXMLFile()
 
     self:rebuildTables()
