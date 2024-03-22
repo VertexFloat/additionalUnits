@@ -6,11 +6,11 @@ AdditionalUnitsGui = {
   MOD_DIRECTORY = g_currentModDirectory
 }
 
-source(AdditionalUnitsGui.MOD_DIRECTORY .. "src/gui/InGameMenuGeneralSettingsFrameUnitExtension.lua")
-source(AdditionalUnitsGui.MOD_DIRECTORY .. "src/gui/elements/ExpandSmoothListElement.lua")
 source(AdditionalUnitsGui.MOD_DIRECTORY .. "src/gui/AdditionalUnitsMenu.lua")
 source(AdditionalUnitsGui.MOD_DIRECTORY .. "src/gui/dialogs/EditUnitDialog.lua")
 source(AdditionalUnitsGui.MOD_DIRECTORY .. "src/gui/dialogs/EditFillTypeUnitDialog.lua")
+source(AdditionalUnitsGui.MOD_DIRECTORY .. "src/gui/elements/ExpandSmoothListElement.lua")
+source(AdditionalUnitsGui.MOD_DIRECTORY .. "src/gui/InGameMenuGeneralSettingsFrameUnitExtension.lua")
 
 local AdditionalUnitsGui_mt = Class(AdditionalUnitsGui)
 
@@ -18,9 +18,10 @@ function AdditionalUnitsGui.new(customMt, additionalUnits, gui, l10n, fillTypeMa
   local self = setmetatable({}, customMt or AdditionalUnitsGui_mt)
 
   self.gui = gui
-  self.additionalUnitsMenu = AdditionalUnitsMenu.new(nil, customMt, additionalUnits, gui, l10n, fillTypeManager)
+
   self.editUnitDialog = EditUnitDialog.new(nil, customMt, additionalUnits, l10n)
   self.editFillTypeUnitDialog = EditFillTypeUnitDialog.new(nil, customMt, additionalUnits, l10n)
+  self.additionalUnitsMenu = AdditionalUnitsMenu.new(nil, customMt, additionalUnits, gui, l10n, fillTypeManager)
   self.inGameMenuGeneralSettingsFrameUnitExtension = InGameMenuGeneralSettingsFrameUnitExtension.new(_, additionalUnits, gui, l10n)
 
   return self
@@ -30,7 +31,6 @@ function AdditionalUnitsGui:initialize(modDirectory)
   self.gui:loadProfiles(modDirectory .. "data/gui/guiProfiles.xml")
 
   local mapping = Gui.CONFIGURATION_CLASS_MAPPING
-
   mapping.expandSmoothList = ExpandSmoothListElement
 
   self.inGameMenuGeneralSettingsFrameUnitExtension:initialize()
@@ -55,7 +55,7 @@ function AdditionalUnitsGui:showEditFillTypeUnitDialog(args)
   local dialog = self.gui:showDialog("EditFillTypeUnitDialog")
 
   if dialog ~= nil and args ~= nil then
-    dialog.target:setData(args.fillType, args.unitId, args.massFactor)
+    dialog.target:setData(args.data)
     dialog.target:setCallback(args.callback, args.target, args.args)
   end
 end
