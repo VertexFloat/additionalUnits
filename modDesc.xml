@@ -20,11 +20,6 @@ Changelog (1.0.0.1):
 - added support for "Info Display Extension" mod
 - added support for "Target Fill Level" mod
 - added support for "Def Pack" mod
-- updated descVersion
-- updated game screenshots
-- cleaned modDesc
-- cleaned translations
-- cleaned code
 
 For more information, full changelog, help or to report a bug, please visit <a href="https://github.com/VertexFloat/additionalUnits">GitHub</a>.]]></en>
     <de><![CDATA[Dank dieser Modifikation können Sie die Masse-/Volumeneinheit einstellen. Sie können auch je nach Bedarf eine neue Einheit hinzufügen.
@@ -38,11 +33,6 @@ Standardmäßig sind die hinzugefügten Einheiten: Kubikmeter, Gallone, Pfund, K
 - Unterstützung für den Mod "Info Display Erweiterung" hinzugefügt
 - Unterstützung für den Mod "Füllstand Des Zielobjekts" hinzugefügt
 - Unterstützung für den Mod "Def Pack" hinzugefügt
-- descVersion aktualisiert
-- Aktualisierte Spiel-Screenshots
-- modDesc bereinigt
-- Bereinigte Übersetzungen
-- Bereinigter Code
 
 Weitere Informationen, ein vollständiges Änderungsprotokoll, Hilfe oder die Möglichkeit, einen Fehler zu melden, finden Sie unter <a href="https://github.com/VertexFloat/additionalUnits">GitHub</a>.]]></de>
     <fr><![CDATA[Grâce à cette modification, vous pouvez définir l'unité de masse/volume. Vous pouvez également ajouter une nouvelle unité selon vos besoins.
@@ -56,11 +46,6 @@ Journal des modifications (1.0.0.1):
 - ajout de la prise en charge du mod "Info Display Extension"
 - ajout de la prise en charge du mod "Target Fill Level"
 - ajout de la prise en charge du mod "Def Pack"
-- version de description mise à jour
-- captures d'écran du jeu mises à jour
-- modDesc nettoyé
-- traductions nettoyées
-- code nettoyé
 
 Pour plus d'informations, le journal des modifications complet, de l'aide ou pour signaler un bug, veuillez visiter <a href="https://github.com/VertexFloat/additionalUnits">GitHub</a>.]]></fr>
     <pl><![CDATA[Dzięki tej modyfikacji możesz ustawić jednostkę masy/objętości. Możesz również dodać nową jednostkę według własnych potrzeb.
@@ -74,11 +59,6 @@ Dziennik zmian (1.0.0.1):
 - dodano obsługę modyfikacji "Info Display Extension"
 - dodano obsługę modyfikacji "Target Fill Level"
 - dodano obsługę modyfikacji "Def Pack"
-- zaktualizowano descVersion
-- zaktualizowano zrzuty ekranu z gry
-- oczyszczono modDesc
-- oczyszczono tłumaczenia
-- oczyszczono kod
 
 Po więcej informacji, pełny dziennik zmian, pomoc lub zgłoszenie błędu, odwiedź stronę <a href="https://github.com/VertexFloat/additionalUnits">GitHub</a>.]]></pl>
   </description>
