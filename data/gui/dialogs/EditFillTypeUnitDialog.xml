@@ -18,7 +18,7 @@
         <GuiElement type="textInput" profile="additionalUnitsDialogTextInput" id="fillTypeMassFactor" onTextChanged="onTextChangedMassFactor" maxCharacters="5"/>
         <GuiElement type="boxLayout" profile="additionalUnitsDialogSettingTextBox">
           <GuiElement type="text" profile="additionalUnitsDialogSettingTitle" text="$l10n_ui_additionalUnits_mass"/>
-          <GuiElement type="text" profile="additionalUnitsDialogSettingTooltip" text="$l10n_toolTip_additionalUnits_mass"/>
+          <GuiElement type="text" profile="additionalUnitsDialogSettingTooltip" text="$l10n_ui_additionalUnits_mass_toolTip"/>
         </GuiElement>
       </GuiElement>
 
@@ -29,7 +29,7 @@
         <GuiElement type="bitmap" profile="additionalUnitsDialogMultiTextOptionSettingsBg"/>
         <GuiElement type="boxLayout" profile="additionalUnitsDialogSettingTextBox">
           <GuiElement type="text" profile="additionalUnitsDialogSettingTitle" text="$l10n_ui_additionalUnits_unit"/>
-          <GuiElement type="text" profile="additionalUnitsDialogSettingTooltip" text="$l10n_toolTip_additionalUnits_unit"/>
+          <GuiElement type="text" profile="additionalUnitsDialogSettingTooltip" text="$l10n_ui_additionalUnits_unit_toolTip"/>
         </GuiElement>
       </GuiElement>
     </GuiElement>

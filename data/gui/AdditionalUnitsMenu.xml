@@ -48,7 +48,7 @@
           </GuiElement>
 
           <GuiElement type="flowLayout" profile="additionalUnitsMenuButtonsBox">
-            <GuiElement type="button" profile="additionalUnitsMenuAddButton" text="$l10n_ui_additionalUnits_editUnit_add" onClick="onClickNew"/>
+            <GuiElement type="button" profile="additionalUnitsMenuAddButton" text="$l10n_ui_additionalUnits_button_add" onClick="onClickNew"/>
             <GuiElement type="button" profile="additionalUnitsMenuDeleteButton" margin="5px 0 0 0" text="$l10n_button_delete" onClick="onClickDelete" id="deleteButton"/>
           </GuiElement>
         </GuiElement>
@@ -58,10 +58,10 @@
         </GuiElement>
 
         <GuiElement type="flowLayout" profile="additionalUnitsMenuUsageBox">
-          <GuiElement type="text" profile="helpLineListItemText" text="$l10n_info_additionalUnits_usage" size="660px 36px" textVerticalAlignment="top" textOffset="0"/>
-          <GuiElement type="text" profile="additionalUnitsMenuUsageText" size="660px 70px" text="$l10n_info_additionalUnits_precision"/>
-          <GuiElement type="text" profile="additionalUnitsMenuUsageText" text="$l10n_info_additionalUnits_factor"/>
-          <GuiElement type="text" profile="additionalUnitsMenuUsageText" text="$l10n_info_additionalUnits_massFactor"/>
+          <GuiElement type="text" profile="helpLineListItemText" text="$l10n_ui_additionalUnits_usage" size="660px 36px" textVerticalAlignment="top" textOffset="0"/>
+          <GuiElement type="text" profile="additionalUnitsMenuUsageText" size="660px 70px" text="$l10n_ui_additionalUnits_usage_precision"/>
+          <GuiElement type="text" profile="additionalUnitsMenuUsageText" text="$l10n_ui_additionalUnits_usage_factor"/>
+          <GuiElement type="text" profile="additionalUnitsMenuUsageText" text="$l10n_ui_additionalUnits_usage_massFactor"/>
         </GuiElement>
       </GuiElement>
     </GuiElement>

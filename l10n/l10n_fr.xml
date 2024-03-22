@@ -10,7 +10,7 @@
     <e k="ui_additionalUnits_editFillTypeUnit_title" v="Modifier le type de remplissage : %s" tag="format"/>
     <e k="ui_additionalUnits_editUnit_title" v="Modifier l'unité : %s" tag="format"/>
     <e k="ui_additionalUnits_editUnit_title_new" v="Nouvelle unité"/>
-    <e k="ui_additionalUnits_editUnit_add" v="Ajouter"/>
+    <e k="ui_additionalUnits_button_add" v="Ajouter"/>
     <e k="ui_additionalUnits_name" v="Nom"/>
     <e k="ui_additionalUnits_shortName" v="Nom court"/>
     <e k="ui_additionalUnits_volumeUnit" v="Unité volumétrique"/>
@@ -22,17 +22,17 @@
     <e k="ui_additionalUnits_youWantToDeleteUnit" v="Voulez-vous vraiment supprimer l'unité (%s) ?" tag="format"/>
     <e k="ui_additionalUnits_deletedUnit" v="L'unité a été supprimée avec succès !"/>
     <e k="ui_additionalUnits_createdNewUnit" v="(%s) l'unité a été créée avec succès !" tag="format"/>
-    <e k="toolTip_additionalUnits_name" v="Entrez le nom long de l'unité."/>
-    <e k="toolTip_additionalUnits_shortName" v="Saisissez le nom abrégé de l'unité."/>
-    <e k="toolTip_additionalUnits_precision" v="Sélectionnez la précision de l'unité."/>
-    <e k="toolTip_additionalUnits_unit" v="Sélectionnez l'unité de type de remplissage."/>
-    <e k="toolTip_additionalUnits_factor" v="Entrez le facteur d'unité."/>
-    <e k="toolTip_additionalUnits_mass" v="Entrez le facteur de masse du type de remplissage (kg/m³)."/>
-    <e k="toolTip_additionalUnits_volumeUnit" v="S'il s'agit ou non d'une unité de volume."/>
-    <e k="toolTip_additionalUnits_menu" v="Ouvrir le menu des unités supplémentaires."/>
-    <e k="info_additionalUnits_usage" v="Usage:"/>
-    <e k="info_additionalUnits_precision" v="Précision - indique à combien de décimales la valeur dans une unité donnée est arrondie."/>
-    <e k="info_additionalUnits_factor" v="Facteur - indique la valeur d'un litre/kilogramme (selon que l'unité donnée est une unité de volume ou non) dans une unité donnée, par ex. (1.000l * 0.001 = 1m³)."/>
-    <e k="info_additionalUnits_massFactor" v="Facteur de masse - est un indicateur de kilogrammes par m3 d'un type de remplissage donné, toutes les unités non volumiques sont converties en kilogrammes, puis seulement dans l'unité indiquée, par ex. (1.000l = 1m³, donc 1.000l de blé = 775 kg), puis (775kg * 2.205 ~= 1.708 lb)."/>
+    <e k="ui_additionalUnits_name_toolTip" v="Entrez le nom long de l'unité."/>
+    <e k="ui_additionalUnits_shortName_toolTip" v="Saisissez le nom abrégé de l'unité."/>
+    <e k="ui_additionalUnits_precision_toolTip" v="Sélectionnez la précision de l'unité."/>
+    <e k="ui_additionalUnits_unit_toolTip" v="Sélectionnez l'unité de type de remplissage."/>
+    <e k="ui_additionalUnits_factor_toolTip" v="Entrez le facteur d'unité."/>
+    <e k="ui_additionalUnits_mass_toolTip" v="Entrez le facteur de masse du type de remplissage (kg/m³)."/>
+    <e k="ui_additionalUnits_volumeUnit_toolTip" v="S'il s'agit ou non d'une unité de volume."/>
+    <e k="ui_additionalUnits_toolTip" v="Ouvrir le menu des unités supplémentaires."/>
+    <e k="ui_additionalUnits_usage" v="Usage:"/>
+    <e k="ui_additionalUnits_usage_precision" v="Précision - indique à combien de décimales la valeur dans une unité donnée est arrondie."/>
+    <e k="ui_additionalUnits_usage_factor" v="Facteur - indique la valeur d'un litre/kilogramme (selon que l'unité donnée est une unité de volume ou non) dans une unité donnée, par ex. (1.000l * 0.001 = 1m³)."/>
+    <e k="ui_additionalUnits_usage_massFactor" v="Facteur de masse - est un indicateur de kilogrammes par m3 d'un type de remplissage donné, toutes les unités non volumiques sont converties en kilogrammes, puis seulement dans l'unité indiquée, par ex. (1.000l = 1m³, donc 1.000l de blé = 775 kg), puis (775kg * 2.205 ~= 1.708 lb)."/>
   </elements>
 </l10n>

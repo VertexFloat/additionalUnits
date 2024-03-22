@@ -15,15 +15,15 @@
         <GuiElement type="textInput" profile="additionalUnitsDialogTextInput" id="textUnitName" onTextChanged="onTextChangedName" maxCharacters="18"/>
         <GuiElement type="boxLayout" profile="additionalUnitsDialogSettingTextBox">
           <GuiElement type="text" profile="additionalUnitsDialogSettingTitle" text="$l10n_ui_additionalUnits_name"/>
-          <GuiElement type="text" profile="additionalUnitsDialogSettingTooltip" text="$l10n_toolTip_additionalUnits_name"/>
+          <GuiElement type="text" profile="additionalUnitsDialogSettingTooltip" text="$l10n_ui_additionalUnits_name_toolTip"/>
         </GuiElement>
       </GuiElement>
 
       <GuiElement type="empty" profile="additionalUnitsDialogTextInputWrapper">
-        <GuiElement type="textInput" profile="additionalUnitsDialogTextInput" id="textUnitShortName" onTextChanged="onTextChangedShortName" maxCharacters="4"/>
+        <GuiElement type="textInput" profile="additionalUnitsDialogTextInput" id="textUnitShortName" onTextChanged="onTextChangedShortName" maxCharacters="6"/>
         <GuiElement type="boxLayout" profile="additionalUnitsDialogSettingTextBox">
           <GuiElement type="text" profile="additionalUnitsDialogSettingTitle" text="$l10n_ui_additionalUnits_shortName"/>
-          <GuiElement type="text" profile="additionalUnitsDialogSettingTooltip" text="$l10n_toolTip_additionalUnits_shortName"/>
+          <GuiElement type="text" profile="additionalUnitsDialogSettingTooltip" text="$l10n_ui_additionalUnits_shortName_toolTip"/>
         </GuiElement>
       </GuiElement>
 
@@ -34,7 +34,7 @@
         <GuiElement type="bitmap" profile="additionalUnitsDialogMultiTextOptionSettingsBg"/>
         <GuiElement type="boxLayout" profile="additionalUnitsDialogSettingTextBox">
           <GuiElement type="text" profile="additionalUnitsDialogSettingTitle" text="$l10n_ui_additionalUnits_volumeUnit"/>
-          <GuiElement type="text" profile="additionalUnitsDialogSettingTooltip" text="$l10n_toolTip_additionalUnits_volumeUnit"/>
+          <GuiElement type="text" profile="additionalUnitsDialogSettingTooltip" text="$l10n_ui_additionalUnits_volumeUnit_toolTip"/>
         </GuiElement>
       </GuiElement>
 
@@ -45,7 +45,7 @@
         <GuiElement type="bitmap" profile="additionalUnitsDialogMultiTextOptionSettingsBg"/>
         <GuiElement type="boxLayout" profile="additionalUnitsDialogSettingTextBox">
           <GuiElement type="text" profile="additionalUnitsDialogSettingTitle" text="$l10n_ui_additionalUnits_precision"/>
-          <GuiElement type="text" profile="additionalUnitsDialogSettingTooltip" text="$l10n_toolTip_additionalUnits_precision"/>
+          <GuiElement type="text" profile="additionalUnitsDialogSettingTooltip" text="$l10n_ui_additionalUnits_precision_toolTip"/>
         </GuiElement>
       </GuiElement>
 
@@ -53,7 +53,7 @@
         <GuiElement type="textInput" profile="additionalUnitsDialogTextInput" id="textUnitFactor" onTextChanged="onTextChangedFactor" maxCharacters="7"/>
         <GuiElement type="boxLayout" profile="additionalUnitsDialogSettingTextBox">
           <GuiElement type="text" profile="additionalUnitsDialogSettingTitle" text="$l10n_ui_additionalUnits_factor"/>
-          <GuiElement type="text" profile="additionalUnitsDialogSettingTooltip" text="$l10n_toolTip_additionalUnits_factor"/>
+          <GuiElement type="text" profile="additionalUnitsDialogSettingTooltip" text="$l10n_ui_additionalUnits_factor_toolTip"/>
         </GuiElement>
       </GuiElement>
     </GuiElement>
