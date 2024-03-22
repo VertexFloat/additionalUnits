@@ -7,8 +7,8 @@ AdditionalUnitsMenu = {}
 local AdditionalUnitsMenu_mt = Class(AdditionalUnitsMenu, ScreenElement)
 
 AdditionalUnitsMenu.CONTROLS = {
-  "fillTypesList",
   "unitsList",
+  "fillTypesList",
   "smoothListLayout",
   "deleteButton"
 }
@@ -16,11 +16,13 @@ AdditionalUnitsMenu.CONTROLS = {
 function AdditionalUnitsMenu.new(target, customMt, additionalUnits, gui, l10n, fillTypeManager)
   local self = AdditionalUnitsMenu:superClass().new(target, customMt or AdditionalUnitsMenu_mt)
 
-  self.additionalUnits = additionalUnits
   self.gui = gui
   self.l10n = l10n
+  self.additionalUnits = additionalUnits
   self.fillTypeManager = fillTypeManager
+
   self.fillTypes = {}
+  self.lastSelectedList = nil
 
   self:registerControls(AdditionalUnitsMenu.CONTROLS)
 
@@ -41,17 +43,17 @@ end
 function AdditionalUnitsMenu:copyAttributes(src)
   AdditionalUnitsMenu:superClass().copyAttributes(self, src)
 
-  self.additionalUnits = src.additionalUnits
   self.gui = src.gui
   self.l10n = src.l10n
+  self.additionalUnits = src.additionalUnits
   self.fillTypeManager = src.fillTypeManager
 end
 
 function AdditionalUnitsMenu:onGuiSetupFinished()
   AdditionalUnitsMenu:superClass().onGuiSetupFinished(self)
 
-  self.fillTypesList:setDataSource(self)
   self.unitsList:setDataSource(self)
+  self.fillTypesList:setDataSource(self)
 end
 
 function AdditionalUnitsMenu:onOpen()
@@ -63,12 +65,10 @@ function AdditionalUnitsMenu:onOpen()
 end
 
 function AdditionalUnitsMenu:updateMenuButtons()
-  local disabled = false
+  local disabled = true
 
-  if FocusManager:getFocusedElement() == self.fillTypesList then
-    disabled = true
-  elseif FocusManager:getFocusedElement() == self.unitsList and self.additionalUnits:getUnitByIndex(self.unitsList.selectedIndex).isDefault == true then
-    disabled = true
+  if FocusManager:getFocusedElement() == self.unitsList and self.additionalUnits:getUnitByIndex(self.unitsList.selectedIndex).isDefault == nil then
+    disabled = false
   end
 
   self.deleteButton:setDisabled(disabled)
@@ -78,13 +78,13 @@ function AdditionalUnitsMenu:rebuildTables()
   self.fillTypes = {}
 
   for _, fillTypesDesc in pairs(self.fillTypeManager:getFillTypes()) do
-    if fillTypesDesc.showOnPriceTable or MISSING_FILLTYPE[fillTypesDesc.name] == true then
+    if fillTypesDesc.showOnPriceTable or MISSING_FILLTYPES[fillTypesDesc.name] == true then
       table.insert(self.fillTypes, fillTypesDesc)
     end
   end
 
-  self.fillTypesList:reloadData()
   self.unitsList:reloadData()
+  self.fillTypesList:reloadData()
 end
 
 function AdditionalUnitsMenu:getNumberOfItemsInSection(list, section)
@@ -98,56 +98,63 @@ end
 function AdditionalUnitsMenu:populateCellForItemInSection(list, section, index, cell)
   if list == self.fillTypesList then
     local fillTypeDesc = self.fillTypes[index]
-    local fillTypeUnit = self.additionalUnits:getUnitById(self.additionalUnits:getFillTypeUnitByFillTypeName(fillTypeDesc.name))
-    local massFactor = self.additionalUnits:getMassFactorByFillTypeName(fillTypeDesc.name)
+    local fillTypeUnit = self.additionalUnits:getFillTypeUnitByFillTypeName(fillTypeDesc.name)
+
+    if fillTypeUnit == nil then
+      return
+    end
+
+    local unit = self.additionalUnits:getUnitById(fillTypeUnit.unitId)
+    local massFactor = fillTypeUnit.massFactor and string.format(self.l10n:getText("ui_additionalUnits_massFactor"), math.ceil(fillTypeUnit.massFactor * 1000)) or "-"
 
     cell:getAttribute("icon"):setImageFilename(fillTypeDesc.hudOverlayFilename)
     cell:getAttribute("title"):setText(fillTypeDesc.title)
-    cell:getAttribute("unit"):setText(fillTypeUnit.unitShort)
-    cell:getAttribute("mass"):setText(massFactor and string.format(self.l10n:getText("ui_additionalUnits_massFactor"), math.ceil(massFactor * 1000)) or "-")
+    cell:getAttribute("unit"):setText(unit.shortName)
+    cell:getAttribute("mass"):setText(massFactor)
   else
     local unit = self.additionalUnits:getUnitByIndex(index)
 
-    cell:getAttribute("name"):setText(unit.name .. " - " .. unit.unitShort)
+    cell:getAttribute("name"):setText(unit.name .. " - " .. unit.shortName)
     cell:getAttribute("precision"):setText(unit.precision)
-    cell:getAttribute("factor"):setText(MathUtil.round(unit.factor, 3))
+    cell:getAttribute("factor"):setText(MathUtil.round(unit.factor, 7))
   end
 end
 
 function AdditionalUnitsMenu:onListSelectionChanged(list, section, index)
+  self.lastSelectedList = list
+
   self:updateMenuButtons()
 end
 
-function AdditionalUnitsMenu:onClickEdit(list, section, index, element)
-  if list == self.fillTypesList then
-    local selectedIndex = self.fillTypesList.selectedIndex
+function AdditionalUnitsMenu:onDoubleClickFillTypesListItem(list, section, index, element)
+  local selectedFillType = self.fillTypes[index]
+  local fillTypeUnit = self.additionalUnits:getFillTypeUnitByFillTypeName(selectedFillType.name)
 
-    self.additionalUnits.gui:showEditFillTypeUnitDialog({
-      fillType = self.fillTypes[selectedIndex],
-      unitId = self.additionalUnits:getFillTypeUnitByFillTypeName(self.fillTypes[selectedIndex].name) or self.additionalUnits:getDefaultUnitId(),
-      massFactor = self.additionalUnits:getMassFactorByFillTypeName(self.fillTypes[selectedIndex].name),
-      callback = self.onEditFillTypeUnit,
-      target = self
-    })
-  else
-    self.additionalUnits.gui:showEditUnitDialog({
-      data = self.additionalUnits:getUnitByIndex(self.unitsList.selectedIndex),
-      callback = self.onEditUnit,
-      target = self
-    })
+  fillTypeUnit.fillType = selectedFillType
+
+  self.additionalUnits.gui:showEditFillTypeUnitDialog({
+    data = fillTypeUnit,
+    callback = self.onEditFillTypeUnit,
+    target = self
+  })
+end
+
+function AdditionalUnitsMenu:onEditFillTypeUnit(fillTypeUnit)
+  if fillTypeUnit ~= nil and fillTypeUnit.name ~= "" then
+    self.additionalUnits.fillTypesUnits[fillTypeUnit.name].unitId = fillTypeUnit.unitId
+    self.additionalUnits.fillTypesUnits[fillTypeUnit.name].massFactor = fillTypeUnit.massFactor
+    self.additionalUnits:saveFillTypesUnitsToXMLFile()
+
+    self:rebuildTables()
   end
 end
 
-function AdditionalUnitsMenu:onEditFillTypeUnit(fillType, unit, massFactor)
-  if fillType ~= nil then
-    self.additionalUnits.fillTypesUnits[fillType] = unit
-    self.additionalUnits.massFactors[fillType] = massFactor
-  end
-
-  self.fillTypesList:reloadData()
-
-  self.additionalUnits:saveMassFactorsToXMLFile()
-  self.additionalUnits:saveFillTypesUnitsToXMLFile()
+function AdditionalUnitsMenu:onDoubleClickUnitsListItem(list, section, index, element)
+  self.additionalUnits.gui:showEditUnitDialog({
+    data = self.additionalUnits:getUnitByIndex(index),
+    callback = self.onEditUnit,
+    target = self
+  })
 end
 
 function AdditionalUnitsMenu:onEditUnit(unit)
@@ -155,11 +162,10 @@ function AdditionalUnitsMenu:onEditUnit(unit)
 
   if unitIndex ~= nil then
     self.additionalUnits.units[unitIndex] = unit
-
     self.additionalUnits:saveUnitsToXMLFile()
-  end
 
-  self:rebuildTables()
+    self:rebuildTables()
+  end
 end
 
 function AdditionalUnitsMenu:onClickNew()
@@ -178,7 +184,6 @@ function AdditionalUnitsMenu:onNewUnit(unit)
   })
 
   self.unitsList:reloadData()
-
   self.additionalUnits:saveUnitsToXMLFile()
 end
 
@@ -190,29 +195,42 @@ function AdditionalUnitsMenu:onClickDelete()
     title = self.l10n:getText("button_delete"),
     dialogType = DialogElement.TYPE_QUESTION,
     callback = self.onYesNoDeleteUnit,
+    args = unit,
     target = self
   })
 end
 
-function AdditionalUnitsMenu:onYesNoDeleteUnit(yes)
-  if yes then
-    for name, value in pairs(self.additionalUnits.fillTypesUnits) do
-      if value == self.additionalUnits:getUnitByIndex(self.unitsList.selectedIndex).id then
-        self.additionalUnits.fillTypesUnits[name] = self.additionalUnits:getDefaultUnitId()
-      end
+function AdditionalUnitsMenu:onYesNoDeleteUnit(yes, unit)
+  if not yes then
+    return
+  end
+
+  for name, fillTypeUnit in pairs(self.additionalUnits.fillTypesUnits) do
+    if fillTypeUnit.unitId == unit.id then
+      self.additionalUnits.fillTypesUnits[name].unitId = self.additionalUnits:getDefaultUnitId()
     end
+  end
 
-    table.remove(self.additionalUnits.units, self.unitsList.selectedIndex)
+  table.remove(self.additionalUnits.units, self.unitsList.selectedIndex)
 
-    self.gui:showInfoDialog({
-      dialogType = DialogElement.TYPE_INFO,
-      text = self.l10n:getText("ui_additionalUnits_deletedUnit")
-    })
+  self.gui:showInfoDialog({
+    dialogType = DialogElement.TYPE_INFO,
+    text = self.l10n:getText("ui_additionalUnits_deletedUnit")
+  })
 
-    self.additionalUnits:saveUnitsToXMLFile()
-    self.additionalUnits:saveFillTypesUnitsToXMLFile()
+  self.additionalUnits:saveUnitsToXMLFile()
+  self.additionalUnits:saveFillTypesUnitsToXMLFile()
 
-    self:rebuildTables()
+  self:rebuildTables()
+end
+
+function AdditionalUnitsMenu:onClickChange()
+  if self.lastSelectedList ~= nil then
+    if self.lastSelectedList == self.fillTypesList then
+      self:onDoubleClickFillTypesListItem(self.lastSelectedList, nil, self.lastSelectedList.selectedIndex, nil)
+    else
+      self:onDoubleClickUnitsListItem(self.lastSelectedList, nil, self.lastSelectedList.selectedIndex, nil)
+    end
   end
 end
 
@@ -227,16 +245,18 @@ function AdditionalUnitsMenu:onClickReset()
 end
 
 function AdditionalUnitsMenu:onYesNoResetSettings(yes)
-  if yes then
-    self.additionalUnits:reset()
-
-    self.gui:showInfoDialog({
-      dialogType = DialogElement.TYPE_INFO,
-      text = self.l10n:getText("ui_loadedDefaultSettings")
-    })
-
-    self:rebuildTables()
+  if not yes then
+    return
   end
+
+  self.additionalUnits:reset()
+
+  self.gui:showInfoDialog({
+    dialogType = DialogElement.TYPE_INFO,
+    text = self.l10n:getText("ui_loadedDefaultSettings")
+  })
+
+  self:rebuildTables()
 end
 
 function AdditionalUnitsMenu:onClickBack()
