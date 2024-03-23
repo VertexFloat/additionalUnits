@@ -144,7 +144,7 @@ function AdditionalUnitsMenu:onEditFillTypeUnit(fillTypeName, fillTypeUnit)
     self.additionalUnits.fillTypesUnits[fillTypeName] = fillTypeUnit
     self.additionalUnits:saveFillTypesUnitsToXMLFile()
 
-    self:rebuildTables()
+    self.fillTypesList:reloadData()
   end
 end
 
@@ -163,7 +163,7 @@ function AdditionalUnitsMenu:onEditUnit(unit)
     self.additionalUnits.units[unitIndex] = unit
     self.additionalUnits:saveUnitsToXMLFile()
 
-    self:rebuildTables()
+    self.unitsList:reloadData()
   end
 end
 
