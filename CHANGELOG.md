@@ -6,6 +6,7 @@ Features:
 
 - added support for Info Display Extension mod
 - added support for Target Fill Level mod
+- added support for Straw Harvest Pack mod
 - added support for Def Pack mod
 - updated descVersion
 - updated game screenshots

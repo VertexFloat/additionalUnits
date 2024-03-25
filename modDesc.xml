@@ -19,6 +19,7 @@ Changelog (1.0.0.1):
 - fixed lua error 'attempt to call local 'superFunc'(a table value)'
 - added support for "Info Display Extension" mod
 - added support for "Target Fill Level" mod
+- added support for "Straw Harvest Pack" mod
 - added support for "Def Pack" mod
 
 For more information, full changelog, help or to report a bug, please visit <a href="https://github.com/VertexFloat/additionalUnits">GitHub</a>.]]></en>
@@ -32,6 +33,7 @@ Standardmäßig sind die hinzugefügten Einheiten: Kubikmeter, Gallone, Pfund, K
 - Lua-Fehler 'attempt to call local 'superFunc'(a table value)' behoben
 - Unterstützung für den Mod "Info Display Erweiterung" hinzugefügt
 - Unterstützung für den Mod "Füllstand Des Zielobjekts" hinzugefügt
+- Unterstützung für den Mod "Straw Harvest Pack" hinzugefügt
 - Unterstützung für den Mod "Def Pack" hinzugefügt
 
 Weitere Informationen, ein vollständiges Änderungsprotokoll, Hilfe oder die Möglichkeit, einen Fehler zu melden, finden Sie unter <a href="https://github.com/VertexFloat/additionalUnits">GitHub</a>.]]></de>
@@ -45,6 +47,7 @@ Journal des modifications (1.0.0.1):
 - Correction de l'erreur Lua 'attempt to call local 'superFunc'(a table value)'
 - ajout de la prise en charge du mod "Info Display Extension"
 - ajout de la prise en charge du mod "Target Fill Level"
+- ajout de la prise en charge du mod "Straw Harvest Pack"
 - ajout de la prise en charge du mod "Def Pack"
 
 Pour plus d'informations, le journal des modifications complet, de l'aide ou pour signaler un bug, veuillez visiter <a href="https://github.com/VertexFloat/additionalUnits">GitHub</a>.]]></fr>
@@ -58,6 +61,7 @@ Dziennik zmian (1.0.0.1):
 - naprawiono błąd Lua 'attempt to call local 'superFunc'(a table value)'
 - dodano obsługę modyfikacji "Info Display Extension"
 - dodano obsługę modyfikacji "Target Fill Level"
+- dodano obsługę modyfikacji "Straw Harvest Pack"
 - dodano obsługę modyfikacji "Def Pack"
 
 Po więcej informacji, pełny dziennik zmian, pomoc lub zgłoszenie błędu, odwiedź stronę <a href="https://github.com/VertexFloat/additionalUnits">GitHub</a>.]]></pl>
