@@ -17,7 +17,6 @@ By default, the added units are: cubic meter, gallon, pound, kilogram
 Changelog (1.0.0.1):
 - fixed water bar showing even when not needed in the Animals tab
 - fixed lua error 'attempt to call local 'superFunc'(a table value)'
-- added support for "Info Display Extension" mod
 - added support for "Target Fill Level" mod
 - added support for "Straw Harvest Pack" mod
 - added support for "Def Pack" mod
@@ -31,7 +30,6 @@ Standardmäßig sind die hinzugefügten Einheiten: Kubikmeter, Gallone, Pfund, K
 Änderungsprotokoll (1.0.0.1):
 - Problem behoben, bei dem die Wasserleiste auf der Registerkarte „Tiere“ angezeigt wird, auch wenn sie nicht benötigt wird
 - Lua-Fehler 'attempt to call local 'superFunc'(a table value)' behoben
-- Unterstützung für den Mod "Info Display Erweiterung" hinzugefügt
 - Unterstützung für den Mod "Füllstand Des Zielobjekts" hinzugefügt
 - Unterstützung für den Mod "Straw Harvest Pack" hinzugefügt
 - Unterstützung für den Mod "Def Pack" hinzugefügt
@@ -45,7 +43,6 @@ Par défaut, les unités ajoutées sont : mètre cube, gallon, livre, kilogramme
 Journal des modifications (1.0.0.1):
 - Correction de la barre d'eau qui s'affiche même lorsqu'elle n'est pas utilisée dans l'onglet Animaux
 - Correction de l'erreur Lua 'attempt to call local 'superFunc'(a table value)'
-- ajout de la prise en charge du mod "Info Display Extension"
 - ajout de la prise en charge du mod "Target Fill Level"
 - ajout de la prise en charge du mod "Straw Harvest Pack"
 - ajout de la prise en charge du mod "Def Pack"
@@ -59,7 +56,6 @@ Standardowo dodanymi jednostkami są: metr sześcienny, galon, funt, kilogram
 Dziennik zmian (1.0.0.1):
 - naprawiono wyświetlanie paska wody nawet wtedy, gdy nie był potrzebny w zakładce Zwierzęta
 - naprawiono błąd Lua 'attempt to call local 'superFunc'(a table value)'
-- dodano obsługę modyfikacji "Info Display Extension"
 - dodano obsługę modyfikacji "Target Fill Level"
 - dodano obsługę modyfikacji "Straw Harvest Pack"
 - dodano obsługę modyfikacji "Def Pack"
