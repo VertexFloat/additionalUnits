@@ -99,13 +99,15 @@ function AdditionalUnitsMenu:populateCellForItemInSection(list, section, index, 
   if list == self.fillTypesList then
     local fillTypeDesc = self.fillTypes[index]
     local fillTypeUnit = self.additionalUnits:getFillTypeUnitByFillTypeName(fillTypeDesc.name)
+    local unitId, massFactor
 
-    if fillTypeUnit == nil then
-      return
+    if fillTypeUnit ~= nil then
+      unitId = fillTypeUnit.unitId
+      massFactor = fillTypeUnit.massFactor
     end
 
-    local unit = self.additionalUnits:getUnitById(fillTypeUnit.unitId)
-    local massFactor = fillTypeUnit.massFactor and string.format(self.i18n:getText("ui_additionalUnits_massFactor"), math.ceil(fillTypeUnit.massFactor * 1000)) or "-"
+    local unit = self.additionalUnits:getUnitById(unitId)
+    massFactor = massFactor and string.format(self.i18n:getText("ui_additionalUnits_massFactor"), math.ceil(massFactor * 1000)) or "-"
 
     cell:getAttribute("icon"):setImageFilename(fillTypeDesc.hudOverlayFilename)
     cell:getAttribute("title"):setText(fillTypeDesc.title)
