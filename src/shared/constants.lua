@@ -14,5 +14,6 @@ MISSING_FILLTYPES = {
   OILSEEDRADISH = true,
   CHAFF = true,
   WATER = true,
-  FORAGE_MIXING = true
+  FORAGE_MIXING = true,
+  MINERAL_FEED = true
 }
