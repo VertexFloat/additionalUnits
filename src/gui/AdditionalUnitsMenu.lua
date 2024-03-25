@@ -130,7 +130,7 @@ end
 
 function AdditionalUnitsMenu:onDoubleClickFillTypesListItem(list, section, index, element)
   local selectedFillType = self.fillTypes[index]
-  local fillTypeUnit = self.additionalUnits:getFillTypeUnitByFillTypeName(selectedFillType.name)
+  local fillTypeUnit = self.additionalUnits:getFillTypeUnitByFillTypeName(selectedFillType.name) or {}
 
   fillTypeUnit.fillType = selectedFillType
 

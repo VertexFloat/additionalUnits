@@ -38,8 +38,10 @@ function EditFillTypeUnitDialog:setData(data)
     table.insert(unitsTable, unit.name)
   end
 
+  local unitId = data.unitId or self.additionalUnits:getDefaultUnitId()
+
   self.optionFillTypeUnit:setTexts(unitsTable)
-  self.optionFillTypeUnit:setState(self.additionalUnits:getUnitIndexById(data.unitId), true)
+  self.optionFillTypeUnit:setState(self.additionalUnits:getUnitIndexById(unitId), true)
 
   self.fillTypeName = data.fillType.name
 
