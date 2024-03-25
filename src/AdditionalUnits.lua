@@ -35,6 +35,7 @@ source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/PlaceableSiloUnitExtension.lua
 source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/ProductionPointUnitExtension.lua")
 source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/SiloDialogUnitExtension.lua")
 source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/TargetFillLevelUnitExtension.lua")
+source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/InfoDisplayExtensionUnitExtension.lua")
 source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/StrawHarvestPackUnitExtension.lua")
 source(AdditionalUnits.MOD_DIRECTORY .. "src/shared/constants.lua")
 
@@ -67,6 +68,7 @@ function AdditionalUnits.new(customMt, gui, i18n, fillTypeManager)
   self.productionPointUnitExtension = ProductionPointUnitExtension.new(_, self, i18n, fillTypeManager)
   self.siloDialogUnitExtension = SiloDialogUnitExtension.new(_, self, i18n, fillTypeManager)
   self.targetFillLevelUnitExtension = TargetFillLevelUnitExtension.new(_, self)
+  self.infoDisplayExtensionUnitExtension = InfoDisplayExtensionUnitExtension.new(_, self)
   self.strawHarvestPackUnitExtension = StrawHarvestPackUnitExtension.new(_, self, i18n)
 
   return self
@@ -103,6 +105,10 @@ function AdditionalUnits:loadMap(filename)
 
   if g_modIsLoaded["FS22_TargetFillLevel"] then
     self.targetFillLevelUnitExtension:loadMap()
+  end
+
+  if g_modIsLoaded["FS22_InfoDisplayExtension"] then
+    self.infoDisplayExtensionUnitExtension:loadMap()
   end
 
   if g_modIsLoaded["FS22_strawHarvestPack"] then
