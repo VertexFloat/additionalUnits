@@ -19,7 +19,7 @@ function FillLevelsDisplayUnitExtension:initialize()
   self.additionalUnits:overwriteGameFunction(FillLevelsDisplay, "updateFillLevelFrames", function (superFunc, display)
     local _, yOffset = display:getPosition()
     local isFirst = true
-print("updateFillLevelFrames")
+
     for i = 1, #display.fillLevelBuffer do
       local fillLevelInformation = display.fillLevelBuffer[i]
 
@@ -49,8 +49,14 @@ print("updateFillLevelFrames")
 
         if fillLevelInformation.fillType ~= FillType.UNKNOWN then
           local fillTypeDesc = self.fillTypeManager:getFillTypeByIndex(fillLevelInformation.fillType)
-print(fillTypeDesc.name)
-print(fillLevel)
+          local targetVehicle = display.targetVehicle
+
+          if targetVehicle ~= nil and targetVehicle.vehicle ~= nil and targetVehicle.vehicle ~= display.vehicle then
+            fillTypeDesc = self.fillTypeManager:getFillTypeByIndex(targetVehicle.fillType)
+
+            display.targetVehicle = nil
+          end
+
           local formattedFillLevel, unit = self.additionalUnits:formatFillLevel(fillLevel, fillTypeDesc.name)
 
           fillTypeName = fillTypeDesc.title
