@@ -6,60 +6,72 @@ FillUnitUnitExtension = {}
 
 local FillUnitUnitExtension_mt = Class(FillUnitUnitExtension)
 
----Creating FillUnitUnitExtension instance
----@param additionalUnits table additionalUnits object
----@param fillTypeManager table fillTypeManager object
----@return table instance instance of object
 function FillUnitUnitExtension.new(customMt, additionalUnits, fillTypeManager)
-	local self = setmetatable({}, customMt or FillUnitUnitExtension_mt)
+  local self = setmetatable({}, customMt or FillUnitUnitExtension_mt)
 
-	self.additionalUnits = additionalUnits
-	self.fillTypeManager = fillTypeManager
+  self.additionalUnits = additionalUnits
+  self.fillTypeManager = fillTypeManager
 
-	return self
+  return self
 end
 
----Initializing FillUnitUnitExtension
 function FillUnitUnitExtension:initialize()
-	self.additionalUnits:overwriteGameFunction(FillUnit, 'showInfo', function (_, fillUnit, superFunc, box)
-		local spec = fillUnit.spec_fillUnit
+  self.additionalUnits:overwriteGameFunction(FillUnit, "showInfo", function (_, fillUnit, superFunc, box)
+    local spec = fillUnit.spec_fillUnit
 
-		if spec.isInfoDirty then
-			spec.fillUnitInfos = {}
+    if spec.isInfoDirty then
+      spec.fillUnitInfos = {}
 
-			local fillTypeToInfo = {}
+      local fillTypeToInfo = {}
 
-			for _, fillUnit in ipairs(spec.fillUnits) do
-				if fillUnit.showOnInfoHud and fillUnit.fillLevel > 0 then
-					local info = fillTypeToInfo[fillUnit.fillType]
+      for _, fillUnit in ipairs(spec.fillUnits) do
+        if fillUnit.showOnInfoHud and fillUnit.fillLevel > 0 then
+          local info = fillTypeToInfo[fillUnit.fillType]
 
-					if info == nil then
-						local fillType = self.fillTypeManager:getFillTypeByIndex(fillUnit.fillType)
+          if info == nil then
+            local fillType = self.fillTypeManager:getFillTypeByIndex(fillUnit.fillType)
 
-						info = {title = fillType.title, name = fillType.name, fillLevel = 0, unit = fillUnit.unitText, precision = 0}
+            info = {
+              title = fillType.title,
+              name = fillType.name,
+              fillLevel = 0,
+              unit = fillUnit.unitText,
+              precision = 0
+            }
 
-						fillTypeToInfo[fillUnit.fillType] = info
+            fillTypeToInfo[fillUnit.fillType] = info
 
-						table.insert(spec.fillUnitInfos, info)
-					end
+            table.insert(spec.fillUnitInfos, info)
+          end
 
-					info.fillLevel = info.fillLevel + fillUnit.fillLevel
+          info.fillLevel = info.fillLevel + fillUnit.fillLevel
 
-					if info.precision == 0 and fillUnit.fillLevel > 0 then
-						info.precision = fillUnit.uiPrecision or 0
-					end
-				end
-			end
+          if info.precision == 0 and fillUnit.fillLevel > 0 then
+            info.precision = fillUnit.uiPrecision or 0
+          end
+        end
+      end
 
-			spec.isInfoDirty = false
-		end
+      spec.isInfoDirty = false
+    end
 
-		for _, info in ipairs(spec.fillUnitInfos) do
-			local fillText, unit = self.additionalUnits:formatFillLevel(info.fillLevel, info.name, info.precision)
+    for _, info in ipairs(spec.fillUnitInfos) do
+      local formattedNumber
+      local formattedFillLevel, unit = self.additionalUnits:formatFillLevel(info.fillLevel, info.name)
 
-			box:addLine(info.title, fillText .. ' ' .. (unit or info.unit))
-		end
+      if info.precision > 0 then
+        local rounded = MathUtil.round(formattedFillLevel, info.precision)
 
-		superFunc(fillUnit, box)
-	end)
+        formattedNumber = string.format("%d%s%0"..info.precision.."d", math.floor(rounded), self.i18n.decimalSeparator, (rounded - math.floor(rounded)) * 10 ^ info.precision)
+      else
+        formattedNumber = string.format("%d", MathUtil.round(formattedFillLevel))
+      end
+
+      formattedNumber = formattedNumber .. " " .. (unit.shortName or info.unit or self.i18n:getVolumeUnit())
+
+      box:addLine(info.title, formattedNumber)
+    end
+
+    superFunc(fillUnit, box)
+  end)
 end

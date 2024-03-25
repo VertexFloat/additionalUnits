@@ -1,75 +1,75 @@
-<?xml version='1.0' encoding='utf-8' standalone='no'?>
-<GUI onOpen='onOpen' onClose='onClose' onCreate='onCreate'>
-	<GuiElement type='bitmap' profile='uiFullInGameBackground'/>
-	<GuiElement type='bitmap' profile='bgVignette'/>
-	<GuiElement type='bitmap' profile='bgGlow'/>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
+  <GuiElement type="bitmap" profile="uiFullInGameBackground"/>
+  <GuiElement type="bitmap" profile="bgVignette"/>
+  <GuiElement type="bitmap" profile="bgGlow"/>
 
-	<GuiElement type='bitmap' profile='uiElementContainerFullScreen'>
-		<GuiElement type='empty' profile='ingameMenuCenterBox' size='1400px 588px'>
-			<GuiElement type='bitmap' profile='dialogHeaderDocked'>
-				<GuiElement type='text' profile='dialogHeaderText' text='$l10n_ui_additionalUnits_title'/>
-			</GuiElement>
+  <GuiElement type="bitmap" profile="uiElementContainerFullScreen">
+    <GuiElement type="empty" profile="ingameMenuCenterBox" size="1400px 588px">
+      <GuiElement type="bitmap" profile="dialogHeaderDocked">
+        <GuiElement type="text" profile="dialogHeaderText" text="$l10n_ui_additionalUnits_title"/>
+      </GuiElement>
 
-			<GuiElement type='empty' profile='additionalUnitsMenuColumn'>
-				<GuiElement type='boxLayout' profile='ingameCalendarHeaderBox' size='660px 48px'>
-					<GuiElement type='text' profile='additionalUnitsMenuHeader' text='$l10n_infohud_fillType' textAlignment='left' textOffset='10px 0'/>
-					<GuiElement type='text' profile='additionalUnitsMenuHeader' text='$l10n_ui_additionalUnits_unit'/>
-					<GuiElement type='text' profile='additionalUnitsMenuHeader' text='$l10n_ui_additionalUnits_mass'/>
-				</GuiElement>
+      <GuiElement type="empty" profile="additionalUnitsMenuColumn">
+        <GuiElement type="boxLayout" profile="ingameCalendarHeaderBox" size="660px 48px">
+          <GuiElement type="text" profile="additionalUnitsMenuHeader" text="$l10n_infohud_fillType" textAlignment="left" textOffset="10px 0"/>
+          <GuiElement type="text" profile="additionalUnitsMenuHeader" text="$l10n_ui_additionalUnits_unit"/>
+          <GuiElement type="text" profile="additionalUnitsMenuHeader" text="$l10n_ui_additionalUnits_mass"/>
+        </GuiElement>
 
-				<GuiElement type='smoothList' profile='additionalUnitsMenuList' id='fillTypesList' onDoubleClick='onClickEdit' listDelegate='self' showHighlights='true'>
-					<GuiElement type='listItem' profile='additionalUnitsMenuListItem'>
-						<GuiElement type='bitmap' profile='ingameMenuPriceGoodsIcon' name='icon'/>
-						<GuiElement type='text' profile='additionalUnitsMenuRowCell' name='title'/>
-						<GuiElement type='text' profile='additionalUnitsMenuRowCell' name='unit' position='220px 0' textAutoWidth='false' textAlignment='center'/>
-						<GuiElement type='text' profile='additionalUnitsMenuRowCell' name='mass' position='440px 0' textAutoWidth='false' textAlignment='center'/>
-					</GuiElement>
-				</GuiElement>
+        <GuiElement type="smoothList" profile="additionalUnitsMenuList" id="fillTypesList" onDoubleClick="onDoubleClickFillTypesListItem" listDelegate="self" showHighlights="true">
+          <GuiElement type="listItem" profile="additionalUnitsMenuListItem">
+            <GuiElement type="bitmap" profile="ingameMenuPriceGoodsIcon" name="icon"/>
+            <GuiElement type="text" profile="additionalUnitsMenuRowCell" name="title"/>
+            <GuiElement type="text" profile="additionalUnitsMenuRowCell" name="unit" position="220px 0" textAutoWidth="false" textAlignment="center"/>
+            <GuiElement type="text" profile="additionalUnitsMenuRowCell" name="mass" position="440px 0" textAutoWidth="false" textAlignment="center"/>
+          </GuiElement>
+        </GuiElement>
 
-				<GuiElement type='threePartBitmap' profile='verticalListSliderRightDocked' position='26px -48px' size='12px 540px'>
-					<GuiElement type='slider' profile='verticalListSliderBar' dataElementId='fillTypesList' size='6px 532px'/>
-				</GuiElement>
-			</GuiElement>
+        <GuiElement type="threePartBitmap" profile="verticalListSliderRightDocked" position="26px -48px" size="12px 540px">
+          <GuiElement type="slider" profile="verticalListSliderBar" dataElementId="fillTypesList" size="6px 532px"/>
+        </GuiElement>
+      </GuiElement>
 
-			<GuiElement type='empty' profile='additionalUnitsMenuColumn' size='700px 588px' anchors='1 1 1 1'>
-				<GuiElement type='boxLayout' profile='ingameCalendarHeaderBox' size='660px 48px'>
-					<GuiElement type='text' profile='additionalUnitsMenuHeader' text='$l10n_ui_additionalUnits_unit'/>
-					<GuiElement type='text' profile='additionalUnitsMenuHeader' text='$l10n_ui_additionalUnits_precision'/>
-					<GuiElement type='text' profile='additionalUnitsMenuHeader' text='$l10n_ui_additionalUnits_factor'/>
-				</GuiElement>
+      <GuiElement type="empty" profile="additionalUnitsMenuColumn" size="700px 588px" anchors="1 1 1 1">
+        <GuiElement type="boxLayout" profile="ingameCalendarHeaderBox" size="660px 48px">
+          <GuiElement type="text" profile="additionalUnitsMenuHeader" text="$l10n_ui_additionalUnits_unit"/>
+          <GuiElement type="text" profile="additionalUnitsMenuHeader" text="$l10n_ui_additionalUnits_precision"/>
+          <GuiElement type="text" profile="additionalUnitsMenuHeader" text="$l10n_ui_additionalUnits_factor"/>
+        </GuiElement>
 
-				<GuiElement type='boxLayout' profile='additionalUnitsMenuUnitsBox' id='smoothListLayout'>
-					<GuiElement type='expandSmoothList' profile='additionalUnitsMenuList' size='660px 181px' position='0' id='unitsList' onDoubleClick='onClickEdit' listDelegate='self' showHighlights='true' maxListHeight='180px' layoutElementId='smoothListLayout'>
-						<GuiElement type='listItem' profile='additionalUnitsMenuListItem'>
-							<GuiElement type='text' profile='additionalUnitsMenuRowCell' name='name' position='0' textAutoWidth='false' textAlignment='center'/>
-							<GuiElement type='text' profile='additionalUnitsMenuRowCell' name='precision' position='220px 0' textAutoWidth='false' textAlignment='center'/>
-							<GuiElement type='text' profile='additionalUnitsMenuRowCell' name='factor' position='440px 0' textAutoWidth='false' textAlignment='center'/>
-						</GuiElement>
-					</GuiElement>
+        <GuiElement type="boxLayout" profile="additionalUnitsMenuUnitsBox" id="smoothListLayout">
+          <GuiElement type="expandSmoothList" profile="additionalUnitsMenuList" size="660px 181px" position="0" id="unitsList" onDoubleClick="onDoubleClickUnitsListItem" listDelegate="self" showHighlights="true" maxListHeight="180px" layoutElementId="smoothListLayout">
+            <GuiElement type="listItem" profile="additionalUnitsMenuListItem">
+              <GuiElement type="text" profile="additionalUnitsMenuRowCell" name="name" position="0" textAutoWidth="false" textAlignment="center"/>
+              <GuiElement type="text" profile="additionalUnitsMenuRowCell" name="precision" position="220px 0" textAutoWidth="false" textAlignment="center"/>
+              <GuiElement type="text" profile="additionalUnitsMenuRowCell" name="factor" position="440px 0" textAutoWidth="false" textAlignment="center"/>
+            </GuiElement>
+          </GuiElement>
 
-					<GuiElement type='flowLayout' profile='additionalUnitsMenuButtonsBox'>
-						<GuiElement type='button' profile='additionalUnitsMenuAddButton' text='$l10n_ui_additionalUnits_editUnit_add' onClick='onClickNew'/>
-						<GuiElement type='button' profile='additionalUnitsMenuDeleteButton' margin='5px 0 0 0' text='$l10n_button_delete' onClick='onClickDelete' id='deleteButton'/>
-					</GuiElement>
-				</GuiElement>
+          <GuiElement type="flowLayout" profile="additionalUnitsMenuButtonsBox">
+            <GuiElement type="button" profile="additionalUnitsMenuAddButton" text="$l10n_ui_additionalUnits_button_add" onClick="onClickNew"/>
+            <GuiElement type="button" profile="additionalUnitsMenuDeleteButton" margin="5px 0 0 0" text="$l10n_button_delete" onClick="onClickDelete" id="deleteButton"/>
+          </GuiElement>
+        </GuiElement>
 
-				<GuiElement type='threePartBitmap' profile='verticalListSliderRightDocked' position='-12px -48px' size='12px 180px'>
-					<GuiElement type='slider' profile='verticalListSliderBar' dataElementId='unitsList' size='6px 172px'/>
-				</GuiElement>
+        <GuiElement type="threePartBitmap" profile="verticalListSliderRightDocked" position="-12px -48px" size="12px 180px">
+          <GuiElement type="slider" profile="verticalListSliderBar" dataElementId="unitsList" size="6px 172px"/>
+        </GuiElement>
 
-				<GuiElement type='flowLayout' profile='additionalUnitsMenuUsageBox'>
-					<GuiElement type='text' profile='helpLineListItemText' text='$l10n_info_additionalUnits_usage' size='660px 36px' textVerticalAlignment='top' textOffset='0'/>
-					<GuiElement type='text' profile='additionalUnitsMenuUsageText' size='660px 70px' text='$l10n_info_additionalUnits_precision'/>
-					<GuiElement type='text' profile='additionalUnitsMenuUsageText' text='$l10n_info_additionalUnits_factor'/>
-					<GuiElement type='text' profile='additionalUnitsMenuUsageText' text='$l10n_info_additionalUnits_massFactor'/>
-				</GuiElement>
-			</GuiElement>
-		</GuiElement>
-	</GuiElement>
+        <GuiElement type="flowLayout" profile="additionalUnitsMenuUsageBox">
+          <GuiElement type="text" profile="helpLineListItemText" text="$l10n_ui_additionalUnits_usage" size="660px 36px" textVerticalAlignment="top" textOffset="0"/>
+          <GuiElement type="text" profile="additionalUnitsMenuUsageText" size="660px 70px" text="$l10n_ui_additionalUnits_usage_precision"/>
+          <GuiElement type="text" profile="additionalUnitsMenuUsageText" text="$l10n_ui_additionalUnits_usage_factor"/>
+          <GuiElement type="text" profile="additionalUnitsMenuUsageText" text="$l10n_ui_additionalUnits_usage_massFactor"/>
+        </GuiElement>
+      </GuiElement>
+    </GuiElement>
+  </GuiElement>
 
-	<GuiElement type='flowLayout' profile='buttonBoxDockedOnScreen'>
-		<GuiElement type='button' profile='buttonBack' text='$l10n_button_back' onClick='onClickBack'/>
-		<GuiElement type='button' profile='buttonRecover' text='$l10n_button_defaults' onClick='onClickReset'/>
-		<GuiElement type='button' profile='buttonExtra2' text='$l10n_button_change' onClick='onClickEdit'/>
-	</GuiElement>
+  <GuiElement type="flowLayout" profile="buttonBoxDockedOnScreen">
+    <GuiElement type="button" profile="buttonBack" text="$l10n_button_back" onClick="onClickBack"/>
+    <GuiElement type="button" profile="buttonRecover" text="$l10n_button_defaults" onClick="onClickReset"/>
+    <GuiElement type="button" profile="buttonExtra2" text="$l10n_button_change" onClick="onClickChange"/>
+  </GuiElement>
 </GUI>

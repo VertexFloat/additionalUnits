@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<l10n>
+  <elements>
+    <e k="unit_gallons" v="Gallons"/>
+    <e k="unit_gallonsShort" v="gal"/>
+    <e k="unit_kgLong" v="Kilograms"/>
+    <e k="unit_pounds" v="Pounds"/>
+    <e k="unit_poundsShort" v="lb"/>
+    <e k="ui_additionalUnits_title" v="Additional Units"/>
+    <e k="ui_additionalUnits_editFillTypeUnit_title" v="Edit Fill Type: %s" tag="format"/>
+    <e k="ui_additionalUnits_editUnit_title" v="Edit Unit: %s" tag="format"/>
+    <e k="ui_additionalUnits_editUnit_title_new" v="New Unit"/>
+    <e k="ui_additionalUnits_button_add" v="Add"/>
+    <e k="ui_additionalUnits_name" v="Name"/>
+    <e k="ui_additionalUnits_shortName" v="Short Name"/>
+    <e k="ui_additionalUnits_volumeUnit" v="Volume Unit"/>
+    <e k="ui_additionalUnits_mass" v="Mass Factor"/>
+    <e k="ui_additionalUnits_unit" v="Unit"/>
+    <e k="ui_additionalUnits_precision" v="Precision"/>
+    <e k="ui_additionalUnits_factor" v="Factor"/>
+    <e k="ui_additionalUnits_massFactor" v="%s kg/m³" tag="format"/>
+    <e k="ui_additionalUnits_youWantToDeleteUnit" v="Are you sure you want to delete the unit (%s)?" tag="format"/>
+    <e k="ui_additionalUnits_deletedUnit" v="Unit has been successfully deleted!"/>
+    <e k="ui_additionalUnits_createdNewUnit" v="Unit (%s) has been successfully created!" tag="format"/>
+    <e k="ui_additionalUnits_name_toolTip" v="Enter the full name of the unit."/>
+    <e k="ui_additionalUnits_shortName_toolTip" v="Enter the abbreviation of the unit."/>
+    <e k="ui_additionalUnits_precision_toolTip" v="Select the number of decimal places for the unit value."/>
+    <e k="ui_additionalUnits_unit_toolTip" v="Select fill type unit."/>
+    <e k="ui_additionalUnits_factor_toolTip" v="Enter the conversion factor for the unit."/>
+    <e k="ui_additionalUnits_mass_toolTip" v="Enter the mass conversion factor for the fill type (kg/m³)."/>
+    <e k="ui_additionalUnits_volumeUnit_toolTip" v="Whether or not this is a volume unit."/>
+    <e k="ui_additionalUnits_toolTip" v="Open additional units menu."/>
+    <e k="ui_additionalUnits_usage" v="Usage:"/>
+    <e k="ui_additionalUnits_usage_precision" v="Precision - Determines the number of decimal places for a unit's value."/>
+    <e k="ui_additionalUnits_usage_factor" v="Factor - Defines the conversion rate from liters to the specific unit (e.g., 1.000l * 0.001 = 1m³)."/>
+    <e k="ui_additionalUnits_usage_massFactor" v="Mass Factor - Indicates the kilograms per m³ for a specific fill type. Non-volume units are first converted to kilograms and then to the designated unit (e.g., 1.000l of wheat equals approximately 775kg, then converted to pounds)."/>
+  </elements>
+</l10n>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<l10n>
+  <elements>
+    <e k="unit_gallons" v="Gallons"/>
+    <e k="unit_gallonsShort" v="gal"/>
+    <e k="unit_kgLong" v="Kilogrammes"/>
+    <e k="unit_pounds" v="Livres"/>
+    <e k="unit_poundsShort" v="lb"/>
+    <e k="ui_additionalUnits_title" v="Unités Additionnelles"/>
+    <e k="ui_additionalUnits_editFillTypeUnit_title" v="Modifier le type de remplissage : %s" tag="format"/>
+    <e k="ui_additionalUnits_editUnit_title" v="Modifier l'unité : %s" tag="format"/>
+    <e k="ui_additionalUnits_editUnit_title_new" v="Nouvelle Unité"/>
+    <e k="ui_additionalUnits_button_add" v="Ajouter"/>
+    <e k="ui_additionalUnits_name" v="Nom"/>
+    <e k="ui_additionalUnits_shortName" v="Nom Court"/>
+    <e k="ui_additionalUnits_volumeUnit" v="Unité Volumétrique"/>
+    <e k="ui_additionalUnits_mass" v="Facteur de masse"/>
+    <e k="ui_additionalUnits_unit" v="Unité"/>
+    <e k="ui_additionalUnits_precision" v="Précision"/>
+    <e k="ui_additionalUnits_factor" v="Facteur"/>
+    <e k="ui_additionalUnits_massFactor" v="%s kg/m³" tag="format"/>
+    <e k="ui_additionalUnits_youWantToDeleteUnit" v="Voulez-vous vraiment supprimer l'unité (%s) ?" tag="format"/>
+    <e k="ui_additionalUnits_deletedUnit" v="L'unité a été supprimée avec succès !"/>
+    <e k="ui_additionalUnits_createdNewUnit" v="(%s) l'unité a été créée avec succès !" tag="format"/>
+    <e k="ui_additionalUnits_name_toolTip" v="Entrez le nom long de l'unité."/>
+    <e k="ui_additionalUnits_shortName_toolTip" v="Saisissez le nom abrégé de l'unité."/>
+    <e k="ui_additionalUnits_precision_toolTip" v="Sélectionnez la précision de l'unité."/>
+    <e k="ui_additionalUnits_unit_toolTip" v="Sélectionnez l'unité de type de remplissage."/>
+    <e k="ui_additionalUnits_factor_toolTip" v="Entrez le facteur d'unité."/>
+    <e k="ui_additionalUnits_mass_toolTip" v="Entrez le facteur de masse du type de remplissage (kg/m³)."/>
+    <e k="ui_additionalUnits_volumeUnit_toolTip" v="S'il s'agit ou non d'une unité de volume."/>
+    <e k="ui_additionalUnits_toolTip" v="Ouvrir le menu des unités supplémentaires."/>
+    <e k="ui_additionalUnits_usage" v="Usage:"/>
+    <e k="ui_additionalUnits_usage_precision" v="Précision - Détermine le nombre de décimales pour la valeur d'une unité."/>
+    <e k="ui_additionalUnits_usage_factor" v="Facteur - Définit le taux de conversion des litres vers l'unité spécifique (par exemple, 1,000l * 0,001 = 1m³)."/>
+    <e k="ui_additionalUnits_usage_massFactor" v="Facteur de masse - Indique les kilogrammes par m³ pour un type de remplissage spécifique. Les unités non volumiques sont d'abord converties en kilogrammes puis en l'unité désignée (par exemple, 1,000l de blé équivaut à environ 775kg, puis convertis en livres)."/>
+  </elements>
+</l10n>

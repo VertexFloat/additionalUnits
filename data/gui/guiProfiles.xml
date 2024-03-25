@@ -1,133 +1,133 @@
-<?xml version='1.0' encoding='utf-8' standalone='no'?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <GUIProfiles>
-	<Presets>
-		<Preset name='colorTransparent' value='0 0 0 0'/>
-	</Presets>
+  <Presets>
+    <Preset name="colorTransparent" value="0 0 0 0"/>
+  </Presets>
 
-	<Traits>
-		<Trait name='anchorTopLeft'>
-			<Value name='anchors' value='0 0 1 1'/>
-		</Trait>
-		<Trait name='anchorMiddleLeft'>
-			<Value name='anchors' value='0 0 0.5 0.5'/>
-		</Trait>
-		<Trait name='anchorMiddleCenter'>
-			<Value name='anchors' value='0.5 0.5 0.5 0.5'/>
-		</Trait>
-		<Trait name='anchorMiddleRight'>
-			<Value name='anchors' value='1 1 0.5 0.5'/>
-		</Trait>
-	</Traits>
+  <Traits>
+    <Trait name="anchorTopLeft">
+      <Value name="anchors" value="0 0 1 1"/>
+    </Trait>
+    <Trait name="anchorMiddleLeft">
+      <Value name="anchors" value="0 0 0.5 0.5"/>
+    </Trait>
+    <Trait name="anchorMiddleCenter">
+      <Value name="anchors" value="0.5 0.5 0.5 0.5"/>
+    </Trait>
+    <Trait name="anchorMiddleRight">
+      <Value name="anchors" value="1 1 0.5 0.5"/>
+    </Trait>
+  </Traits>
 
-	<!-- Additional Units Menu -->
-	<Profile name='additionalUnitsMenuColumn' extends='emptyPanel' with='anchorTopLeft'>
-		<Value name='size' value='660px 588px'/>
-	</Profile>
-	<Profile name='additionalUnitsMenuHeader' extends='ingameMenuPriceHeader'>
-		<Value name='size' value='220px 48px'/>
-		<Value name='textAlignment' value='center'/>
-		<Value name='textOffset' value='0 0'/>
-	</Profile>
-	<Profile name='additionalUnitsMenuList' extends='ingameMenuPriceList'>
-		<Value name='size' value='660px 540px'/>
-		<Value name='position' value='0 -48px'/>
-	</Profile>
-	<Profile name='additionalUnitsMenuListItem' extends='ingameMenuPriceListItem'>
-		<Value name='size' value='660px 36px'/>
-	</Profile>
-	<Profile name='additionalUnitsMenuRowCell' extends='ingameMenuPriceItemTitle'>
-		<Value name='size' value='220px 36px'/>
-		<Value name='textMaxWidth' value='210px'/>
-	</Profile>
-	<Profile name='additionalUnitsMenuUnitsBox' extends='baseReference' with='anchorTopLeft'>
-		<Value name='size' value='660px 240px'/>
-		<Value name='position' value='0 -48px'/>
-		<Value name='imageColor' value='$preset_colorTransparent'/>
-	</Profile>
-	<Profile name='additionalUnitsMenuButtonsBox' with='anchorMiddleLeft'>
-		<Value name='size' value='660px 48px'/>
-		<Value name='margin' value='0 5px 0 0'/>
-	</Profile>
-	<Profile name='additionalUnitsOpenMenuButton' extends='ingameMenuSettingsPauseButton'>
-		<Value name='iconUVs' value='54px 244px 37px 37px'/>
-	</Profile>
-	<Profile name='additionalUnitsMenuAddButton' extends='ingameMenuSettingsNativeHelpButton'>
-		<Value name='iconUVs' value='245px 342px 37px 37px'/>
-		<Value name='fitToContent' value='true'/>
-		<Value name='fitExtraWidth' value='60px'/>
-		<Value name='handleFocus' value='false'/>
-	</Profile>
-	<Profile name='additionalUnitsMenuDeleteButton' extends='additionalUnitsMenuAddButton'>
-		<Value name='iconUVs' value='101px 342px 37px 37px'/>
-	</Profile>
-	<Profile name='additionalUnitsMenuUsageBox' extends='baseReference'>
-		<Value name='size' value='660px 300px'/>
-		<Value name='imageColor' value='$preset_colorTransparent'/>
-	</Profile>
-	<Profile name='additionalUnitsMenuUsageText' extends='helpLineText'>
-		<Value name='size' value='660px 80px'/>
-		<Value name='textMaxWidth' value='660px'/>
-		<Value name='textMaxNumLines' value='5'/>
-	</Profile>
+  <!-- Additional Units Menu -->
+  <Profile name="additionalUnitsMenuColumn" extends="emptyPanel" with="anchorTopLeft">
+    <Value name="size" value="660px 588px"/>
+  </Profile>
+  <Profile name="additionalUnitsMenuHeader" extends="ingameMenuPriceHeader">
+    <Value name="size" value="220px 48px"/>
+    <Value name="textAlignment" value="center"/>
+    <Value name="textOffset" value="0 0"/>
+  </Profile>
+  <Profile name="additionalUnitsMenuList" extends="ingameMenuPriceList">
+    <Value name="size" value="660px 540px"/>
+    <Value name="position" value="0 -48px"/>
+  </Profile>
+  <Profile name="additionalUnitsMenuListItem" extends="ingameMenuPriceListItem">
+    <Value name="size" value="660px 36px"/>
+  </Profile>
+  <Profile name="additionalUnitsMenuRowCell" extends="ingameMenuPriceItemTitle">
+    <Value name="size" value="220px 36px"/>
+    <Value name="textMaxWidth" value="210px"/>
+  </Profile>
+  <Profile name="additionalUnitsMenuUnitsBox" extends="baseReference" with="anchorTopLeft">
+    <Value name="size" value="660px 240px"/>
+    <Value name="position" value="0 -48px"/>
+    <Value name="imageColor" value="$preset_colorTransparent"/>
+  </Profile>
+  <Profile name="additionalUnitsMenuButtonsBox" with="anchorMiddleLeft">
+    <Value name="size" value="660px 48px"/>
+    <Value name="margin" value="0 5px 0 0"/>
+  </Profile>
+  <Profile name="additionalUnitsOpenMenuButton" extends="ingameMenuSettingsPauseButton">
+    <Value name="iconUVs" value="54px 244px 37px 37px"/>
+  </Profile>
+  <Profile name="additionalUnitsMenuAddButton" extends="ingameMenuSettingsNativeHelpButton">
+    <Value name="iconUVs" value="245px 342px 37px 37px"/>
+    <Value name="fitToContent" value="true"/>
+    <Value name="fitExtraWidth" value="60px"/>
+    <Value name="handleFocus" value="false"/>
+  </Profile>
+  <Profile name="additionalUnitsMenuDeleteButton" extends="additionalUnitsMenuAddButton">
+    <Value name="iconUVs" value="101px 342px 37px 37px"/>
+  </Profile>
+  <Profile name="additionalUnitsMenuUsageBox" extends="baseReference">
+    <Value name="size" value="660px 300px"/>
+    <Value name="imageColor" value="$preset_colorTransparent"/>
+  </Profile>
+  <Profile name="additionalUnitsMenuUsageText" extends="helpLineText">
+    <Value name="size" value="660px 80px"/>
+    <Value name="textMaxWidth" value="660px"/>
+    <Value name="textMaxNumLines" value="5"/>
+  </Profile>
 
-	<!-- Additional Units Dialogs -->
-	<Profile name='additionalUnitsDialogHeaderDocked' extends='dialogHeaderDocked'>
-		<Value name='size' value='760px 60px'/>
-	</Profile>
-	<Profile name='additionalUnitsDialogHeaderText' extends='dialogHeaderText'>
-		<Value name='textMaxWidth' value='750px'/>
-		<Value name='textAutoWidth' value='true'/>
-	</Profile>
-	<Profile name='additionalUnitsDialogSettingsBox' with='anchorMiddleCenter'>
-		<Value name='size' value='700px 390px'/>
-	</Profile>
-	<Profile name='additionalUnitsDialogTextInputWrapper' extends='ingameMenuGameSettingsTextInputWrapper' with='anchorMiddleCenter'>
-		<Value name='size' value='700px 48px'/>
-		<Value name='margin' value='0 15px'/>
-	</Profile>
-	<Profile name='additionalUnitsDialogTextInput' extends='ingameMenuGameSettingsTextInput' with='anchorMiddleRight'>
-		<Value name='position' value='-20px 0'/>
-	</Profile>
-	<Profile name='additionalUnitsDialogSettingTextBox' with='anchorMiddleLeft'>
-		<Value name='size' value='300px 48px'/>
-		<Value name='position' value='20px 0'/>
-	</Profile>
-	<Profile name='additionalUnitsDialogSettingTitle' extends='multiTextOptionSettingsTitle' with='anchorTopLeft'>
-		<Value name='size' value='0 24px'/>
-		<Value name='textMaxNumLines' value='1'/>
-	</Profile>
-	<Profile name='additionalUnitsDialogSettingTooltip' extends='multiTextOptionSettingsTooltip'>
-		<Value name='size' value='0 24px'/>
-		<Value name='position' value='0'/>
-		<Value name='textVerticalAlignment' value='top'/>
-		<Value name='textMaxWidth' value='300px'/>
-	</Profile>
-	<Profile name='additionalUnitsDialogMultiTextOptionSettingsBg' extends='multiTextOptionSettingsBg' with='anchorMiddleRight'>
-		<Value name='size' value='218px 48px'/>
-		<Value name='position' value='-69px 0'/>
-	</Profile>
-	<Profile name='additionalUnitsDialogMultiTextOptionSettingsLeft' extends='multiTextOptionSettingsLeft' with='anchorMiddleRight'>
-		<Value name='position' value='-288px 0'/>
-	</Profile>
-	<Profile name='additionalUnitsDialogMultiTextOptionSettingsRight' extends='multiTextOptionSettingsRight' with='anchorMiddleRight'>
-		<Value name='position' value='-20px 0'/>
-	</Profile>
-	<Profile name='additionalUnitsDialogMultiTextOptionSettingsText' extends='multiTextOptionSettingsText' with='anchorMiddleRight'>
-		<Value name='position' value='-177px 0'/>
-	</Profile>
+  <!-- Additional Units Dialogs -->
+  <Profile name="additionalUnitsDialogHeaderDocked" extends="dialogHeaderDocked">
+    <Value name="size" value="760px 60px"/>
+  </Profile>
+  <Profile name="additionalUnitsDialogHeaderText" extends="dialogHeaderText">
+    <Value name="textMaxWidth" value="750px"/>
+    <Value name="textAutoWidth" value="true"/>
+  </Profile>
+  <Profile name="additionalUnitsDialogSettingsBox" with="anchorMiddleCenter">
+    <Value name="size" value="700px 390px"/>
+  </Profile>
+  <Profile name="additionalUnitsDialogTextInputWrapper" extends="ingameMenuGameSettingsTextInputWrapper" with="anchorMiddleCenter">
+    <Value name="size" value="700px 48px"/>
+    <Value name="margin" value="0 15px"/>
+  </Profile>
+  <Profile name="additionalUnitsDialogTextInput" extends="ingameMenuGameSettingsTextInput" with="anchorMiddleRight">
+    <Value name="position" value="-20px 0"/>
+  </Profile>
+  <Profile name="additionalUnitsDialogSettingTextBox" with="anchorMiddleLeft">
+    <Value name="size" value="300px 48px"/>
+    <Value name="position" value="20px 0"/>
+  </Profile>
+  <Profile name="additionalUnitsDialogSettingTitle" extends="multiTextOptionSettingsTitle" with="anchorTopLeft">
+    <Value name="size" value="0 24px"/>
+    <Value name="textMaxNumLines" value="1"/>
+  </Profile>
+  <Profile name="additionalUnitsDialogSettingTooltip" extends="multiTextOptionSettingsTooltip">
+    <Value name="size" value="0 24px"/>
+    <Value name="position" value="0"/>
+    <Value name="textVerticalAlignment" value="top"/>
+    <Value name="textMaxWidth" value="300px"/>
+  </Profile>
+  <Profile name="additionalUnitsDialogMultiTextOptionSettingsBg" extends="multiTextOptionSettingsBg" with="anchorMiddleRight">
+    <Value name="size" value="218px 48px"/>
+    <Value name="position" value="-69px 0"/>
+  </Profile>
+  <Profile name="additionalUnitsDialogMultiTextOptionSettingsLeft" extends="multiTextOptionSettingsLeft" with="anchorMiddleRight">
+    <Value name="position" value="-288px 0"/>
+  </Profile>
+  <Profile name="additionalUnitsDialogMultiTextOptionSettingsRight" extends="multiTextOptionSettingsRight" with="anchorMiddleRight">
+    <Value name="position" value="-20px 0"/>
+  </Profile>
+  <Profile name="additionalUnitsDialogMultiTextOptionSettingsText" extends="multiTextOptionSettingsText" with="anchorMiddleRight">
+    <Value name="position" value="-177px 0"/>
+  </Profile>
 
-	<!-- Edit Unit Dialog -->
-	<Profile name='editUnitDialogBg' extends='dialogBg'>
-		<Value name='size' value='760px 460px'/>
-	</Profile>
+  <!-- Edit Unit Dialog -->
+  <Profile name="editUnitDialogBg" extends="dialogBg">
+    <Value name="size" value="760px 460px"/>
+  </Profile>
 
-	<!-- Edit Fill Type Unit Dialog -->
-	<Profile name='editFillTypeUnitDialogBg' extends='dialogBg'>
-		<Value name='size' value='760px 226px'/>
-	</Profile>
-	<Profile name='editFillTypeUnitHeaderIcon' extends='ingameMenuPriceGoodsIcon'>
-		<Value name='position' value='0'/>
-		<Value name='size' value='28px 28px'/>
-		<Value name='margin' value='5px 0 0 0'/>
-	</Profile>
+  <!-- Edit Fill Type Unit Dialog -->
+  <Profile name="editFillTypeUnitDialogBg" extends="dialogBg">
+    <Value name="size" value="760px 226px"/>
+  </Profile>
+  <Profile name="editFillTypeUnitHeaderIcon" extends="ingameMenuPriceGoodsIcon">
+    <Value name="position" value="0"/>
+    <Value name="size" value="28px 28px"/>
+    <Value name="margin" value="5px 0 0 0"/>
+  </Profile>
 </GUIProfiles>
