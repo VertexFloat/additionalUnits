@@ -138,7 +138,7 @@ function AdditionalUnits:loadUnitsFromXML()
   local xmlFile = XMLFile.loadIfExists("unitsXML", xmlFilename, "units")
 
   if xmlFile == nil then
-    Logging.error(string.format("Cannot load units xml from (%s) path!", xmlFilename))
+    Logging.error(string.format("Additional Units: Failed to load units from (%s) path!", xmlFilename))
 
     return false
   end
@@ -169,7 +169,7 @@ function AdditionalUnits:loadUnitsFromXML()
   end)
 
   if not foundDefault then
-    Logging.warning("AdditionalUnits could not find the default unit! All settings restored to default!")
+    Logging.warning("Additional Units: failed to find default unit! All settings are restored to default!")
 
     self:reset()
   end
@@ -183,7 +183,7 @@ function AdditionalUnits:saveUnitsToXMLFile()
   local xmlFile = XMLFile.create("unitsXML", AdditionalUnits.MOD_SETTINGS_DIRECTORY .. "units.xml", "units")
 
   if xmlFile == nil then
-    Logging.error("Something went wrong when trying to save units!")
+    Logging.error("Additional Units: Something went wrong while trying to save units!")
 
     return
   end
@@ -213,7 +213,7 @@ function AdditionalUnits:loadMassFactorsFromXML()
   local massFactors = {}
 
   if xmlFile == nil then
-    Logging.error(string.format("Cannot load mass factors xml from (%s) path!", AdditionalUnits.DEFAULT_MASS_FACTOR_XML_PATH))
+    Logging.error(string.format("Additional Units: Failed to load mass factors from (%s) path!", AdditionalUnits.DEFAULT_MASS_FACTOR_XML_PATH))
 
     return massFactors
   end
@@ -266,7 +266,7 @@ function AdditionalUnits:saveFillTypesUnitsToXMLFile()
   local xmlFile = XMLFile.create("fillTypesUnitsXML", AdditionalUnits.MOD_SETTINGS_DIRECTORY .. "fillTypes.xml", "fillTypes")
 
   if xmlFile == nil then
-    Logging.error("Something went wrong when trying to save fill types units!")
+    Logging.error("Additional Units: Something went wrong while trying to save fill types units!")
 
     return
   end
@@ -309,57 +309,6 @@ function AdditionalUnits:formatFillLevel(fillLevel, fillTypeName)
   end
 
   return fillLevel, unit
-end
-
-function AdditionalUnits:formatFillLevel3(fillLevel, fillTypeName, useLongName)
-  local fillTypeUnit = self:getFillTypeUnitByFillTypeName(fillTypeName)
-  local unitName
-
-  if fillTypeUnit ~= nil then
-    local unit = self:getUnitById(fillTypeUnit.unitId)
-
-    if not unit.isVolume then
-      local massFactor = fillTypeUnit.massFactor or 1
-
-      fillLevel = fillLevel * massFactor
-    end
-
-    fillLevel = fillLevel * unit.factor
-
-    unitName = useLongName and unit.name or unit.shortName
-  end
-
-  return fillLevel, unitName
-end
-
-function AdditionalUnits:formatFillLevel2(fillLevel, fillTypeName, precision, useLongName, customUnitText)
-  local fillTypeUnit = self:getFillTypeUnitByFillTypeName(fillTypeName)
-  local unit = fillTypeUnit and self:getUnitById(fillTypeUnit.unitId) or self:getUnitById(0)
-  local massFactor = fillTypeUnit and fillTypeUnit.massFactor or 1
-  local precision = unit.precision or precision
-  local unitText = useLongName and unit.name or unit.shortName
-
-  if customUnitText == nil then
-    if not unit.isVolume then
-      fillLevel = fillLevel * massFactor
-    end
-
-    fillLevel = fillLevel * unit.factor
-  else
-    unitText = customUnitText
-  end
-
-  local formattedNumber
-
-  if precision > 0 then
-    local rounded = MathUtil.round(fillLevel, precision)
-
-    formattedNumber = string.format("%d%s%0"..precision.."d", math.floor(rounded), self.i18n.decimalSeparator, (rounded - math.floor(rounded)) * 10 ^ precision)
-  else
-    formattedNumber = string.format("%d", MathUtil.round(fillLevel))
-  end
-
-  return formattedNumber, unitText
 end
 
 function AdditionalUnits:getUnitById(id)
