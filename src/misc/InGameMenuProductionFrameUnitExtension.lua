@@ -6,9 +6,10 @@ InGameMenuProductionFrameUnitExtension = {}
 
 local InGameMenuProductionFrameUnitExtension_mt = Class(InGameMenuProductionFrameUnitExtension)
 
-function InGameMenuProductionFrameUnitExtension.new(customMt, additionalUnits, fillTypeManager)
+function InGameMenuProductionFrameUnitExtension.new(customMt, additionalUnits, i18n, fillTypeManager)
   local self = setmetatable({}, customMt or InGameMenuProductionFrameUnitExtension_mt)
 
+  self.i18n = i18n
   self.additionalUnits = additionalUnits
   self.fillTypeManager = fillTypeManager
 
@@ -31,9 +32,9 @@ function InGameMenuProductionFrameUnitExtension:initialize()
       if fillType ~= FillType.UNKNOWN then
         local fillLevel = inGameMenu.selectedProductionPoint:getFillLevel(fillType)
         local fillTypeDesc = self.fillTypeManager:getFillTypeByIndex(fillType)
-        local fillText, unit = self.additionalUnits:formatFillLevel(fillLevel, fillTypeDesc.name, 0)
+        local formattedFillLevel, unit = self.additionalUnits:formatFillLevel(fillLevel, fillTypeDesc.name)
 
-        cell:getAttribute("fillLevel"):setText(fillText .. " " .. unit)
+        cell:getAttribute("fillLevel"):setText(self.i18n:formatVolume(formattedFillLevel, 0, unit.shortName))
       end
     end
   end)

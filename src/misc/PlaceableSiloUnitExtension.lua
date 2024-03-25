@@ -6,11 +6,11 @@ PlaceableSiloUnitExtension = {}
 
 local PlaceableSiloUnitExtension_mt = Class(PlaceableSiloUnitExtension)
 
-function PlaceableSiloUnitExtension.new(customMt, additionalUnits, l10n, fillTypeManager)
+function PlaceableSiloUnitExtension.new(customMt, additionalUnits, i18n, fillTypeManager)
   local self = setmetatable({}, customMt or PlaceableSiloUnitExtension_mt)
 
+  self.i18n = i18n
   self.additionalUnits = additionalUnits
-  self.l10n = l10n
   self.fillTypeManager = fillTypeManager
 
   return self
@@ -51,7 +51,7 @@ function PlaceableSiloUnitExtension:initialize()
         table.insert(infoTable, {title = self.fillTypeManager:getFillTypeTitleByIndex(fillTypeAndLevel.fillType), text = fillLevel .. " " .. unit})
       end
     else
-      table.insert(infoTable, {title = self.l10n:getText("infohud_siloEmpty"), text = ""})
+      table.insert(infoTable, {title = self.i18n:getText("infohud_siloEmpty"), text = ""})
     end
   end)
 
@@ -91,7 +91,7 @@ function PlaceableSiloUnitExtension:initialize()
         local fillType = self.fillTypeManager:getFillTypeByIndex(fillTypeIndex)
         local fillText, unit = self.additionalUnits:formatFillLevel(fillLevel, fillType.name, 0)
 
-        warning = string.format("%s%s (%s) - %s: %s\n", warning, fillType.title, fillText .. " " .. unit, self.l10n:getText("ui_sellValue"), self.l10n:formatMoney(price, 0, true, true))
+        warning = string.format("%s%s (%s) - %s: %s\n", warning, fillType.title, fillText .. " " .. unit, self.i18n:getText("ui_sellValue"), self.i18n:formatMoney(price, 0, true, true))
 
         spec.totalFillTypeSellPrice = spec.totalFillTypeSellPrice + price
       end

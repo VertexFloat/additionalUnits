@@ -9,6 +9,7 @@
 -- cleaned code
 
 AdditionalUnits = {
+  MOD_NAME = g_currentModName,
   MOD_DIRECTORY = g_currentModDirectory,
   MOD_SETTINGS_DIRECTORY = g_currentModSettingsDirectory
 }
@@ -16,7 +17,6 @@ AdditionalUnits = {
 AdditionalUnits.DEFAULT_UNITS_XML_PATH = AdditionalUnits.MOD_DIRECTORY .. "data/units.xml"
 AdditionalUnits.DEFAULT_MASS_FACTOR_XML_PATH = AdditionalUnits.MOD_DIRECTORY .. "data/massFactors.xml"
 
-source(AdditionalUnits.MOD_DIRECTORY .. "src/shared/globals.lua")
 source(AdditionalUnits.MOD_DIRECTORY .. "src/gui/AdditionalUnitsGui.lua")
 source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/BaleUnitExtension.lua")
 source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/FeedingRobotUnitExtension.lua")
@@ -34,44 +34,48 @@ source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/PlaceableManureHeapUnitExtensi
 source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/PlaceableSiloUnitExtension.lua")
 source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/ProductionPointUnitExtension.lua")
 source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/SiloDialogUnitExtension.lua")
+source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/TargetFillLevelUnitExtension.lua")
+source(AdditionalUnits.MOD_DIRECTORY .. "src/shared/constants.lua")
 
 local AdditionalUnits_mt = Class(AdditionalUnits)
 
-function AdditionalUnits.new(customMt, gui, l10n, fillTypeManager)
+function AdditionalUnits.new(customMt, gui, i18n, fillTypeManager)
   local self = setmetatable({}, customMt or AdditionalUnits_mt)
 
-  self.l10n = l10n
+  self.i18n = i18n
   self.fillTypeManager = fillTypeManager
+
   self.units = {}
-  self.massFactors = {}
   self.fillTypesUnits = {}
 
-  self.gui = AdditionalUnitsGui.new(_, self, gui, l10n, fillTypeManager)
-  self.baleUnitExtension = BaleUnitExtension.new(_, self, l10n, fillTypeManager)
+  self.gui = AdditionalUnitsGui.new(_, self, gui, i18n, fillTypeManager)
+  self.baleUnitExtension = BaleUnitExtension.new(_, self, i18n, fillTypeManager)
   self.feedingRobotUnitExtension = FeedingRobotUnitExtension.new(_, self, fillTypeManager)
   self.fillLevelsDisplayUnitExtension = FillLevelsDisplayUnitExtension.new(_, self, fillTypeManager)
   self.fillUnitUnitExtension = FillUnitUnitExtension.new(_, self, fillTypeManager)
-  self.inGameMenuAnimalsFrameUnitExtension = InGameMenuAnimalsFrameUnitExtension.new(_, self, fillTypeManager)
-  self.inGameMenuPricesFrameUnitExtension = InGameMenuPricesFrameUnitExtension.new(_, self)
-  self.inGameMenuProductionFrameUnitExtension = InGameMenuProductionFrameUnitExtension.new(_, self, fillTypeManager)
+  self.inGameMenuAnimalsFrameUnitExtension = InGameMenuAnimalsFrameUnitExtension.new(_, self, i18n, fillTypeManager)
+  self.inGameMenuPricesFrameUnitExtension = InGameMenuPricesFrameUnitExtension.new(_, self, i18n)
+  self.inGameMenuProductionFrameUnitExtension = InGameMenuProductionFrameUnitExtension.new(_, self, i18n, fillTypeManager)
   self.placeableHusbandryFoodUnitExtension = PlaceableHusbandryFoodUnitExtension.new(_, self)
-  self.placeableHusbandryLiquidManureUnitExtension = PlaceableHusbandryLiquidManureUnitExtension.new(_, self, fillTypeManager)
-  self.placeableHusbandryMilkUnitExtension = PlaceableHusbandryMilkUnitExtension.new(_, self, fillTypeManager)
-  self.placeableHusbandryStrawUnitExtension = PlaceableHusbandryStrawUnitExtension.new(_, self, fillTypeManager)
-  self.placeableHusbandryWaterUnitExtension = PlaceableHusbandryWaterUnitExtension.new(_, self, fillTypeManager)
-  self.placeableManureHeapUnitExtension = PlaceableManureHeapUnitExtension.new(_, self, fillTypeManager)
-  self.placeableSiloUnitExtension = PlaceableSiloUnitExtension.new(_, self, l10n, fillTypeManager)
-  self.productionPointUnitExtension = ProductionPointUnitExtension.new(_, self, l10n, fillTypeManager)
-  self.siloDialogUnitExtension = SiloDialogUnitExtension.new(_, self, fillTypeManager)
+  self.placeableHusbandryLiquidManureUnitExtension = PlaceableHusbandryLiquidManureUnitExtension.new(_, self, i18n, fillTypeManager)
+  self.placeableHusbandryMilkUnitExtension = PlaceableHusbandryMilkUnitExtension.new(_, self, i18n, fillTypeManager)
+  self.placeableHusbandryStrawUnitExtension = PlaceableHusbandryStrawUnitExtension.new(_, self, i18n, fillTypeManager)
+  self.placeableHusbandryWaterUnitExtension = PlaceableHusbandryWaterUnitExtension.new(_, self, i18n, fillTypeManager)
+  self.placeableManureHeapUnitExtension = PlaceableManureHeapUnitExtension.new(_, self, i18n, fillTypeManager)
+  self.placeableSiloUnitExtension = PlaceableSiloUnitExtension.new(_, self, i18n, fillTypeManager)
+  self.productionPointUnitExtension = ProductionPointUnitExtension.new(_, self, i18n, fillTypeManager)
+  self.siloDialogUnitExtension = SiloDialogUnitExtension.new(_, self, i18n, fillTypeManager)
+  self.targetFillLevelUnitExtension = TargetFillLevelUnitExtension.new(_, self)
 
   return self
 end
 
 function AdditionalUnits:initialize()
-  self:loadUnitsFromXML()
-  self:loadMassFactorsFromXML()
+  if not self:loadUnitsFromXML() then
+    return
+  end
 
-  self.gui:initialize(AdditionalUnits.MOD_DIRECTORY)
+  self.gui:initialize()
   self.baleUnitExtension:initialize()
   self.feedingRobotUnitExtension:initialize()
   self.fillLevelsDisplayUnitExtension:initialize()
@@ -91,13 +95,17 @@ function AdditionalUnits:initialize()
 end
 
 function AdditionalUnits:loadMap(filename)
-  self:loadFillTypesUnitsFromXML()
-
   if g_modIsLoaded["FS22_DefPack"] then
-    MISSING_FILLTYPE["DEF"] = true
+    MISSING_FILLTYPES.DEF = true
   end
 
-  self.gui:loadMap(AdditionalUnits.MOD_DIRECTORY)
+  if g_modIsLoaded["FS22_TargetFillLevel"] then
+    self.targetFillLevelUnitExtension:loadMap()
+  end
+
+  self:loadFillTypesUnitsFromXML()
+
+  self.gui:loadMap()
 end
 
 function AdditionalUnits:loadConfigFile(file, defaultPath)
@@ -128,8 +136,8 @@ function AdditionalUnits:loadUnitsFromXML()
   xmlFile:iterate("units.unit", function (index, key)
     local unit = {
       id = xmlFile:getInt(key .. "#id", index),
-      name = xmlFile:getString(key .. "#name", ""),
-      unitShort = xmlFile:getString(key .. "#unitShort", ""),
+      name = xmlFile:getI18NValue(key .. "#name", "", AdditionalUnits.MOD_NAME),
+      shortName = xmlFile:getI18NValue(key .. "#shortName", "", AdditionalUnits.MOD_NAME),
       precision = xmlFile:getInt(key .. "#precision", 1),
       factor = xmlFile:getFloat(key .. "#factor", 1),
       isVolume = xmlFile:getBool(key .. "#isVolume", true)
@@ -140,20 +148,10 @@ function AdditionalUnits:loadUnitsFromXML()
     if isDefault ~= nil then
       unit.isDefault = isDefault
 
-      if isDefault == true then
-        foundDefault = true
-      end
+      foundDefault = isDefault
     end
 
-    if self.l10n:hasText(unit.name) then
-      unit.name = self.l10n:getText(unit.name)
-    end
-
-    if self.l10n:hasText(unit.unitShort) then
-      unit.unitShort = self.l10n:getText(unit.unitShort)
-    end
-
-    unit.name = unit.name:sub(1, 1):upper()..unit.name:sub(2)
+    unit.name = unit.name:sub(1, 1):upper() .. unit.name:sub(2)
 
     table.insert(self.units, unit)
   end)
@@ -173,6 +171,8 @@ function AdditionalUnits:saveUnitsToXMLFile()
   local xmlFile = XMLFile.create("unitsXML", AdditionalUnits.MOD_SETTINGS_DIRECTORY .. "units.xml", "units")
 
   if xmlFile == nil then
+    Logging.error("Something went wrong when trying to save units!")
+
     return
   end
 
@@ -182,7 +182,7 @@ function AdditionalUnits:saveUnitsToXMLFile()
 
     xmlFile:setInt(key .. "#id", unit.id)
     xmlFile:setString(key .. "#name", unit.name)
-    xmlFile:setString(key .. "#unitShort", unit.unitShort)
+    xmlFile:setString(key .. "#shortName", unit.shortName)
     xmlFile:setInt(key .. "#precision", unit.precision)
     xmlFile:setFloat(key .. "#factor", unit.factor)
     xmlFile:setBool(key .. "#isVolume", unit.isVolume)
@@ -197,88 +197,81 @@ function AdditionalUnits:saveUnitsToXMLFile()
 end
 
 function AdditionalUnits:loadMassFactorsFromXML()
-  local xmlFilename = self:loadConfigFile("massFactors", AdditionalUnits.DEFAULT_MASS_FACTOR_XML_PATH)
-  local xmlFile = XMLFile.loadIfExists("massFactorsXML", xmlFilename, "massFactors")
+  local xmlFile = XMLFile.loadIfExists("massFactorsXML", AdditionalUnits.DEFAULT_MASS_FACTOR_XML_PATH, "massFactors")
+  local massFactors = {}
 
   if xmlFile == nil then
-    Logging.error(string.format("Cannot load mass factors xml from (%s) path!", xmlFilename))
+    Logging.error(string.format("Cannot load mass factors xml from (%s) path!", AdditionalUnits.DEFAULT_MASS_FACTOR_XML_PATH))
 
-    return false
+    return massFactors
   end
 
   xmlFile:iterate("massFactors.massFactor", function (_, key)
     local fillTypeName = xmlFile:getString(key .. "#fillTypeName", "")
     local value = xmlFile:getFloat(key .. "#value", 1)
 
-    self.massFactors[fillTypeName] = value
+    massFactors[fillTypeName] = value
   end)
 
   xmlFile:delete()
 
-  return true
-end
-
-function AdditionalUnits:saveMassFactorsToXMLFile()
-  local xmlFile = XMLFile.create("massFactorsXML", AdditionalUnits.MOD_SETTINGS_DIRECTORY .. "massFactors.xml", "massFactors")
-
-  if xmlFile == nil then
-    return
-  end
-
-  local i = 0
-
-  for name, value in pairs(self.massFactors) do
-    local key = string.format("massFactors.massFactor(%d)", i)
-
-    xmlFile:setString(key .. "#fillTypeName", name)
-    xmlFile:setFloat(key .. "#value", value)
-
-    i = i + 1
-  end
-
-  xmlFile:save()
-  xmlFile:delete()
+  return massFactors
 end
 
 function AdditionalUnits:loadFillTypesUnitsFromXML()
   local xmlFile = XMLFile.loadIfExists("fillTypesUnitsXML", AdditionalUnits.MOD_SETTINGS_DIRECTORY .. "fillTypes.xml", "fillTypes")
 
   if xmlFile == nil then
+    local massFactors = self:loadMassFactorsFromXML()
+
     for _, fillTypesDesc in pairs(self.fillTypeManager:getFillTypes()) do
-      if fillTypesDesc.showOnPriceTable or MISSING_FILLTYPE[fillTypesDesc.name] == true then
-        self.fillTypesUnits[fillTypesDesc.name] = self:getDefaultUnitId()
+      local fillTypeName = fillTypesDesc.name
+
+      if fillTypesDesc.showOnPriceTable or MISSING_FILLTYPES[fillTypeName] == true then
+        self.fillTypesUnits[fillTypeName] = {
+          unitId = self:getDefaultUnitId(),
+          massFactor = massFactors[fillTypeName]
+        }
       end
     end
 
-    return false
+    return
   end
 
   xmlFile:iterate("fillTypes.fillType", function (_, key)
-    local fillTypeName = xmlFile:getString(key .. "#fillTypeName", "")
-    local value = xmlFile:getInt(key .. "#value", 1)
+    local name = xmlFile:getString(key .. "#name", "")
 
-    self.fillTypesUnits[fillTypeName] = self:getIsUnitIdValid(value)
+    self.fillTypesUnits[name] = {
+      unitId = xmlFile:getInt(key .. "#unitId", 1),
+      massFactor = xmlFile:getFloat(key .. "#massFactor", 1)
+    }
   end)
 
   xmlFile:delete()
-
-  return true
 end
 
 function AdditionalUnits:saveFillTypesUnitsToXMLFile()
   local xmlFile = XMLFile.create("fillTypesUnitsXML", AdditionalUnits.MOD_SETTINGS_DIRECTORY .. "fillTypes.xml", "fillTypes")
 
   if xmlFile == nil then
+    Logging.error("Something went wrong when trying to save fill types units!")
+
     return
   end
 
   local i = 0
 
-  for name, value in pairs(self.fillTypesUnits) do
+  for name, fillTypeUnit in pairs(self.fillTypesUnits) do
     local key = string.format("fillTypes.fillType(%d)", i)
 
-    xmlFile:setString(key .. "#fillTypeName", name)
-    xmlFile:setInt(key .. "#value", value)
+    xmlFile:setString(key .. "#name", name)
+    xmlFile:setInt(key .. "#unitId", fillTypeUnit.unitId)
+
+    local massFactor = fillTypeUnit.massFactor
+
+    if massFactor ~= nil then
+      xmlFile:setFloat(key .. "#massFactor", massFactor)
+    end
 
     i = i + 1
   end
@@ -287,11 +280,52 @@ function AdditionalUnits:saveFillTypesUnitsToXMLFile()
   xmlFile:delete()
 end
 
-function AdditionalUnits:formatFillLevel(fillLevel, fillType, precision, useLongName, customUnitText)
-  local unit = self:getUnitById(self:getFillTypeUnitByFillTypeName(fillType))
-  local massFactor = self:getMassFactorByFillTypeName(fillType) or 1
+function AdditionalUnits:formatFillLevel(fillLevel, fillTypeName)
+  local fillTypeUnit = self:getFillTypeUnitByFillTypeName(fillTypeName)
+  local unit = self:getUnitById(0)
+
+  if fillTypeUnit ~= nil then
+    unit = self:getUnitById(fillTypeUnit.unitId)
+
+    if not unit.isVolume then
+      local massFactor = fillTypeUnit.massFactor or 1
+
+      fillLevel = fillLevel * massFactor
+    end
+
+    fillLevel = fillLevel * unit.factor
+  end
+
+  return fillLevel, unit
+end
+
+function AdditionalUnits:formatFillLevel3(fillLevel, fillTypeName, useLongName)
+  local fillTypeUnit = self:getFillTypeUnitByFillTypeName(fillTypeName)
+  local unitName
+
+  if fillTypeUnit ~= nil then
+    local unit = self:getUnitById(fillTypeUnit.unitId)
+
+    if not unit.isVolume then
+      local massFactor = fillTypeUnit.massFactor or 1
+
+      fillLevel = fillLevel * massFactor
+    end
+
+    fillLevel = fillLevel * unit.factor
+
+    unitName = useLongName and unit.name or unit.shortName
+  end
+
+  return fillLevel, unitName
+end
+
+function AdditionalUnits:formatFillLevel2(fillLevel, fillTypeName, precision, useLongName, customUnitText)
+  local fillTypeUnit = self:getFillTypeUnitByFillTypeName(fillTypeName)
+  local unit = fillTypeUnit and self:getUnitById(fillTypeUnit.unitId) or self:getUnitById(0)
+  local massFactor = fillTypeUnit and fillTypeUnit.massFactor or 1
   local precision = unit.precision or precision
-  local unitText = useLongName and unit.name or unit.unitShort
+  local unitText = useLongName and unit.name or unit.shortName
 
   if customUnitText == nil then
     if not unit.isVolume then
@@ -308,7 +342,7 @@ function AdditionalUnits:formatFillLevel(fillLevel, fillType, precision, useLong
   if precision > 0 then
     local rounded = MathUtil.round(fillLevel, precision)
 
-    formattedNumber = string.format("%d%s%0"..precision.."d", math.floor(rounded), self.l10n.decimalSeparator, (rounded - math.floor(rounded)) * 10 ^ precision)
+    formattedNumber = string.format("%d%s%0"..precision.."d", math.floor(rounded), self.i18n.decimalSeparator, (rounded - math.floor(rounded)) * 10 ^ precision)
   else
     formattedNumber = string.format("%d", MathUtil.round(fillLevel))
   end
@@ -318,21 +352,25 @@ end
 
 function AdditionalUnits:getUnitById(id)
   for i = 1, #self.units do
-    if self.units[i].id == id then
-      return self.units[i]
+    local unit = self.units[i]
+
+    if unit.id == id then
+      return unit
     end
   end
 
   return self:getUnitById(self:getDefaultUnitId())
 end
 
+function AdditionalUnits:getUnitByIndex(index)
+  return self.units[index]
+end
+
 function AdditionalUnits:getUnitLastId()
   local id = 0
 
   for i = 1, #self.units do
-    if self.units[i].id > id then
-      id = self.units[i].id
-    end
+    id = math.max(self.units[i].id, id)
   end
 
   return id
@@ -346,27 +384,12 @@ function AdditionalUnits:getUnitIndexById(id)
   end
 end
 
-function AdditionalUnits:getDefaultUnitId()
-  local id = 1
-
-  for i = 1, #self.units do
-    if self.units[i].isDefault then
-      id = self.units[i].id
-
-      break
-    end
-  end
-
-  return id
-end
-
 function AdditionalUnits:getUnitIdByIndex(index)
-  local id = 1
+  local id = self:getDefaultUnitId()
 
   for i = 1, #self.units do
     if i == index then
       id = self.units[i].id
-
       break
     end
   end
@@ -374,34 +397,36 @@ function AdditionalUnits:getUnitIdByIndex(index)
   return id
 end
 
-function AdditionalUnits:getUnitByIndex(index)
-  return self.units[index]
-end
+function AdditionalUnits:getDefaultUnitId()
+  local id = 1
 
-function AdditionalUnits:getIsUnitIdValid(id)
-  return self:getUnitById(id).id
+  for i = 1, #self.units do
+    local unit = self.units[i]
+
+    if unit.isDefault then
+      id = unit.id
+      break
+    end
+  end
+
+  return id
 end
 
 function AdditionalUnits:getFillTypeUnitByFillTypeName(name)
   return self.fillTypesUnits[name]
 end
 
-function AdditionalUnits:getMassFactorByFillTypeName(name)
-  return self.massFactors[name]
-end
-
 function AdditionalUnits:reset()
   self.units = {}
-  self.massFactors = {}
   self.fillTypesUnits = {}
 
   if fileExists(AdditionalUnits.MOD_SETTINGS_DIRECTORY .. "units.xml") then
     deleteFolder(AdditionalUnits.MOD_SETTINGS_DIRECTORY)
   end
 
-  self:loadUnitsFromXML()
-  self:loadMassFactorsFromXML()
-  self:loadFillTypesUnitsFromXML()
+  if self:loadUnitsFromXML() then
+    self:loadFillTypesUnitsFromXML()
+  end
 end
 
 function AdditionalUnits:overwriteGameFunction(object, funcName, newFunc)
@@ -412,7 +437,7 @@ function AdditionalUnits:overwriteGameFunction(object, funcName, newFunc)
   local oldFunc = object[funcName]
 
   if oldFunc ~= nil then
-    object[funcName] = function (...)
+    object[funcName] = function(...)
       return newFunc(oldFunc, ...)
     end
   end

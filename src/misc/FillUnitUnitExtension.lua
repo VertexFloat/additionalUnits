@@ -31,7 +31,13 @@ function FillUnitUnitExtension:initialize()
           if info == nil then
             local fillType = self.fillTypeManager:getFillTypeByIndex(fillUnit.fillType)
 
-            info = {title = fillType.title, name = fillType.name, fillLevel = 0, unit = fillUnit.unitText, precision = 0}
+            info = {
+              title = fillType.title,
+              name = fillType.name,
+              fillLevel = 0,
+              unit = fillUnit.unitText,
+              precision = 0
+            }
 
             fillTypeToInfo[fillUnit.fillType] = info
 
@@ -50,9 +56,20 @@ function FillUnitUnitExtension:initialize()
     end
 
     for _, info in ipairs(spec.fillUnitInfos) do
-      local fillText, unit = self.additionalUnits:formatFillLevel(info.fillLevel, info.name, info.precision)
+      local formattedNumber
+      local formattedFillLevel, unit = self.additionalUnits:formatFillLevel(info.fillLevel, info.name)
 
-      box:addLine(info.title, fillText .. " " .. (unit or info.unit))
+      if info.precision > 0 then
+        local rounded = MathUtil.round(formattedFillLevel, info.precision)
+
+        formattedNumber = string.format("%d%s%0"..info.precision.."d", math.floor(rounded), self.i18n.decimalSeparator, (rounded - math.floor(rounded)) * 10 ^ info.precision)
+      else
+        formattedNumber = string.format("%d", MathUtil.round(formattedFillLevel))
+      end
+
+      formattedNumber = formattedNumber .. " " .. (unit.shortName or info.unit or self.i18n:getVolumeUnit())
+
+      box:addLine(info.title, formattedNumber)
     end
 
     superFunc(fillUnit, box)

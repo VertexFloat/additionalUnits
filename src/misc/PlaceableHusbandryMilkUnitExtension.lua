@@ -6,9 +6,10 @@ PlaceableHusbandryMilkUnitExtension = {}
 
 local PlaceableHusbandryMilkUnitExtension_mt = Class(PlaceableHusbandryMilkUnitExtension)
 
-function PlaceableHusbandryMilkUnitExtension.new(customMt, additionalUnits, fillTypeManager)
+function PlaceableHusbandryMilkUnitExtension.new(customMt, additionalUnits, i18n, fillTypeManager)
   local self = setmetatable({}, customMt or PlaceableHusbandryMilkUnitExtension_mt)
 
+  self.i18n = i18n
   self.additionalUnits = additionalUnits
   self.fillTypeManager = fillTypeManager
 
@@ -46,9 +47,9 @@ function PlaceableHusbandryMilkUnitExtension:initialize()
 
     local spec = husbandry.spec_husbandryMilk
     local fillLevel = husbandry:getHusbandryFillLevel(spec.fillType)
-    local formattedFillLevel, unit = self.additionalUnits:formatFillLevel(fillLevel, self.fillTypeManager:getFillTypeNameByIndex(spec.fillType), 0)
+    local formattedFillLevel, unit = self.additionalUnits:formatFillLevel(fillLevel, self.fillTypeManager:getFillTypeNameByIndex(spec.fillType))
 
-    spec.info.text = formattedFillLevel .. " " .. unit
+    spec.info.text = self.i18n:formatVolume(formattedFillLevel, 0, unit.shortName)
 
     table.insert(infoTable, spec.info)
   end)

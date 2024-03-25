@@ -6,9 +6,10 @@ PlaceableManureHeapUnitExtension = {}
 
 local PlaceableManureHeapUnitExtension_mt = Class(PlaceableManureHeapUnitExtension)
 
-function PlaceableManureHeapUnitExtension.new(customMt, additionalUnits, fillTypeManager)
+function PlaceableManureHeapUnitExtension.new(customMt, additionalUnits, i18n, fillTypeManager)
   local self = setmetatable({}, customMt or PlaceableManureHeapUnitExtension_mt)
 
+  self.i18n = i18n
   self.additionalUnits = additionalUnits
   self.fillTypeManager = fillTypeManager
 
@@ -26,9 +27,9 @@ function PlaceableManureHeapUnitExtension:initialize()
     end
 
     local fillLevel = spec.manureHeap:getFillLevel(spec.manureHeap.fillTypeIndex)
-    local fillText, unit = self.additionalUnits:formatFillLevel(fillLevel, self.fillTypeManager:getFillTypeNameByIndex(spec.manureHeap.fillTypeIndex), 0)
+    local formattedFillLevel, unit = self.additionalUnits:formatFillLevel(fillLevel, self.fillTypeManager:getFillTypeNameByIndex(spec.manureHeap.fillTypeIndex))
 
-    spec.infoFillLevel.text = fillText .. " " .. unit
+    spec.infoFillLevel.text = self.i18n:formatVolume(formattedFillLevel, 0, unit.shortName)
 
     table.insert(infoTable, spec.infoFillLevel)
   end)

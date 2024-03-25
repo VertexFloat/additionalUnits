@@ -8,11 +8,11 @@ InGameMenuGeneralSettingsFrameUnitExtension = {
 
 local InGameMenuGeneralSettingsFrameUnitExtension_mt = Class(InGameMenuGeneralSettingsFrameUnitExtension)
 
-function InGameMenuGeneralSettingsFrameUnitExtension.new(customMt, additionalUnits, gui, l10n)
+function InGameMenuGeneralSettingsFrameUnitExtension.new(customMt, additionalUnits, gui, i18n)
   local self = setmetatable({}, customMt or InGameMenuGeneralSettingsFrameUnitExtension_mt)
 
   self.gui = gui
-  self.l10n = l10n
+  self.i18n = i18n
   self.additionalUnits = additionalUnits
 
   self.isCreated = false
@@ -45,10 +45,10 @@ function InGameMenuGeneralSettingsFrameUnitExtension:initialize()
 
       buttonFrame:addElement(button)
 
-      buttonFrame.elements[1]:setText(self.l10n:getText("ui_additionalUnits_title"))
-      buttonFrame.elements[2]:setText(self.l10n:getText("ui_additionalUnits_toolTip"))
+      buttonFrame.elements[1]:setText(self.i18n:getText("ui_additionalUnits_title"))
+      buttonFrame.elements[2]:setText(self.i18n:getText("ui_additionalUnits_toolTip"))
 
-      buttonFrame.elements[3]:setText(self.l10n:getText("input_MENU"))
+      buttonFrame.elements[3]:setText(self.i18n:getText("input_MENU"))
       buttonFrame.elements[3]:applyProfile(InGameMenuGeneralSettingsFrameUnitExtension.BUTTON_PROFILE)
 
       if buttonFrame.parent ~= nil then

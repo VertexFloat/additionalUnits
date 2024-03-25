@@ -6,9 +6,10 @@ InGameMenuPricesFrameUnitExtension = {}
 
 local InGameMenuPricesFrameUnitExtension_mt = Class(InGameMenuPricesFrameUnitExtension)
 
-function InGameMenuPricesFrameUnitExtension.new(customMt, additionalUnits)
+function InGameMenuPricesFrameUnitExtension.new(customMt, additionalUnits, i18n)
   local self = setmetatable({}, customMt or InGameMenuPricesFrameUnitExtension_mt)
 
+  self.i18n = i18n
   self.additionalUnits = additionalUnits
 
   return self
@@ -27,9 +28,9 @@ function InGameMenuPricesFrameUnitExtension:initialize()
       if localLiters < 0 and foreignLiters < 0 then
         cell:getAttribute("storage"):setText("-")
       else
-        local fillLevel, unit = self.additionalUnits:formatFillLevel(math.max(localLiters, 0) + math.max(foreignLiters, 0), fillTypeDesc.name, 0)
+        local formattedFillLevel, unit = self.additionalUnits:formatFillLevel(math.max(localLiters, 0) + math.max(foreignLiters, 0), fillTypeDesc.name)
 
-        cell:getAttribute("storage"):setText(fillLevel .. " " .. unit)
+        cell:getAttribute("storage"):setText(self.i18n:formatVolume(formattedFillLevel, 0, unit.shortName))
       end
     end
   end)

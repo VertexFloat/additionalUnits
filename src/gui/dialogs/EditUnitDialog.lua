@@ -23,10 +23,10 @@ EditUnitDialog.UNIT_TEMPLATE = {
 
 local EditUnitDialog_mt = Class(EditUnitDialog, YesNoDialog)
 
-function EditUnitDialog.new(target, customMt, additionalUnits, l10n)
+function EditUnitDialog.new(target, customMt, additionalUnits, i18n)
   local self = YesNoDialog.new(target, customMt or EditUnitDialog_mt)
 
-  self.l10n = l10n
+  self.i18n = i18n
   self.additionalUnits = additionalUnits
 
   self.precisionMapping = {}
@@ -38,10 +38,10 @@ function EditUnitDialog.new(target, customMt, additionalUnits, l10n)
 end
 
 function EditUnitDialog:setData(data)
-  local title = self.l10n:getText("ui_additionalUnits_editUnit_title_new")
+  local title = self.i18n:getText("ui_additionalUnits_editUnit_title_new")
 
   if data ~= nil then
-    title = string.format(self.l10n:getText("ui_additionalUnits_editUnit_title"), data.name)
+    title = string.format(self.i18n:getText("ui_additionalUnits_editUnit_title"), data.name)
 
     self.unit = data
   end

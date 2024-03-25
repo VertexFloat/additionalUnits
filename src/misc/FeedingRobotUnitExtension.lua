@@ -27,9 +27,9 @@ function FeedingRobotUnitExtension:initialize()
           fillTypeName = self.fillTypeManager:getFillTypeNameByIndex(fillType)
         end
 
-        local fillText, unit = self.additionalUnits:formatFillLevel(fillLevel, fillTypeName, 0, false)
+        local formattedFillLevel, unit = self.additionalUnits:formatFillLevel(fillLevel, fillTypeName)
 
-        info.text = string.format("%d %s", fillText, unit)
+        info.text = string.format("%d %s", formattedFillLevel, unit.shortName)
 
         table.insert(infoTable, info)
       end

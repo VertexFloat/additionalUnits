@@ -12,10 +12,10 @@ EditFillTypeUnitDialog = {
 
 local EditFillTypeUnitDialog_mt = Class(EditFillTypeUnitDialog, YesNoDialog)
 
-function EditFillTypeUnitDialog.new(target, customMt, additionalUnits, l10n)
+function EditFillTypeUnitDialog.new(target, customMt, additionalUnits, i18n)
   local self = YesNoDialog.new(target, customMt or EditFillTypeUnitDialog_mt)
 
-  self.l10n = l10n
+  self.i18n = i18n
   self.additionalUnits = additionalUnits
 
   self:registerControls(EditFillTypeUnitDialog.CONTROLS)
@@ -24,7 +24,7 @@ function EditFillTypeUnitDialog.new(target, customMt, additionalUnits, l10n)
 end
 
 function EditFillTypeUnitDialog:setData(data)
-  local title = string.format(self.l10n:getText("ui_additionalUnits_editFillTypeUnit_title"), data.fillType.title)
+  local title = string.format(self.i18n:getText("ui_additionalUnits_editFillTypeUnit_title"), data.fillType.title)
   self.dialogTitleElement:setText(title)
   self.dialogIconElement:setImageFilename(data.fillType.hudOverlayFilename)
 

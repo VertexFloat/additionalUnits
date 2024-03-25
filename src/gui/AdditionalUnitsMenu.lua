@@ -13,11 +13,11 @@ AdditionalUnitsMenu.CONTROLS = {
   "deleteButton"
 }
 
-function AdditionalUnitsMenu.new(target, customMt, additionalUnits, gui, l10n, fillTypeManager)
+function AdditionalUnitsMenu.new(target, customMt, additionalUnits, gui, i18n, fillTypeManager)
   local self = AdditionalUnitsMenu:superClass().new(target, customMt or AdditionalUnitsMenu_mt)
 
   self.gui = gui
-  self.l10n = l10n
+  self.i18n = i18n
   self.additionalUnits = additionalUnits
   self.fillTypeManager = fillTypeManager
 
@@ -30,7 +30,7 @@ function AdditionalUnitsMenu.new(target, customMt, additionalUnits, gui, l10n, f
 end
 
 function AdditionalUnitsMenu.createFromExistingGui(gui, guiName)
-  local newGui = AdditionalUnitsMenu.new(nil, nil, gui.additionalUnits, gui.gui, gui.l10n, gui.fillTypeManager)
+  local newGui = AdditionalUnitsMenu.new(nil, nil, gui.additionalUnits, gui.gui, gui.i18n, gui.fillTypeManager)
 
   g_gui.guis[gui.name].target:delete()
   g_gui.guis[gui.name]:delete()
@@ -44,7 +44,7 @@ function AdditionalUnitsMenu:copyAttributes(src)
   AdditionalUnitsMenu:superClass().copyAttributes(self, src)
 
   self.gui = src.gui
-  self.l10n = src.l10n
+  self.i18n = src.i18n
   self.additionalUnits = src.additionalUnits
   self.fillTypeManager = src.fillTypeManager
 end
@@ -105,7 +105,7 @@ function AdditionalUnitsMenu:populateCellForItemInSection(list, section, index, 
     end
 
     local unit = self.additionalUnits:getUnitById(fillTypeUnit.unitId)
-    local massFactor = fillTypeUnit.massFactor and string.format(self.l10n:getText("ui_additionalUnits_massFactor"), math.ceil(fillTypeUnit.massFactor * 1000)) or "-"
+    local massFactor = fillTypeUnit.massFactor and string.format(self.i18n:getText("ui_additionalUnits_massFactor"), math.ceil(fillTypeUnit.massFactor * 1000)) or "-"
 
     cell:getAttribute("icon"):setImageFilename(fillTypeDesc.hudOverlayFilename)
     cell:getAttribute("title"):setText(fillTypeDesc.title)
@@ -179,7 +179,7 @@ function AdditionalUnitsMenu:onNewUnit(unit)
 
   self.gui:showInfoDialog({
     dialogType = DialogElement.TYPE_INFO,
-    text = string.format(self.l10n:getText("ui_additionalUnits_createdNewUnit"), unit.name)
+    text = string.format(self.i18n:getText("ui_additionalUnits_createdNewUnit"), unit.name)
   })
 
   self.unitsList:reloadData()
@@ -190,8 +190,8 @@ function AdditionalUnitsMenu:onClickDelete()
   local unit = self.additionalUnits:getUnitByIndex(self.unitsList.selectedIndex)
 
   self.gui:showYesNoDialog({
-    text = string.format(self.l10n:getText("ui_additionalUnits_youWantToDeleteUnit"), unit.name),
-    title = self.l10n:getText("button_delete"),
+    text = string.format(self.i18n:getText("ui_additionalUnits_youWantToDeleteUnit"), unit.name),
+    title = self.i18n:getText("button_delete"),
     dialogType = DialogElement.TYPE_QUESTION,
     callback = self.onYesNoDeleteUnit,
     args = unit,
@@ -214,7 +214,7 @@ function AdditionalUnitsMenu:onYesNoDeleteUnit(yes, unit)
 
   self.gui:showInfoDialog({
     dialogType = DialogElement.TYPE_INFO,
-    text = self.l10n:getText("ui_additionalUnits_deletedUnit")
+    text = self.i18n:getText("ui_additionalUnits_deletedUnit")
   })
 
   self.additionalUnits:saveUnitsToXMLFile()
@@ -235,8 +235,8 @@ end
 
 function AdditionalUnitsMenu:onClickReset()
   self.gui:showYesNoDialog({
-    text = self.l10n:getText("ui_loadDefaultSettings"),
-    title = self.l10n:getText("button_reset"),
+    text = self.i18n:getText("ui_loadDefaultSettings"),
+    title = self.i18n:getText("button_reset"),
     dialogType = DialogElement.TYPE_WARNING,
     callback = self.onYesNoResetSettings,
     target = self
@@ -252,7 +252,7 @@ function AdditionalUnitsMenu:onYesNoResetSettings(yes)
 
   self.gui:showInfoDialog({
     dialogType = DialogElement.TYPE_INFO,
-    text = self.l10n:getText("ui_loadedDefaultSettings")
+    text = self.i18n:getText("ui_loadedDefaultSettings")
   })
 
   self:rebuildTables()

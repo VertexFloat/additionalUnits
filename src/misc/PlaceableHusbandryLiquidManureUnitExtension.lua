@@ -6,9 +6,10 @@ PlaceableHusbandryLiquidManureUnitExtension = {}
 
 local PlaceableHusbandryLiquidManureUnitExtension_mt = Class(PlaceableHusbandryLiquidManureUnitExtension)
 
-function PlaceableHusbandryLiquidManureUnitExtension.new(customMt, additionalUnits, fillTypeManager)
+function PlaceableHusbandryLiquidManureUnitExtension.new(customMt, additionalUnits, i18n, fillTypeManager)
   local self = setmetatable({}, customMt or PlaceableHusbandryLiquidManureUnitExtension_mt)
 
+  self.i18n = i18n
   self.additionalUnits = additionalUnits
   self.fillTypeManager = fillTypeManager
 
@@ -46,9 +47,9 @@ function PlaceableHusbandryLiquidManureUnitExtension:initialize()
 
     local spec = husbandry.spec_husbandryLiquidManure
     local fillLevel = husbandry:getHusbandryFillLevel(spec.fillType)
-    local formattedFillLevel, unit = self.additionalUnits:formatFillLevel(fillLevel, self.fillTypeManager:getFillTypeNameByIndex(spec.fillType), 0)
+    local formattedFillLevel, unit = self.additionalUnits:formatFillLevel(fillLevel, self.fillTypeManager:getFillTypeNameByIndex(spec.fillType))
 
-    spec.info.text = formattedFillLevel .. " " .. unit
+    spec.info.text = self.i18n:formatVolume(formattedFillLevel, 0, unit.shortName)
 
     table.insert(infoTable, spec.info)
   end)

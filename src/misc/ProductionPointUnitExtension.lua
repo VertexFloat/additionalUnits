@@ -9,11 +9,11 @@ ProductionPointUnitExtension = {}
 
 local ProductionPointUnitExtension_mt = Class(ProductionPointUnitExtension)
 
-function ProductionPointUnitExtension.new(customMt, additionalUnits, l10n, fillTypeManager)
+function ProductionPointUnitExtension.new(customMt, additionalUnits, i18n, fillTypeManager)
   local self = setmetatable({}, customMt or ProductionPointUnitExtension_mt)
 
+  self.i18n = i18n
   self.additionalUnits = additionalUnits
-  self.l10n = l10n
   self.fillTypeManager = fillTypeManager
 
   return self
@@ -24,7 +24,7 @@ function ProductionPointUnitExtension:initialize()
     local owningFarm = g_farmManager:getFarmById(production:getOwnerFarmId())
 
     table.insert(infoTable, {
-      title = self.l10n:getText("fieldInfo_ownedBy"),
+      title = self.i18n:getText("fieldInfo_ownedBy"),
       text = owningFarm.name
     })
 
@@ -40,7 +40,7 @@ function ProductionPointUnitExtension:initialize()
 
         table.insert(infoTable, {
           title = productionName,
-          text = self.l10n:getText(ProductionPoint.PROD_STATUS_TO_L10N[production:getProductionStatus(activeProduction.id)])
+          text = self.i18n:getText(ProductionPoint.PROD_STATUS_TO_i18n[production:getProductionStatus(activeProduction.id)])
         })
       end
     else

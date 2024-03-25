@@ -14,15 +14,15 @@ source(AdditionalUnitsGui.MOD_DIRECTORY .. "src/gui/InGameMenuGeneralSettingsFra
 
 local AdditionalUnitsGui_mt = Class(AdditionalUnitsGui)
 
-function AdditionalUnitsGui.new(customMt, additionalUnits, gui, l10n, fillTypeManager)
+function AdditionalUnitsGui.new(customMt, additionalUnits, gui, i18n, fillTypeManager)
   local self = setmetatable({}, customMt or AdditionalUnitsGui_mt)
 
   self.gui = gui
 
-  self.editUnitDialog = EditUnitDialog.new(nil, customMt, additionalUnits, l10n)
-  self.editFillTypeUnitDialog = EditFillTypeUnitDialog.new(nil, customMt, additionalUnits, l10n)
-  self.additionalUnitsMenu = AdditionalUnitsMenu.new(nil, customMt, additionalUnits, gui, l10n, fillTypeManager)
-  self.inGameMenuGeneralSettingsFrameUnitExtension = InGameMenuGeneralSettingsFrameUnitExtension.new(customMt, additionalUnits, gui, l10n)
+  self.editUnitDialog = EditUnitDialog.new(nil, customMt, additionalUnits, i18n)
+  self.editFillTypeUnitDialog = EditFillTypeUnitDialog.new(nil, customMt, additionalUnits, i18n)
+  self.additionalUnitsMenu = AdditionalUnitsMenu.new(nil, customMt, additionalUnits, gui, i18n, fillTypeManager)
+  self.inGameMenuGeneralSettingsFrameUnitExtension = InGameMenuGeneralSettingsFrameUnitExtension.new(customMt, additionalUnits, gui, i18n)
 
   return self
 end
