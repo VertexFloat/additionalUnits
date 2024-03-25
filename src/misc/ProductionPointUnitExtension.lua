@@ -48,7 +48,7 @@ function ProductionPointUnitExtension:initialize()
     end
 
     local fillType, fillLevel = nil
-    local fillText, unit = nil
+    local formattedFillLevel, unit = nil
     local fillTypesDisplayed = false
 
     table.insert(infoTable, production.infoTables.storage)
@@ -60,11 +60,11 @@ function ProductionPointUnitExtension:initialize()
       if fillLevel > 1 then
         fillTypesDisplayed = true
 
-        fillText, unit = self.additionalUnits:formatFillLevel(fillLevel, self.fillTypeManager:getFillTypeNameByIndex(fillType), 0)
+        formattedFillLevel, unit = self.additionalUnits:formatFillLevel(fillLevel, self.fillTypeManager:getFillTypeNameByIndex(fillType))
 
         table.insert(infoTable, {
           title = self.fillTypeManager:getFillTypeTitleByIndex(fillType),
-          text = fillText .. " " .. unit
+          text = self.i18n:formatVolume(formattedFillLevel, 0, unit.shortName)
         })
       end
     end
@@ -76,11 +76,11 @@ function ProductionPointUnitExtension:initialize()
       if fillLevel > 1 then
         fillTypesDisplayed = true
 
-        fillText, unit = self.additionalUnits:formatFillLevel(fillLevel, self.fillTypeManager:getFillTypeNameByIndex(fillType), 0)
+        formattedFillLevel, unit = self.additionalUnits:formatFillLevel(fillLevel, self.fillTypeManager:getFillTypeNameByIndex(fillType))
 
         table.insert(infoTable, {
           title = self.fillTypeManager:getFillTypeTitleByIndex(fillType),
-          text = fillText .. " " .. unit
+          text = self.i18n:formatVolume(formattedFillLevel, 0, unit.shortName)
         })
       end
     end

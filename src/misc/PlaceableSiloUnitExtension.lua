@@ -31,7 +31,10 @@ function PlaceableSiloUnitExtension:initialize()
 
     for fillType, fillLevel in pairs(spec.fillTypesAndLevelsAuxiliary) do
       if fillLevel > 0.1 then
-        spec.fillTypeToFillTypeStorageTable[fillType] = spec.fillTypeToFillTypeStorageTable[fillType] or { fillType = fillType, fillLevel = fillLevel }
+        spec.fillTypeToFillTypeStorageTable[fillType] = spec.fillTypeToFillTypeStorageTable[fillType] or {
+          fillType = fillType,
+          fillLevel = fillLevel
+        }
         spec.fillTypeToFillTypeStorageTable[fillType].fillLevel = fillLevel
 
         table.insert(spec.infoTriggerFillTypesAndLevels, spec.fillTypeToFillTypeStorageTable[fillType])
@@ -39,19 +42,27 @@ function PlaceableSiloUnitExtension:initialize()
     end
 
     table.clear(spec.fillTypesAndLevelsAuxiliary)
-    table.sort(spec.infoTriggerFillTypesAndLevels, function(a, b) return a.fillLevel > b.fillLevel end)
+    table.sort(spec.infoTriggerFillTypesAndLevels, function(a, b)
+      return a.fillLevel > b.fillLevel
+    end)
 
     local numEntries = math.min(#spec.infoTriggerFillTypesAndLevels, PlaceableSilo.INFO_TRIGGER_NUM_DISPLAYED_FILLTYPES)
 
     if numEntries > 0 then
       for i = 1, numEntries do
         local fillTypeAndLevel = spec.infoTriggerFillTypesAndLevels[i]
-        local fillLevel, unit = self.additionalUnits:formatFillLevel(fillTypeAndLevel.fillLevel, self.fillTypeManager:getFillTypeNameByIndex(fillTypeAndLevel.fillType), 0)
+        local formattedFillLevel, unit = self.additionalUnits:formatFillLevel(fillTypeAndLevel.fillLevel, self.fillTypeManager:getFillTypeNameByIndex(fillTypeAndLevel.fillType))
 
-        table.insert(infoTable, {title = self.fillTypeManager:getFillTypeTitleByIndex(fillTypeAndLevel.fillType), text = fillLevel .. " " .. unit})
+        table.insert(infoTable, {
+          title = self.fillTypeManager:getFillTypeTitleByIndex(fillTypeAndLevel.fillType),
+          text = self.i18n:formatVolume(formattedFillLevel, 0, unit.shortName)
+        })
       end
     else
-      table.insert(infoTable, {title = self.i18n:getText("infohud_siloEmpty"), text = ""})
+      table.insert(infoTable, {
+        title = self.i18n:getText("infohud_siloEmpty"),
+        text = ""
+      })
     end
   end)
 
@@ -89,9 +100,9 @@ function PlaceableSiloUnitExtension:initialize()
 
         local price = fillLevel * lowestSellPrice * PlaceableSilo.PRICE_SELL_FACTOR
         local fillType = self.fillTypeManager:getFillTypeByIndex(fillTypeIndex)
-        local fillText, unit = self.additionalUnits:formatFillLevel(fillLevel, fillType.name, 0)
+        local formattedFillLevel, unit = self.additionalUnits:formatFillLevel(fillLevel, fillType.name)
 
-        warning = string.format("%s%s (%s) - %s: %s\n", warning, fillType.title, fillText .. " " .. unit, self.i18n:getText("ui_sellValue"), self.i18n:formatMoney(price, 0, true, true))
+        warning = string.format("%s%s (%s) - %s: %s\n", warning, fillType.title, self.i18n:formatVolume(formattedFillLevel, 0, unit.shortName), self.i18n:getText("ui_sellValue"), self.i18n:formatMoney(price, 0, true, true))
 
         spec.totalFillTypeSellPrice = spec.totalFillTypeSellPrice + price
       end
