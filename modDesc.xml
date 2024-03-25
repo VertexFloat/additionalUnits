@@ -73,5 +73,5 @@ Po więcej informacji, pełny dziennik zmian, pomoc lub zgłoszenie błędu, odw
     <sourceFile filename="src/AdditionalUnits.lua"/>
   </extraSourceFiles>
 
-  <l10n filenamePrefix="l10n/l10n"/>
+  <l10n filenamePrefix="l10n/locale"/>
 </modDesc>
