@@ -14,6 +14,8 @@ AdditionalUnits = {
   MOD_SETTINGS_DIRECTORY = g_currentModSettingsDirectory
 }
 
+INFO_DISPLAY_EXTENSION_MOD_LOADED = false
+
 AdditionalUnits.DEFAULT_UNITS_XML_PATH = AdditionalUnits.MOD_DIRECTORY .. "data/units.xml"
 AdditionalUnits.DEFAULT_MASS_FACTOR_XML_PATH = AdditionalUnits.MOD_DIRECTORY .. "data/massFactors.xml"
 
@@ -34,8 +36,6 @@ source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/PlaceableManureHeapUnitExtensi
 source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/PlaceableSiloUnitExtension.lua")
 source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/ProductionPointUnitExtension.lua")
 source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/SiloDialogUnitExtension.lua")
-source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/TargetFillLevelUnitExtension.lua")
-source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/StrawHarvestPackUnitExtension.lua")
 source(AdditionalUnits.MOD_DIRECTORY .. "src/shared/constants.lua")
 
 local AdditionalUnits_mt = Class(AdditionalUnits)
@@ -50,24 +50,6 @@ function AdditionalUnits.new(customMt, gui, i18n, fillTypeManager)
   self.fillTypesUnits = {}
 
   self.gui = AdditionalUnitsGui.new(_, self, gui, i18n, fillTypeManager)
-  self.baleUnitExtension = BaleUnitExtension.new(_, self, i18n, fillTypeManager)
-  self.feedingRobotUnitExtension = FeedingRobotUnitExtension.new(_, self, fillTypeManager)
-  self.fillLevelsDisplayUnitExtension = FillLevelsDisplayUnitExtension.new(_, self, fillTypeManager)
-  self.fillUnitUnitExtension = FillUnitUnitExtension.new(_, self, fillTypeManager)
-  self.inGameMenuAnimalsFrameUnitExtension = InGameMenuAnimalsFrameUnitExtension.new(_, self, i18n, fillTypeManager)
-  self.inGameMenuPricesFrameUnitExtension = InGameMenuPricesFrameUnitExtension.new(_, self, i18n)
-  self.inGameMenuProductionFrameUnitExtension = InGameMenuProductionFrameUnitExtension.new(_, self, i18n, fillTypeManager)
-  self.placeableHusbandryFoodUnitExtension = PlaceableHusbandryFoodUnitExtension.new(_, self)
-  self.placeableHusbandryLiquidManureUnitExtension = PlaceableHusbandryLiquidManureUnitExtension.new(_, self, i18n, fillTypeManager)
-  self.placeableHusbandryMilkUnitExtension = PlaceableHusbandryMilkUnitExtension.new(_, self, i18n, fillTypeManager)
-  self.placeableHusbandryStrawUnitExtension = PlaceableHusbandryStrawUnitExtension.new(_, self, i18n, fillTypeManager)
-  self.placeableHusbandryWaterUnitExtension = PlaceableHusbandryWaterUnitExtension.new(_, self, i18n, fillTypeManager)
-  self.placeableManureHeapUnitExtension = PlaceableManureHeapUnitExtension.new(_, self, i18n, fillTypeManager)
-  self.placeableSiloUnitExtension = PlaceableSiloUnitExtension.new(_, self, i18n, fillTypeManager)
-  self.productionPointUnitExtension = ProductionPointUnitExtension.new(_, self, i18n, fillTypeManager)
-  self.siloDialogUnitExtension = SiloDialogUnitExtension.new(_, self, i18n, fillTypeManager)
-  self.targetFillLevelUnitExtension = TargetFillLevelUnitExtension.new(_, self)
-  self.strawHarvestPackUnitExtension = StrawHarvestPackUnitExtension.new(_, self, i18n)
 
   return self
 end
@@ -78,22 +60,23 @@ function AdditionalUnits:initialize()
   end
 
   self.gui:initialize()
-  self.baleUnitExtension:initialize()
-  self.feedingRobotUnitExtension:initialize()
-  self.fillLevelsDisplayUnitExtension:initialize()
-  self.fillUnitUnitExtension:initialize()
-  self.inGameMenuAnimalsFrameUnitExtension:initialize()
-  self.inGameMenuPricesFrameUnitExtension:initialize()
-  self.inGameMenuProductionFrameUnitExtension:initialize()
-  self.placeableHusbandryFoodUnitExtension:initialize()
-  self.placeableHusbandryLiquidManureUnitExtension:initialize()
-  self.placeableHusbandryMilkUnitExtension:initialize()
-  self.placeableHusbandryStrawUnitExtension:initialize()
-  self.placeableHusbandryWaterUnitExtension:initialize()
-  self.placeableManureHeapUnitExtension:initialize()
-  self.placeableSiloUnitExtension:initialize()
-  self.productionPointUnitExtension:initialize()
-  self.siloDialogUnitExtension:initialize()
+
+  BaleUnitExtension:overwriteGameFunctions()
+  FeedingRobotUnitExtension:overwriteGameFunctions()
+  FillLevelsDisplayUnitExtension:overwriteGameFunctions()
+  FillUnitUnitExtension:overwriteGameFunctions()
+  InGameMenuAnimalsFrameUnitExtension:overwriteGameFunctions()
+  InGameMenuPricesFrameUnitExtension:overwriteGameFunctions()
+  InGameMenuProductionFrameUnitExtension:overwriteGameFunctions()
+  PlaceableHusbandryFoodUnitExtension:overwriteGameFunctions()
+  PlaceableHusbandryLiquidManureUnitExtension:overwriteGameFunctions()
+  PlaceableHusbandryMilkUnitExtension:overwriteGameFunctions()
+  PlaceableHusbandryStrawUnitExtension:overwriteGameFunctions()
+  PlaceableHusbandryWaterUnitExtension:overwriteGameFunctions()
+  PlaceableManureHeapUnitExtension:overwriteGameFunctions()
+  PlaceableSiloUnitExtension:overwriteGameFunctions()
+  ProductionPointUnitExtension:overwriteGameFunctions()
+  SiloDialogUnitExtension:overwriteGameFunctions()
 end
 
 function AdditionalUnits:loadMap(filename)
@@ -102,11 +85,13 @@ function AdditionalUnits:loadMap(filename)
   end
 
   if g_modIsLoaded["FS22_TargetFillLevel"] then
-    self.targetFillLevelUnitExtension:loadMap()
+    source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/TargetFillLevelUnitExtension.lua")
+    TargetFillLevelUnitExtension:overwriteGameFunctions()
   end
 
   if g_modIsLoaded["FS22_strawHarvestPack"] then
-    self.strawHarvestPackUnitExtension:loadMap()
+    source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/StrawHarvestPackUnitExtension.lua")
+    StrawHarvestPackUnitExtension:overwriteGameFunctions()
   end
 
   self:loadFillTypesUnitsFromXML()
@@ -233,7 +218,7 @@ function AdditionalUnits:loadFillTypesUnitsFromXML()
     for _, fillTypesDesc in pairs(self.fillTypeManager:getFillTypes()) do
       local fillTypeName = fillTypesDesc.name
 
-      if fillTypesDesc.showOnPriceTable or MISSING_FILLTYPES[fillTypeName] == true then
+      if INVALID_FILLTYPES[fillTypeName] ~= false and fillTypesDesc.showOnPriceTable or MISSING_FILLTYPES[fillTypeName] == true then
         self.fillTypesUnits[fillTypeName] = {
           unitId = self:getDefaultUnitId(),
           massFactor = massFactors[fillTypeName]
@@ -381,20 +366,6 @@ function AdditionalUnits:reset()
 
   if self:loadUnitsFromXML() then
     self:loadFillTypesUnitsFromXML()
-  end
-end
-
-function AdditionalUnits:overwriteGameFunction(object, funcName, newFunc)
-  if object == nil then
-    return
-  end
-
-  local oldFunc = object[funcName]
-
-  if oldFunc ~= nil then
-    object[funcName] = function(...)
-      return newFunc(oldFunc, ...)
-    end
   end
 end
 
