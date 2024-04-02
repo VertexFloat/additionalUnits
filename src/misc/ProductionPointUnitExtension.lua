@@ -7,90 +7,82 @@
 
 ProductionPointUnitExtension = {}
 
-local ProductionPointUnitExtension_mt = Class(ProductionPointUnitExtension)
+function ProductionPointUnitExtension:updateInfo(superFunc, infoTable)
+  local owningFarm = g_farmManager:getFarmById(self:getOwnerFarmId())
 
-function ProductionPointUnitExtension.new(customMt, additionalUnits, i18n, fillTypeManager)
-  local self = setmetatable({}, customMt or ProductionPointUnitExtension_mt)
+  table.insert(infoTable, {
+    title = g_i18n:getText("fieldInfo_ownedBy"),
+    text = owningFarm.name
+  })
 
-  self.i18n = i18n
-  self.additionalUnits = additionalUnits
-  self.fillTypeManager = fillTypeManager
+  if #self.activeProductions > 0 then
+    table.insert(infoTable, self.infoTables.activeProds)
 
-  return self
+    local activeProduction = nil
+
+    for i = 1, #self.activeProductions do
+      activeProduction = self.activeProductions[i]
+
+      local productionName = activeProduction.name or g_fillTypeManager:getFillTypeTitleByIndex(activeProduction.primaryProductFillType)
+
+      table.insert(infoTable, {
+        title = productionName,
+        text = g_i18n:getText(ProductionPoint.PROD_STATUS_TO_i18n[self:getProductionStatus(activeProduction.id)])
+      })
+    end
+  else
+    table.insert(infoTable, self.infoTables.noActiveProd)
+  end
+
+  local fillType, fillLevel = nil
+  local formattedFillLevel, unit = nil
+  local fillTypesDisplayed = false
+
+  table.insert(infoTable, self.infoTables.storage)
+
+  for i = 1, #self.inputFillTypeIdsArray do
+    fillType = self.inputFillTypeIdsArray[i]
+    fillLevel = self:getFillLevel(fillType)
+
+    if fillLevel > 1 then
+      fillTypesDisplayed = true
+
+      formattedFillLevel, unit = g_additionalUnits:formatFillLevel(fillLevel, g_fillTypeManager:getFillTypeNameByIndex(fillType))
+
+      table.insert(infoTable, {
+        title = g_fillTypeManager:getFillTypeTitleByIndex(fillType),
+        text = g_i18n:formatVolume(formattedFillLevel, 0, unit.shortName)
+      })
+    end
+  end
+
+  for i = 1, #self.outputFillTypeIdsArray do
+    fillType = self.outputFillTypeIdsArray[i]
+    fillLevel = self:getFillLevel(fillType)
+
+    if fillLevel > 1 then
+      fillTypesDisplayed = true
+
+      formattedFillLevel, unit = g_additionalUnits:formatFillLevel(fillLevel, g_fillTypeManager:getFillTypeNameByIndex(fillType))
+
+      table.insert(infoTable, {
+        title = g_fillTypeManager:getFillTypeTitleByIndex(fillType),
+        text = g_i18n:formatVolume(formattedFillLevel, 0, unit.shortName)
+      })
+    end
+  end
+
+  if not fillTypesDisplayed then
+    table.insert(infoTable, self.infoTables.storageEmpty)
+  end
+
+  if self.palletLimitReached then
+    table.insert(infoTable, self.infoTables.palletLimitReached)
+  end
 end
 
-function ProductionPointUnitExtension:initialize()
-  self.additionalUnits:overwriteGameFunction(ProductionPoint, "updateInfo", function (_, production, infoTable)
-    local owningFarm = g_farmManager:getFarmById(production:getOwnerFarmId())
-
-    table.insert(infoTable, {
-      title = self.i18n:getText("fieldInfo_ownedBy"),
-      text = owningFarm.name
-    })
-
-    if #production.activeProductions > 0 then
-      table.insert(infoTable, production.infoTables.activeProds)
-
-      local activeProduction = nil
-
-      for i = 1, #production.activeProductions do
-        activeProduction = production.activeProductions[i]
-
-        local productionName = activeProduction.name or self.fillTypeManager:getFillTypeTitleByIndex(activeProduction.primaryProductFillType)
-
-        table.insert(infoTable, {
-          title = productionName,
-          text = self.i18n:getText(ProductionPoint.PROD_STATUS_TO_i18n[production:getProductionStatus(activeProduction.id)])
-        })
-      end
-    else
-      table.insert(infoTable, production.infoTables.noActiveProd)
-    end
-
-    local fillType, fillLevel = nil
-    local formattedFillLevel, unit = nil
-    local fillTypesDisplayed = false
-
-    table.insert(infoTable, production.infoTables.storage)
-
-    for i = 1, #production.inputFillTypeIdsArray do
-      fillType = production.inputFillTypeIdsArray[i]
-      fillLevel = production:getFillLevel(fillType)
-
-      if fillLevel > 1 then
-        fillTypesDisplayed = true
-
-        formattedFillLevel, unit = self.additionalUnits:formatFillLevel(fillLevel, self.fillTypeManager:getFillTypeNameByIndex(fillType))
-
-        table.insert(infoTable, {
-          title = self.fillTypeManager:getFillTypeTitleByIndex(fillType),
-          text = self.i18n:formatVolume(formattedFillLevel, 0, unit.shortName)
-        })
-      end
-    end
-
-    for i = 1, #production.outputFillTypeIdsArray do
-      fillType = production.outputFillTypeIdsArray[i]
-      fillLevel = production:getFillLevel(fillType)
-
-      if fillLevel > 1 then
-        fillTypesDisplayed = true
-
-        formattedFillLevel, unit = self.additionalUnits:formatFillLevel(fillLevel, self.fillTypeManager:getFillTypeNameByIndex(fillType))
-
-        table.insert(infoTable, {
-          title = self.fillTypeManager:getFillTypeTitleByIndex(fillType),
-          text = self.i18n:formatVolume(formattedFillLevel, 0, unit.shortName)
-        })
-      end
-    end
-
-    if not fillTypesDisplayed then
-      table.insert(infoTable, production.infoTables.storageEmpty)
-    end
-
-    if production.palletLimitReached then
-      table.insert(infoTable, production.infoTables.palletLimitReached)
-    end
-  end)
+function ProductionPointUnitExtension:overwriteGameFunctions()
+  if not INFO_DISPLAY_EXTENSION_MOD_LOADED then
+    ProductionPoint.updateInfo = Utils.overwrittenFunction(ProductionPoint.updateInfo, ProductionPointUnitExtension.updateInfo)
+  end
 end

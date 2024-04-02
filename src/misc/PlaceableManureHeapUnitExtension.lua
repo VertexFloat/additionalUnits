@@ -4,33 +4,25 @@
 
 PlaceableManureHeapUnitExtension = {}
 
-local PlaceableManureHeapUnitExtension_mt = Class(PlaceableManureHeapUnitExtension)
+function PlaceableManureHeapUnitExtension:updateInfo(_, superFunc, infoTable)
+  superFunc(self, infoTable)
 
-function PlaceableManureHeapUnitExtension.new(customMt, additionalUnits, i18n, fillTypeManager)
-  local self = setmetatable({}, customMt or PlaceableManureHeapUnitExtension_mt)
+  local spec = self.spec_manureHeap
 
-  self.i18n = i18n
-  self.additionalUnits = additionalUnits
-  self.fillTypeManager = fillTypeManager
+  if spec.manureHeap == nil then
+    return
+  end
 
-  return self
+  local fillLevel = spec.manureHeap:getFillLevel(spec.manureHeap.fillTypeIndex)
+  local formattedFillLevel, unit = g_additionalUnits:formatFillLevel(fillLevel, g_fillTypeManager:getFillTypeNameByIndex(spec.manureHeap.fillTypeIndex))
+
+  spec.infoFillLevel.text = g_i18n:formatVolume(formattedFillLevel, 0, unit.shortName)
+
+  table.insert(infoTable, spec.infoFillLevel)
 end
 
-function PlaceableManureHeapUnitExtension:initialize()
-  self.additionalUnits:overwriteGameFunction(PlaceableManureHeap, "updateInfo", function (_, heap, superFunc, infoTable)
-    superFunc(heap, infoTable)
-
-    local spec = heap.spec_manureHeap
-
-    if spec.manureHeap == nil then
-      return
-    end
-
-    local fillLevel = spec.manureHeap:getFillLevel(spec.manureHeap.fillTypeIndex)
-    local formattedFillLevel, unit = self.additionalUnits:formatFillLevel(fillLevel, self.fillTypeManager:getFillTypeNameByIndex(spec.manureHeap.fillTypeIndex))
-
-    spec.infoFillLevel.text = self.i18n:formatVolume(formattedFillLevel, 0, unit.shortName)
-
-    table.insert(infoTable, spec.infoFillLevel)
-  end)
+function PlaceableManureHeapUnitExtension:overwriteGameFunctions()
+  if not INFO_DISPLAY_EXTENSION_MOD_LOADED then
+    PlaceableManureHeap.updateInfo = Utils.overwrittenFunction(PlaceableManureHeap.updateInfo, PlaceableManureHeapUnitExtension.updateInfo)
+  end
 end

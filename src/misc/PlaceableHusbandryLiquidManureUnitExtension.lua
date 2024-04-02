@@ -4,53 +4,47 @@
 
 PlaceableHusbandryLiquidManureUnitExtension = {}
 
-local PlaceableHusbandryLiquidManureUnitExtension_mt = Class(PlaceableHusbandryLiquidManureUnitExtension)
+function PlaceableHusbandryLiquidManureUnitExtension:getConditionInfos(_, superFunc)
+  local infos = superFunc(self)
+  local spec = self.spec_husbandryLiquidManure
 
-function PlaceableHusbandryLiquidManureUnitExtension.new(customMt, additionalUnits, i18n, fillTypeManager)
-  local self = setmetatable({}, customMt or PlaceableHusbandryLiquidManureUnitExtension_mt)
+  local info = {}
+  local fillType = g_fillTypeManager:getFillTypeByIndex(spec.fillType)
+  local capacity = self:getHusbandryCapacity(spec.fillType)
+  local ratio = 0
 
-  self.i18n = i18n
-  self.additionalUnits = additionalUnits
-  self.fillTypeManager = fillTypeManager
+  info.title = fillType.title
+  info.fillType = fillType.name
+  info.value = self:getHusbandryFillLevel(spec.fillType)
 
-  return self
+  if capacity > 0 then
+    ratio = info.value / capacity
+  end
+
+  info.ratio = MathUtil.clamp(ratio, 0, 1)
+  info.invertedBar = true
+
+  table.insert(infos, info)
+
+  return infos
 end
 
-function PlaceableHusbandryLiquidManureUnitExtension:initialize()
-  self.additionalUnits:overwriteGameFunction(PlaceableHusbandryLiquidManure, "getConditionInfos", function (_, husbandry, superFunc)
-    local infos = superFunc(husbandry)
-    local spec = husbandry.spec_husbandryLiquidManure
+function PlaceableHusbandryLiquidManureUnitExtension:updateInfo(_, superFunc, infoTable)
+  superFunc(self, infoTable)
 
-    local info = {}
-    local fillType = self.fillTypeManager:getFillTypeByIndex(spec.fillType)
-    local capacity = husbandry:getHusbandryCapacity(spec.fillType)
-    local ratio = 0
+  local spec = self.spec_husbandryLiquidManure
+  local fillLevel = self:getHusbandryFillLevel(spec.fillType)
+  local formattedFillLevel, unit = g_additionalUnits:formatFillLevel(fillLevel, g_fillTypeManager:getFillTypeNameByIndex(spec.fillType))
 
-    info.title = fillType.title
-    info.fillType = fillType.name
-    info.value = husbandry:getHusbandryFillLevel(spec.fillType)
+  spec.info.text = g_i18n:formatVolume(formattedFillLevel, 0, unit.shortName)
 
-    if capacity > 0 then
-      ratio = info.value / capacity
-    end
+  table.insert(infoTable, spec.info)
+end
 
-    info.ratio = MathUtil.clamp(ratio, 0, 1)
-    info.invertedBar = true
+function PlaceableHusbandryLiquidManureUnitExtension:overwriteGameFunctions()
+  PlaceableHusbandryLiquidManure.getConditionInfos = Utils.overwrittenFunction(PlaceableHusbandryLiquidManure.getConditionInfos, PlaceableHusbandryLiquidManureUnitExtension.getConditionInfos)
 
-    table.insert(infos, info)
-
-    return infos
-  end)
-
-  self.additionalUnits:overwriteGameFunction(PlaceableHusbandryLiquidManure, "updateInfo", function (_, husbandry, superFunc, infoTable)
-    superFunc(husbandry, infoTable)
-
-    local spec = husbandry.spec_husbandryLiquidManure
-    local fillLevel = husbandry:getHusbandryFillLevel(spec.fillType)
-    local formattedFillLevel, unit = self.additionalUnits:formatFillLevel(fillLevel, self.fillTypeManager:getFillTypeNameByIndex(spec.fillType))
-
-    spec.info.text = self.i18n:formatVolume(formattedFillLevel, 0, unit.shortName)
-
-    table.insert(infoTable, spec.info)
-  end)
+  if not INFO_DISPLAY_EXTENSION_MOD_LOADED then
+    PlaceableHusbandryLiquidManure.updateInfo = Utils.overwrittenFunction(PlaceableHusbandryLiquidManure.updateInfo, PlaceableHusbandryLiquidManureUnitExtension.updateInfo)
+  end
 end

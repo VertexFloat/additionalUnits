@@ -4,74 +4,65 @@
 
 FillUnitUnitExtension = {}
 
-local FillUnitUnitExtension_mt = Class(FillUnitUnitExtension)
+function FillUnitUnitExtension:showInfo(_, superFunc, box)
+  local spec = self.spec_fillUnit
 
-function FillUnitUnitExtension.new(customMt, additionalUnits, fillTypeManager)
-  local self = setmetatable({}, customMt or FillUnitUnitExtension_mt)
+  if spec.isInfoDirty then
+    spec.fillUnitInfos = {}
 
-  self.additionalUnits = additionalUnits
-  self.fillTypeManager = fillTypeManager
+    local fillTypeToInfo = {}
 
-  return self
-end
+    for _, fillUnit in ipairs(spec.fillUnits) do
+      if fillUnit.showOnInfoHud and fillUnit.fillLevel > 0 then
+        local info = fillTypeToInfo[fillUnit.fillType]
 
-function FillUnitUnitExtension:initialize()
-  self.additionalUnits:overwriteGameFunction(FillUnit, "showInfo", function (_, fillUnit, superFunc, box)
-    local spec = fillUnit.spec_fillUnit
+        if info == nil then
+          local fillType = g_fillTypeManager:getFillTypeByIndex(fillUnit.fillType)
 
-    if spec.isInfoDirty then
-      spec.fillUnitInfos = {}
+          info = {
+            title = fillType.title,
+            name = fillType.name,
+            fillLevel = 0,
+            unit = fillUnit.unitText,
+            precision = 0
+          }
 
-      local fillTypeToInfo = {}
+          fillTypeToInfo[fillUnit.fillType] = info
 
-      for _, fillUnit in ipairs(spec.fillUnits) do
-        if fillUnit.showOnInfoHud and fillUnit.fillLevel > 0 then
-          local info = fillTypeToInfo[fillUnit.fillType]
+          table.insert(spec.fillUnitInfos, info)
+        end
 
-          if info == nil then
-            local fillType = self.fillTypeManager:getFillTypeByIndex(fillUnit.fillType)
+        info.fillLevel = info.fillLevel + fillUnit.fillLevel
 
-            info = {
-              title = fillType.title,
-              name = fillType.name,
-              fillLevel = 0,
-              unit = fillUnit.unitText,
-              precision = 0
-            }
-
-            fillTypeToInfo[fillUnit.fillType] = info
-
-            table.insert(spec.fillUnitInfos, info)
-          end
-
-          info.fillLevel = info.fillLevel + fillUnit.fillLevel
-
-          if info.precision == 0 and fillUnit.fillLevel > 0 then
-            info.precision = fillUnit.uiPrecision or 0
-          end
+        if info.precision == 0 and fillUnit.fillLevel > 0 then
+          info.precision = fillUnit.uiPrecision or 0
         end
       end
-
-      spec.isInfoDirty = false
     end
 
-    for _, info in ipairs(spec.fillUnitInfos) do
-      local formattedNumber
-      local formattedFillLevel, unit = self.additionalUnits:formatFillLevel(info.fillLevel, info.name)
+    spec.isInfoDirty = false
+  end
 
-      if info.precision > 0 then
-        local rounded = MathUtil.round(formattedFillLevel, info.precision)
+  for _, info in ipairs(spec.fillUnitInfos) do
+    local formattedNumber
+    local formattedFillLevel, unit = g_additionalUnits:formatFillLevel(info.fillLevel, info.name)
 
-        formattedNumber = string.format("%d%s%0"..info.precision.."d", math.floor(rounded), self.i18n.decimalSeparator, (rounded - math.floor(rounded)) * 10 ^ info.precision)
-      else
-        formattedNumber = string.format("%d", MathUtil.round(formattedFillLevel))
-      end
+    if info.precision > 0 then
+      local rounded = MathUtil.round(formattedFillLevel, info.precision)
 
-      formattedNumber = formattedNumber .. " " .. (unit.shortName or info.unit or self.i18n:getVolumeUnit())
-
-      box:addLine(info.title, formattedNumber)
+      formattedNumber = string.format("%d%s%0"..info.precision.."d", math.floor(rounded), self.i18n.decimalSeparator, (rounded - math.floor(rounded)) * 10 ^ info.precision)
+    else
+      formattedNumber = string.format("%d", MathUtil.round(formattedFillLevel))
     end
 
-    superFunc(fillUnit, box)
-  end)
+    formattedNumber = formattedNumber .. " " .. (unit.shortName or info.unit or self.i18n:getVolumeUnit())
+
+    box:addLine(info.title, formattedNumber)
+  end
+
+  superFunc(self, box)
+end
+
+function FillUnitUnitExtension:overwriteGameFunctions()
+  FillUnit.showInfo = Utils.overwrittenFunction(FillUnit.showInfo, FillUnitUnitExtension.showInfo)
 end

@@ -4,35 +4,28 @@
 
 FeedingRobotUnitExtension = {}
 
-local FeedingRobotUnitExtension_mt = Class(FeedingRobotUnitExtension)
+function FeedingRobotUnitExtension:updateInfo(superFunc, infoTable)
+  if self.infos ~= nil then
+    for _, info in ipairs(self.infos) do
+      local fillLevel = 0
+      local fillTypeName = "UNKNOWN"
 
-function FeedingRobotUnitExtension.new(customMt, additionalUnits, fillTypeManager)
-  local self = setmetatable({}, customMt or FeedingRobotUnitExtension_mt)
+      for _, fillType in ipairs(info.fillTypes) do
+        fillLevel = fillLevel + self:getFillLevel(fillType)
+        fillTypeName = g_fillTypeManager:getFillTypeNameByIndex(fillType)
+      end
 
-  self.additionalUnits = additionalUnits
-  self.fillTypeManager = fillTypeManager
+      local formattedFillLevel, unit = g_additionalUnits:formatFillLevel(fillLevel, fillTypeName)
 
-  return self
+      info.text = string.format("%d %s", formattedFillLevel, unit.shortName)
+
+      table.insert(infoTable, info)
+    end
+  end
 end
 
-function FeedingRobotUnitExtension:initialize()
-  self.additionalUnits:overwriteGameFunction(FeedingRobot, "updateInfo", function (superFunc, robot, infoTable)
-    if robot.infos ~= nil then
-      for _, info in ipairs(robot.infos) do
-        local fillLevel = 0
-        local fillTypeName = "UNKNOWN"
-
-        for _, fillType in ipairs(info.fillTypes) do
-          fillLevel = fillLevel + robot:getFillLevel(fillType)
-          fillTypeName = self.fillTypeManager:getFillTypeNameByIndex(fillType)
-        end
-
-        local formattedFillLevel, unit = self.additionalUnits:formatFillLevel(fillLevel, fillTypeName)
-
-        info.text = string.format("%d %s", formattedFillLevel, unit.shortName)
-
-        table.insert(infoTable, info)
-      end
-    end
-  end)
+function FeedingRobotUnitExtension:overwriteGameFunctions()
+  if not INFO_DISPLAY_EXTENSION_MOD_LOADED then
+    FeedingRobot.updateInfo = Utils.overwrittenFunction(FeedingRobot.updateInfo, FeedingRobotUnitExtension.updateInfo)
+  end
 end
