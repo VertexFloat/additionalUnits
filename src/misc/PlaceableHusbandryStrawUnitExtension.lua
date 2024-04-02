@@ -44,7 +44,7 @@ end
 function PlaceableHusbandryStrawUnitExtension:overwriteGameFunctions()
   PlaceableHusbandryStraw.getConditionInfos = Utils.overwrittenFunction(PlaceableHusbandryStraw.getConditionInfos, PlaceableHusbandryStrawUnitExtension.getConditionInfos)
 
-  if not INFO_DISPLAY_EXTENSION_MOD_LOADED then
+  if not g_modIsLoaded.FS22_InfoDisplayExtension then
     PlaceableHusbandryStraw.updateInfo = Utils.overwrittenFunction(PlaceableHusbandryStraw.updateInfo, PlaceableHusbandryStrawUnitExtension.updateInfo)
   end
 end

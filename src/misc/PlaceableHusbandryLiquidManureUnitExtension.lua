@@ -44,7 +44,7 @@ end
 function PlaceableHusbandryLiquidManureUnitExtension:overwriteGameFunctions()
   PlaceableHusbandryLiquidManure.getConditionInfos = Utils.overwrittenFunction(PlaceableHusbandryLiquidManure.getConditionInfos, PlaceableHusbandryLiquidManureUnitExtension.getConditionInfos)
 
-  if not INFO_DISPLAY_EXTENSION_MOD_LOADED then
+  if not g_modIsLoaded.FS22_InfoDisplayExtension then
     PlaceableHusbandryLiquidManure.updateInfo = Utils.overwrittenFunction(PlaceableHusbandryLiquidManure.updateInfo, PlaceableHusbandryLiquidManureUnitExtension.updateInfo)
   end
 end

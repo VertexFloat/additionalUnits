@@ -52,7 +52,7 @@ end
 function PlaceableHusbandryWaterUnitExtension:overwriteGameFunctions()
   PlaceableHusbandryWater.getConditionInfos = Utils.overwrittenFunction(PlaceableHusbandryWater.getConditionInfos, PlaceableHusbandryWaterUnitExtension.getConditionInfos)
 
-  if not INFO_DISPLAY_EXTENSION_MOD_LOADED then
+  if not g_modIsLoaded.FS22_InfoDisplayExtension then
     PlaceableHusbandryWater.updateInfo = Utils.overwrittenFunction(PlaceableHusbandryWater.updateInfo, PlaceableHusbandryWaterUnitExtension.updateInfo)
   end
 end

@@ -103,7 +103,7 @@ function PlaceableSiloUnitExtension:canBeSold(_, superFunc)
 end
 
 function PlaceableSiloUnitExtension:overwriteGameFunctions()
-  if not INFO_DISPLAY_EXTENSION_MOD_LOADED then
+  if not g_modIsLoaded.FS22_InfoDisplayExtension then
     PlaceableSilo.updateInfo = Utils.overwrittenFunction(PlaceableSilo.updateInfo, PlaceableSiloUnitExtension.updateInfo)
   end
 

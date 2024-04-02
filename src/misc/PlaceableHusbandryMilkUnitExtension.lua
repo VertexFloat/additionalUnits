@@ -44,7 +44,7 @@ end
 function PlaceableHusbandryMilkUnitExtension:overwriteGameFunctions()
   PlaceableHusbandryMilk.getConditionInfos = Utils.overwrittenFunction(PlaceableHusbandryMilk.getConditionInfos, PlaceableHusbandryMilkUnitExtension.getConditionInfos)
 
-  if not INFO_DISPLAY_EXTENSION_MOD_LOADED then
+  if not g_modIsLoaded.FS22_InfoDisplayExtension then
     PlaceableHusbandryMilk.updateInfo = Utils.overwrittenFunction(PlaceableHusbandryMilk.updateInfo, PlaceableHusbandryMilkUnitExtension.updateInfo)
   end
 end

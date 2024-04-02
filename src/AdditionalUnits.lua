@@ -14,8 +14,6 @@ AdditionalUnits = {
   MOD_SETTINGS_DIRECTORY = g_currentModSettingsDirectory
 }
 
-INFO_DISPLAY_EXTENSION_MOD_LOADED = false
-
 AdditionalUnits.DEFAULT_UNITS_XML_PATH = AdditionalUnits.MOD_DIRECTORY .. "data/units.xml"
 AdditionalUnits.DEFAULT_MASS_FACTOR_XML_PATH = AdditionalUnits.MOD_DIRECTORY .. "data/massFactors.xml"
 

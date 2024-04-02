@@ -82,7 +82,7 @@ function ProductionPointUnitExtension:updateInfo(superFunc, infoTable)
 end
 
 function ProductionPointUnitExtension:overwriteGameFunctions()
-  if not INFO_DISPLAY_EXTENSION_MOD_LOADED then
+  if not g_modIsLoaded.FS22_InfoDisplayExtension then
     ProductionPoint.updateInfo = Utils.overwrittenFunction(ProductionPoint.updateInfo, ProductionPointUnitExtension.updateInfo)
   end
 end

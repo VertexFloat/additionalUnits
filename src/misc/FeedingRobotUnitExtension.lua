@@ -25,7 +25,7 @@ function FeedingRobotUnitExtension:updateInfo(superFunc, infoTable)
 end
 
 function FeedingRobotUnitExtension:overwriteGameFunctions()
-  if not INFO_DISPLAY_EXTENSION_MOD_LOADED then
+  if not g_modIsLoaded.FS22_InfoDisplayExtension then
     FeedingRobot.updateInfo = Utils.overwrittenFunction(FeedingRobot.updateInfo, FeedingRobotUnitExtension.updateInfo)
   end
 end

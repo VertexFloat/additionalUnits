@@ -22,7 +22,7 @@ function PlaceableManureHeapUnitExtension:updateInfo(_, superFunc, infoTable)
 end
 
 function PlaceableManureHeapUnitExtension:overwriteGameFunctions()
-  if not INFO_DISPLAY_EXTENSION_MOD_LOADED then
+  if not g_modIsLoaded.FS22_InfoDisplayExtension then
     PlaceableManureHeap.updateInfo = Utils.overwrittenFunction(PlaceableManureHeap.updateInfo, PlaceableManureHeapUnitExtension.updateInfo)
   end
 end
