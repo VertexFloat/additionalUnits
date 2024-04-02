@@ -22,7 +22,7 @@ function AdditionalUnitsGui.new(customMt, additionalUnits, gui, i18n, fillTypeMa
   self.editUnitDialog = EditUnitDialog.new(nil, customMt, additionalUnits, i18n)
   self.editFillTypeUnitDialog = EditFillTypeUnitDialog.new(nil, customMt, additionalUnits, i18n)
   self.additionalUnitsMenu = AdditionalUnitsMenu.new(nil, customMt, additionalUnits, gui, i18n, fillTypeManager)
-  self.inGameMenuGeneralSettingsFrameUnitExtension = InGameMenuGeneralSettingsFrameUnitExtension.new(customMt, additionalUnits, gui, i18n)
+  self.inGameMenuGeneralSettingsFrameUnitExtension = InGameMenuGeneralSettingsFrameUnitExtension.new(customMt, gui, i18n)
 
   return self
 end
