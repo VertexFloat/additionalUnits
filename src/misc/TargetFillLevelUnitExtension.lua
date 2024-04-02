@@ -3,7 +3,7 @@
 -- @filename: TargetFillLevelUnitExtension.lua
 
 TargetFillLevelUnitExtension = {
-  OBJECT = _G["FS22_TargetFillLevel"].TargetFillLevel
+  OBJECT = _G["FS22_TargetFillLevel"]
 }
 
 function TargetFillLevelUnitExtension:addFillLevelDisplay(superFunc, targetVehicle, display)
@@ -40,5 +40,5 @@ function TargetFillLevelUnitExtension:addFillLevelDisplay(superFunc, targetVehic
 end
 
 function TargetFillLevelUnitExtension:overwriteGameFunctions()
-  TargetFillLevelUnitExtension.OBJECT.addFillLevelDisplay = Utils.overwrittenFunction(TargetFillLevelUnitExtension.OBJECT.addFillLevelDisplay, TargetFillLevelUnitExtension.addFillLevelDisplay)
+  TargetFillLevelUnitExtension.OBJECT.TargetFillLevel.addFillLevelDisplay = Utils.overwrittenFunction(TargetFillLevelUnitExtension.OBJECT.TargetFillLevel.addFillLevelDisplay, TargetFillLevelUnitExtension.addFillLevelDisplay)
 end

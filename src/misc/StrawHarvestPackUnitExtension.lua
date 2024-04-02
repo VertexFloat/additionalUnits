@@ -46,7 +46,9 @@ function StrawHarvestPackUnitExtension:updateInfo(_, superFunc, infoTable)
 
     if addInfo then
       local fillLevel = self:getHusbandryFillLevel(inputFillType)
-      spec.info[inputFillType].text = string.format("%d l", fillLevel)
+      local formattedFillLevel, unit = g_additionalUnits:formatFillLevel(fillLevel, g_fillTypeManager:getFillTypeNameByIndex(inputFillType))
+
+      spec.info[inputFillType].text = g_i18n:formatVolume(formattedFillLevel, 0, unit.shortName)
 
       table.insert(infoTable, spec.info[inputFillType])
     end

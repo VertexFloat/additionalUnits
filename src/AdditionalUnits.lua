@@ -34,6 +34,8 @@ source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/PlaceableManureHeapUnitExtensi
 source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/PlaceableSiloUnitExtension.lua")
 source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/ProductionPointUnitExtension.lua")
 source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/SiloDialogUnitExtension.lua")
+source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/TargetFillLevelUnitExtension.lua")
+source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/StrawHarvestPackUnitExtension.lua")
 source(AdditionalUnits.MOD_DIRECTORY .. "src/shared/constants.lua")
 
 local AdditionalUnits_mt = Class(AdditionalUnits)
@@ -75,21 +77,19 @@ function AdditionalUnits:initialize()
   PlaceableSiloUnitExtension:overwriteGameFunctions()
   ProductionPointUnitExtension:overwriteGameFunctions()
   SiloDialogUnitExtension:overwriteGameFunctions()
+
+  if g_modIsLoaded.FS22_strawHarvestPack then
+    StrawHarvestPackUnitExtension:overwriteGameFunctions()
+  end
+
+  if g_modIsLoaded.FS22_TargetFillLevel then
+    TargetFillLevelUnitExtension:overwriteGameFunctions()
+  end
 end
 
 function AdditionalUnits:loadMap(filename)
-  if g_modIsLoaded["FS22_DefPack"] then
+  if g_modIsLoaded.FS22_DefPack then
     MISSING_FILLTYPES.DEF = true
-  end
-
-  if g_modIsLoaded["FS22_TargetFillLevel"] then
-    source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/TargetFillLevelUnitExtension.lua")
-    TargetFillLevelUnitExtension:overwriteGameFunctions()
-  end
-
-  if g_modIsLoaded["FS22_strawHarvestPack"] then
-    source(AdditionalUnits.MOD_DIRECTORY .. "src/misc/StrawHarvestPackUnitExtension.lua")
-    StrawHarvestPackUnitExtension:overwriteGameFunctions()
   end
 
   self:loadFillTypesUnitsFromXML()
