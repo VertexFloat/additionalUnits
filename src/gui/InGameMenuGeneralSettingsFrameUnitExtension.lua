@@ -8,12 +8,11 @@ InGameMenuGeneralSettingsFrameUnitExtension = {
 
 local InGameMenuGeneralSettingsFrameUnitExtension_mt = Class(InGameMenuGeneralSettingsFrameUnitExtension)
 
-function InGameMenuGeneralSettingsFrameUnitExtension.new(customMt, additionalUnits, gui, i18n)
+function InGameMenuGeneralSettingsFrameUnitExtension.new(customMt, gui, i18n)
   local self = setmetatable({}, customMt or InGameMenuGeneralSettingsFrameUnitExtension_mt)
 
   self.gui = gui
   self.i18n = i18n
-  self.additionalUnits = additionalUnits
 
   self.isCreated = false
 
@@ -21,8 +20,9 @@ function InGameMenuGeneralSettingsFrameUnitExtension.new(customMt, additionalUni
 end
 
 function InGameMenuGeneralSettingsFrameUnitExtension:initialize()
-  self.additionalUnits:overwriteGameFunction(InGameMenuGeneralSettingsFrame, "onFrameOpen", function (superFunc, frame, element)
-    superFunc(frame, element)
+  local oldFunc = InGameMenuGeneralSettingsFrame.onFrameOpen
+  local newFunc = function(superFunc, frame)
+    superFunc(frame)
 
     if not self.isCreated then
       local pageSettingsGame = g_currentMission.inGameMenu.pageSettingsGame
@@ -72,5 +72,9 @@ function InGameMenuGeneralSettingsFrameUnitExtension:initialize()
 
       self.isCreated = true
     end
-  end)
+  end
+
+  InGameMenuGeneralSettingsFrame.onFrameOpen = function(...)
+    return newFunc(oldFunc, ...)
+  end
 end
