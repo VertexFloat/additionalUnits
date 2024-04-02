@@ -44,8 +44,13 @@ function FillUnitUnitExtension:showInfo(_, superFunc, box)
   end
 
   for _, info in ipairs(spec.fillUnitInfos) do
+    local unit = info.unit
     local formattedNumber
-    local formattedFillLevel, unit = g_additionalUnits:formatFillLevel(info.fillLevel, info.name)
+    local formattedFillLevel = info.fillLevel
+
+    if unit == g_i18n:getText("unit_literShort") or unit == nil then
+      formattedFillLevel, unit = g_additionalUnits:formatFillLevel(info.fillLevel, info.name)
+    end
 
     if info.precision > 0 then
       local rounded = MathUtil.round(formattedFillLevel, info.precision)
@@ -55,7 +60,7 @@ function FillUnitUnitExtension:showInfo(_, superFunc, box)
       formattedNumber = string.format("%d", MathUtil.round(formattedFillLevel))
     end
 
-    formattedNumber = formattedNumber .. " " .. (unit.shortName or info.unit or self.i18n:getVolumeUnit())
+    formattedNumber = formattedNumber .. " " .. (unit.shortName or unit or self.i18n:getVolumeUnit())
 
     box:addLine(info.title, formattedNumber)
   end
