@@ -4,38 +4,28 @@
 
 InGameMenuProductionFrameUnitExtension = {}
 
-local InGameMenuProductionFrameUnitExtension_mt = Class(InGameMenuProductionFrameUnitExtension)
+function InGameMenuProductionFrameUnitExtension:populateCellForItemInSection(superFunc, list, section, index, cell)
+  superFunc(self, list, section, index, cell)
 
-function InGameMenuProductionFrameUnitExtension.new(customMt, additionalUnits, i18n, fillTypeManager)
-  local self = setmetatable({}, customMt or InGameMenuProductionFrameUnitExtension_mt)
+  if list ~= self.productionList then
+    local fillType = nil
 
-  self.i18n = i18n
-  self.additionalUnits = additionalUnits
-  self.fillTypeManager = fillTypeManager
+    if section == 1 then
+      fillType = self.selectedProductionPoint.inputFillTypeIdsArray[index]
+    else
+      fillType = self.selectedProductionPoint.outputFillTypeIdsArray[index]
+    end
 
-  return self
+    if fillType ~= FillType.UNKNOWN then
+      local fillLevel = self.selectedProductionPoint:getFillLevel(fillType)
+      local fillTypeDesc = g_fillTypeManager:getFillTypeByIndex(fillType)
+      local formattedFillLevel, unit = g_additionalUnits:formatFillLevel(fillLevel, fillTypeDesc.name)
+
+      cell:getAttribute("fillLevel"):setText(g_i18n:formatVolume(formattedFillLevel, 0, unit.shortName))
+    end
+  end
 end
 
-function InGameMenuProductionFrameUnitExtension:initialize()
-  self.additionalUnits:overwriteGameFunction(InGameMenuProductionFrame, "populateCellForItemInSection", function (superFunc, inGameMenu, list, section, index, cell)
-    superFunc(inGameMenu, list, section, index, cell)
-
-    if list ~= inGameMenu.productionList then
-      local fillType = nil
-
-      if section == 1 then
-        fillType = inGameMenu.selectedProductionPoint.inputFillTypeIdsArray[index]
-      else
-        fillType = inGameMenu.selectedProductionPoint.outputFillTypeIdsArray[index]
-      end
-
-      if fillType ~= FillType.UNKNOWN then
-        local fillLevel = inGameMenu.selectedProductionPoint:getFillLevel(fillType)
-        local fillTypeDesc = self.fillTypeManager:getFillTypeByIndex(fillType)
-        local formattedFillLevel, unit = self.additionalUnits:formatFillLevel(fillLevel, fillTypeDesc.name)
-
-        cell:getAttribute("fillLevel"):setText(self.i18n:formatVolume(formattedFillLevel, 0, unit.shortName))
-      end
-    end
-  end)
+function InGameMenuProductionFrameUnitExtension:overwriteGameFunctions()
+  InGameMenuProductionFrame.populateCellForItemInSection = Utils.overwrittenFunction(InGameMenuProductionFrame.populateCellForItemInSection, InGameMenuProductionFrameUnitExtension.populateCellForItemInSection)
 end

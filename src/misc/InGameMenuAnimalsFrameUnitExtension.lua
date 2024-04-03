@@ -4,50 +4,41 @@
 
 InGameMenuAnimalsFrameUnitExtension = {}
 
-local InGameMenuAnimalsFrameUnitExtension_mt = Class(InGameMenuAnimalsFrameUnitExtension)
+function InGameMenuAnimalsFrameUnitExtension:updateConditionDisplay(superFunc, husbandry)
+  superFunc(self, husbandry)
 
-function InGameMenuAnimalsFrameUnitExtension.new(customMt, additionalUnits, i18n, fillTypeManager)
-  local self = setmetatable({}, customMt or InGameMenuAnimalsFrameUnitExtension_mt)
+  local infos = husbandry:getConditionInfos()
 
-  self.i18n = i18n
-  self.additionalUnits = additionalUnits
-  self.fillTypeManager = fillTypeManager
+  for index, row in ipairs(self.conditionRow) do
+    local info = infos[index]
 
-  return self
+    if info ~= nil then
+      local formattedFillLevel, unit = g_additionalUnits:formatFillLevel(info.value, info.fillType)
+      local valueText = info.valueText or g_i18n:formatVolume(formattedFillLevel, 0, info.customUnitText or unit.shortName)
+
+      self.conditionValue[index]:setText(valueText)
+    end
+  end
 end
 
-function InGameMenuAnimalsFrameUnitExtension:initialize()
-  self.additionalUnits:overwriteGameFunction(InGameMenuAnimalsFrame, "updateConditionDisplay", function (superFunc, inGameMenu, husbandry)
-    superFunc(inGameMenu, husbandry)
+function InGameMenuAnimalsFrameUnitExtension:updateFoodDisplay(superFunc, husbandry)
+  superFunc(self, husbandry)
 
-    local infos = husbandry:getConditionInfos()
+  local infos = husbandry:getFoodInfos()
 
-    for index, row in ipairs(inGameMenu.conditionRow) do
-      local info = infos[index]
+  for index, row in ipairs(self.foodRow) do
+    local info = infos[index]
 
-      if info ~= nil then
-        local formattedFillLevel, unit = self.additionalUnits:formatFillLevel(info.value, info.fillType)
-        local valueText = info.valueText or self.i18n:formatVolume(formattedFillLevel, 0, info.customUnitText or unit.shortName)
+    if info ~= nil then
+      local formattedFillLevel, unit = g_additionalUnits:formatFillLevel(info.value, g_fillTypeManager:getFillTypeNameByIndex(info.fillType))
+      local valueText = g_i18n:formatVolume(formattedFillLevel, 0, unit.shortName)
 
-        inGameMenu.conditionValue[index]:setText(valueText)
-      end
+      self.foodValue[index]:setText(valueText)
     end
-  end)
+  end
+end
 
-  self.additionalUnits:overwriteGameFunction(InGameMenuAnimalsFrame, "updateFoodDisplay", function (superFunc, inGameMenu, husbandry)
-    superFunc(inGameMenu, husbandry)
-
-    local infos = husbandry:getFoodInfos()
-
-    for index, row in ipairs(inGameMenu.foodRow) do
-      local info = infos[index]
-
-      if info ~= nil then
-        local formattedFillLevel, unit = self.additionalUnits:formatFillLevel(info.value, self.fillTypeManager:getFillTypeNameByIndex(info.fillType))
-        local valueText = self.i18n:formatVolume(formattedFillLevel, 0, unit.shortName)
-
-        inGameMenu.foodValue[index]:setText(valueText)
-      end
-    end
-  end)
+function InGameMenuAnimalsFrameUnitExtension:overwriteGameFunctions()
+  InGameMenuAnimalsFrame.updateConditionDisplay = Utils.overwrittenFunction(InGameMenuAnimalsFrame.updateConditionDisplay, InGameMenuAnimalsFrameUnitExtension.updateConditionDisplay)
+  InGameMenuAnimalsFrame.updateFoodDisplay = Utils.overwrittenFunction(InGameMenuAnimalsFrame.updateFoodDisplay, InGameMenuAnimalsFrameUnitExtension.updateFoodDisplay)
 end

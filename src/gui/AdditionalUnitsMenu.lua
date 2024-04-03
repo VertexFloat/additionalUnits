@@ -78,7 +78,7 @@ function AdditionalUnitsMenu:rebuildTables()
   self.fillTypes = {}
 
   for _, fillTypesDesc in pairs(self.fillTypeManager:getFillTypes()) do
-    if fillTypesDesc.showOnPriceTable or MISSING_FILLTYPES[fillTypesDesc.name] == true then
+    if INVALID_FILLTYPES[fillTypesDesc.name] ~= false and fillTypesDesc.showOnPriceTable or MISSING_FILLTYPES[fillTypesDesc.name] == true then
       table.insert(self.fillTypes, fillTypesDesc)
     end
   end

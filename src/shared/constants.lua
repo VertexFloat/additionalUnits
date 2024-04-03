@@ -17,3 +17,8 @@ MISSING_FILLTYPES = {
   FORAGE_MIXING = true,
   MINERAL_FEED = true
 }
+
+INVALID_FILLTYPES = {
+  BALETWINE = false,
+  BALENET = false
+}
