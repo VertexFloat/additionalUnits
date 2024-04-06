@@ -92,7 +92,7 @@ or
 
 ## Feedback
 
-Beta version of [InfoDisplayExtension](https://github.com/Achimobil/FS22_InfoDisplayExtension) has been released, support for the AdditionalUnits mod has been added. Download this version to test it out.
+Beta version of [InfoDisplayExtension](https://github.com/Achimobil/FS22_InfoDisplayExtension/releases/tag/1.7.1.1) has been released, support for the AdditionalUnits mod has been added. Download this version to test it out.
 
 <p align="right">&#x2191 <a href="#top">back to top</a></p>
 
