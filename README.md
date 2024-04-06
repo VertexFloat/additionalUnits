@@ -31,6 +31,9 @@
         <li>
           <a href="#installation">Installation</a>
         </li>
+        <li>
+          <a href="#feedback">Feedback</a>
+        </li>
       </ul>
     </li>
     <li>
@@ -84,6 +87,12 @@ or
 3. Run modInstaller.exe.
 4. That's it, if everything went as it should, you can delete downloaded folder and zip file.
 5. Run the game and have a nice time.
+
+<p align="right">&#x2191 <a href="#top">back to top</a></p>
+
+### Feedback
+
+Beta version of [InfoDisplayExtension](https://github.com/Achimobil/FS22_InfoDisplayExtension) has been released, support for the AdditionalUnits mod has been added. Download this version to test it out.
 
 <p align="right">&#x2191 <a href="#top">back to top</a></p>
 
