@@ -27,7 +27,7 @@ function ProductionPointUnitExtension:updateInfo(superFunc, infoTable)
 
       table.insert(infoTable, {
         title = productionName,
-        text = g_i18n:getText(ProductionPoint.PROD_STATUS_TO_i18n[self:getProductionStatus(activeProduction.id)])
+        text = g_i18n:getText(ProductionPoint.PROD_STATUS_TO_L10N[self:getProductionStatus(activeProduction.id)])
       })
     end
   else
