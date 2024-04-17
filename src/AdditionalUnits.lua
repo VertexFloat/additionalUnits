@@ -112,7 +112,7 @@ end
 
 function AdditionalUnits:loadUnitsFromXML()
   local xmlFilename = self:loadConfigFile("units", AdditionalUnits.DEFAULT_UNITS_XML_PATH)
-  local xmlFile = XMLFile.loadIfExists("unitsXML", xmlFilename, "units")
+  local xmlFile = XMLFile.loadIfExists("unitsXML", xmlFilename)
 
   if xmlFile == nil then
     Logging.error(string.format("Additional Units: Failed to load units from (%s) path!", xmlFilename))
@@ -186,7 +186,7 @@ function AdditionalUnits:saveUnitsToXMLFile()
 end
 
 function AdditionalUnits:loadMassFactorsFromXML()
-  local xmlFile = XMLFile.loadIfExists("massFactorsXML", AdditionalUnits.DEFAULT_MASS_FACTOR_XML_PATH, "massFactors")
+  local xmlFile = XMLFile.loadIfExists("massFactorsXML", AdditionalUnits.DEFAULT_MASS_FACTOR_XML_PATH)
   local massFactors = {}
 
   if xmlFile == nil then
@@ -208,7 +208,7 @@ function AdditionalUnits:loadMassFactorsFromXML()
 end
 
 function AdditionalUnits:loadFillTypesUnitsFromXML()
-  local xmlFile = XMLFile.loadIfExists("fillTypesUnitsXML", AdditionalUnits.MOD_SETTINGS_DIRECTORY .. "fillTypes.xml", "fillTypes")
+  local xmlFile = XMLFile.loadIfExists("fillTypesUnitsXML", AdditionalUnits.MOD_SETTINGS_DIRECTORY .. "fillTypes.xml")
 
   if xmlFile == nil then
     local massFactors = self:loadMassFactorsFromXML()
