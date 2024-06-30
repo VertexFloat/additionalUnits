@@ -1,9 +1,11 @@
--- @author: 4c65736975, All Rights Reserved
--- @version: 1.0.0.1, 27|02|2024
--- @filename: ProductionPointUnitExtension.lua
-
--- Changelog (1.0.0.1):
--- fixed issue attempt to call local 'superFunc' (a table value)
+-- ProductionPointUnitExtension.lua
+--
+-- author: 4c65736975
+--
+-- Copyright (c) 2024 VertexFloat. All Rights Reserved.
+--
+-- This source code is licensed under the GPL-3.0 license found in the
+-- LICENSE file in the root directory of this source tree.
 
 ProductionPointUnitExtension = {}
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<modDesc descVersion="79">
+<modDesc descVersion="80">
   <author>VertexFloat</author>
-  <version>1.0.0.1</version>
+  <version>1.0.0.2</version>
   <title>
     <en>Additional Units</en>
     <de>Zusätzliche Einheiten</de>
@@ -15,12 +15,8 @@ You can open the unit management menu using the button in the general settings.
 
 By default, the added units are: cubic meter, gallon, pound, kilogram
 
-Changelog (1.0.0.1):
-- fixed water bar showing even when not needed in the Animals tab
-- fixed lua error 'attempt to call local 'superFunc'(a table value)'
-- added support for "Target Fill Level" mod
-- added support for "Straw Harvest Pack" mod
-- added support for "Def Pack" mod
+Changelog (1.0.0.2):
+- fixed controls freeze around items with lubricating grease (by DD ModPassion)
 
 For more information, full changelog, help or to report a bug, please visit <a href="https://github.com/VertexFloat/additionalUnits">GitHub</a>.]]></en>
     <de><![CDATA[Dank dieser Modifikation können Sie die Masse-/Volumeneinheit einstellen. Sie können auch je nach Bedarf eine neue Einheit hinzufügen.
@@ -28,12 +24,8 @@ For more information, full changelog, help or to report a bug, please visit <a h
 
 Standardmäßig sind die hinzugefügten Einheiten: Kubikmeter, Gallone, Pfund, Kilogramm
 
-Änderungsprotokoll (1.0.0.1):
-- Problem behoben, bei dem die Wasserleiste auf der Registerkarte „Tiere“ angezeigt wird, auch wenn sie nicht benötigt wird
-- Lua-Fehler 'attempt to call local 'superFunc'(a table value)' behoben
-- Unterstützung für den Mod "Füllstand Des Zielobjekts" hinzugefügt
-- Unterstützung für den Mod "Straw Harvest Pack" hinzugefügt
-- Unterstützung für den Mod "Def Pack" hinzugefügt
+Änderungsprotokoll (1.0.0.2):
+- Problem behoben, bei dem die Steuerung um Gegenstände mit Schmierfett herum einfrierte (von DD ModPassion)
 
 Weitere Informationen, ein vollständiges Änderungsprotokoll, Hilfe oder die Möglichkeit, einen Fehler zu melden, finden Sie unter <a href="https://github.com/VertexFloat/additionalUnits">GitHub</a>.]]></de>
     <fr><![CDATA[Grâce à cette modification, vous pouvez définir l'unité de masse/volume. Vous pouvez également ajouter une nouvelle unité selon vos besoins.
@@ -41,12 +33,8 @@ Vous pouvez ouvrir le menu de gestion de l'unité à l'aide du bouton dans les p
 
 Par défaut, les unités ajoutées sont : mètre cube, gallon, livre, kilogramme
 
-Journal des modifications (1.0.0.1):
-- Correction de la barre d'eau qui s'affiche même lorsqu'elle n'est pas utilisée dans l'onglet Animaux
-- Correction de l'erreur Lua 'attempt to call local 'superFunc'(a table value)'
-- ajout de la prise en charge du mod "Target Fill Level"
-- ajout de la prise en charge du mod "Straw Harvest Pack"
-- ajout de la prise en charge du mod "Def Pack"
+Journal des modifications (1.0.0.2):
+- les commandes fixes gèlent autour des objets avec de la graisse lubrifiante (par DD ModPassion)
 
 Pour plus d'informations, le journal des modifications complet, de l'aide ou pour signaler un bug, veuillez visiter <a href="https://github.com/VertexFloat/additionalUnits">GitHub</a>.]]></fr>
     <pl><![CDATA[Dzięki tej modyfikacji możesz ustawić jednostkę masy/objętości. Możesz również dodać nową jednostkę według własnych potrzeb.
@@ -54,12 +42,8 @@ Menu zarządzania jednostkami otworzyć możesz za pomocą przycisku znajdujące
 
 Standardowo dodanymi jednostkami są: metr sześcienny, galon, funt, kilogram
 
-Dziennik zmian (1.0.0.1):
-- naprawiono wyświetlanie paska wody nawet wtedy, gdy nie był potrzebny w zakładce Zwierzęta
-- naprawiono błąd Lua 'attempt to call local 'superFunc'(a table value)'
-- dodano obsługę modyfikacji "Target Fill Level"
-- dodano obsługę modyfikacji "Straw Harvest Pack"
-- dodano obsługę modyfikacji "Def Pack"
+Dziennik zmian (1.0.0.2):
+- naprawiono zamarzanie elementów sterujących wokół przedmiotów ze smarem (autor: DD ModPassion)
 
 Po więcej informacji, pełny dziennik zmian, pomoc lub zgłoszenie błędu, odwiedź stronę <a href="https://github.com/VertexFloat/additionalUnits">GitHub</a>.]]></pl>
   </description>

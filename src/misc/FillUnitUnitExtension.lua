@@ -1,6 +1,11 @@
--- @author: 4c65736975, All Rights Reserved
--- @version: 1.0.0.0, 13|04|2023
--- @filename: FillUnitUnitExtension.lua
+-- FillUnitUnitExtension.lua
+--
+-- author: 4c65736975
+--
+-- Copyright (c) 2024 VertexFloat. All Rights Reserved.
+--
+-- This source code is licensed under the GPL-3.0 license found in the
+-- LICENSE file in the root directory of this source tree.
 
 FillUnitUnitExtension = {}
 
@@ -55,12 +60,12 @@ function FillUnitUnitExtension:showInfo(_, superFunc, box)
     if info.precision > 0 then
       local rounded = MathUtil.round(formattedFillLevel, info.precision)
 
-      formattedNumber = string.format("%d%s%0"..info.precision.."d", math.floor(rounded), self.i18n.decimalSeparator, (rounded - math.floor(rounded)) * 10 ^ info.precision)
+      formattedNumber = string.format("%d%s%0"..info.precision.."d", math.floor(rounded), g_i18n.decimalSeparator, (rounded - math.floor(rounded)) * 10 ^ info.precision)
     else
       formattedNumber = string.format("%d", MathUtil.round(formattedFillLevel))
     end
 
-    formattedNumber = formattedNumber .. " " .. (unit.shortName or unit or self.i18n:getVolumeUnit())
+    formattedNumber = formattedNumber .. " " .. (unit.shortName or unit or g_i18n:getVolumeUnit())
 
     box:addLine(info.title, formattedNumber)
   end

@@ -1,9 +1,11 @@
--- @author: 4c65736975, All Rights Reserved
--- @version: 1.0.0.1, 02|05|2023
--- @filename: PlaceableHusbandryWaterUnitExtension.lua
-
--- Changelog (1.0.0.1):
--- fixed issue where water fill level is still visible even when husbandry has automatic water supply
+-- PlaceableHusbandryWaterUnitExtension.lua
+--
+-- author: 4c65736975
+--
+-- Copyright (c) 2024 VertexFloat. All Rights Reserved.
+--
+-- This source code is licensed under the GPL-3.0 license found in the
+-- LICENSE file in the root directory of this source tree.
 
 PlaceableHusbandryWaterUnitExtension = {}
 
