@@ -1,12 +1,11 @@
--- @author: 4c65736975, All Rights Reserved
--- @version: 1.0.0.2, 28|02|2024
--- @filename: AdditionalUnits.lua
-
--- Changelog (1.0.0.1):
--- added DEF support
-
--- Changelog (1.0.0.2):
--- cleaned code
+-- AdditionalUnits.lua
+--
+-- author: 4c65736975
+--
+-- Copyright (c) 2024 VertexFloat. All Rights Reserved.
+--
+-- This source code is licensed under the GPL-3.0 license found in the
+-- LICENSE file in the root directory of this source tree.
 
 AdditionalUnits = {
   MOD_NAME = g_currentModName,
