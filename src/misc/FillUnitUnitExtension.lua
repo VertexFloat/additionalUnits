@@ -55,12 +55,12 @@ function FillUnitUnitExtension:showInfo(_, superFunc, box)
     if info.precision > 0 then
       local rounded = MathUtil.round(formattedFillLevel, info.precision)
 
-      formattedNumber = string.format("%d%s%0"..info.precision.."d", math.floor(rounded), self.i18n.decimalSeparator, (rounded - math.floor(rounded)) * 10 ^ info.precision)
+      formattedNumber = string.format("%d%s%0"..info.precision.."d", math.floor(rounded), g_i18n.decimalSeparator, (rounded - math.floor(rounded)) * 10 ^ info.precision)
     else
       formattedNumber = string.format("%d", MathUtil.round(formattedFillLevel))
     end
 
-    formattedNumber = formattedNumber .. " " .. (unit.shortName or unit or self.i18n:getVolumeUnit())
+    formattedNumber = formattedNumber .. " " .. (unit.shortName or unit or g_i18n:getVolumeUnit())
 
     box:addLine(info.title, formattedNumber)
   end
